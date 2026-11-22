@@ -1,0 +1,372 @@
+<!DOCTYPE html><html lang="de"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>goose v1.41.0 — STAGS NextStack</title><meta name="description" content="iFlytek Spark and Astron MaaS providers (#9837) · edit session flag to edit conversation before forking (#9799) · Fireworks AI declarative provider (#9990) · OpenRouter request parameters support (#9276)"><meta name="keywords" content="Open-Source-release notes, Release-Tracker, changelog-Aggregator, Breaking Changes, Deprecation-Tracker, Kafka-Releases, Spring Boot-Releases, Kubernetes-Releases"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/de/releases/goose/1.41.0/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/de/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/goose/1.41.0/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/goose/1.41.0/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/goose/1.41.0/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="goose v1.41.0 — STAGS NextStack"><meta property="og:description" content="iFlytek Spark and Astron MaaS providers (#9837) · edit session flag to edit conversation before forking (#9799) · Fireworks AI declarative provider (#9990) · OpenRouter request parameters support (#9276)"><meta property="og:url" content="https://www.stags.cn/de/releases/goose/1.41.0/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="de_DE"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"de","description":"STAGS indexiert Release Notes aus Infrastruktur- und KI-Projekten – Breaking Changes, Deprecations und Migrationen – in einem englischsprachigen Feed.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/de/releases/goose/1.41.0/#article","headline":"goose v1.41.0 release notes","datePublished":"2026-07-03","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/aaif-goose/goose"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Zum Inhalt springen</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/de/" class="brand" aria-label="STAGS NextStack — Release-Informationen für Open Source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/de/releases">Releases</a><a href="/de/projects">Projekte</a><a href="/de/method">Methode</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Releases durchsuchen"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Suche</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Sprache"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">DE</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Sprache"> <p class="langmenu-head">Sprache</p> <a class="langmenu-item" href="/releases/goose/1.41.0/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/goose/goose_v1.41.0" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/goose/1.41.0/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/goose/1.41.0/" hreflang="de" lang="de" aria-current="true" data-on="true"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/goose/1.41.0/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/goose/1.41.0/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/goose/1.41.0/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/de/">Startseite</a> <span class="sep">/</span> <a href="/de/releases">Releases</a> <span class="sep">/</span> <a href="/de/releases/goose">goose</a> </nav> <h1 class="detail-title"> <span class="p">goose</span> v1.41.0 </h1> <div class="detail-meta"> <span class="chip chip--minor">Minor</span> <span><span class="k">Veröffentlicht</span>3. Juli 2026</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/aaif-goose/goose" target="_blank" rel="noopener"> <span class="k">Quelle</span>aaif-goose/goose </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/goose/1.41.0/"> Englisches Original </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/de/releases/goose/1.41.0/">Link kopieren</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Diese Seite ist maschinell übersetzt. Maßgeblich ist der englische Originaltext.</p>  <div><h1>Gans v1.41.0</h1>
+<h2>✨ Funktionen</h2>
+<p>– iFlytek Spark- und Astron MaaS-Anbieter (#9837)
+– <code>--edit</code>-Sitzungsflag zum Bearbeiten der Konversation vor der Verzweigung (#9799)
+– Fireworks AI deklarativer Anbieter (#9990)
+– Unterstützung für OpenRouter-Anfrageparameter (#9276)</p>
+<ul>
+<li>Desktop-Gebietsschemata für Französisch, Deutsch, Italienisch, Portugiesisch, Indonesisch, Malaiisch, Vietnamesisch und traditionelles Chinesisch (#10072)</li>
+<li>Unterstützung für das Gebietsschema Spanisch (es) (#9833)
+– Koreanische Lokalisierung für Desktop-App (#9856)</li>
+<li>Japanische Gebietsschemaunterstützung (#9768)</li>
+<li>Hindi-Desktop-Gebietsschema (#9733)</li>
+<li>Sprachauswahlfunktion im Desktop (#9405)</li>
+<li><code>/status</code>-Slash-Befehl in CLI (#9845)</li>
+<li>Streambare HTTP-Unterstützung im Deeplink-Generator (#9954)</li>
+<li>GLM-5.2-Modellunterstützung (#9967)
+– Globale Hinweise werden von <code>~/.agents/AGENTS.md</code> geladen (#9736)
+– Azure Entra ID-Bearer-Token-Authentifizierung über <code>AZURE_OPENAI_AD_TOKEN</code> (#9716)
+– Together AI deklarativer Anbieter (#9545)</li>
+<li>OrcaRouter als deklarativer OpenAI-kompatibler Anbieter (#9515)
+– EmpirioLabs AI deklarativer Anbieter (#9771)
+– MLX-Modellunterstützung für lokalen Inferenzanbieter (#9154)
+– Summon-Peek-Modus für asynchrone Hintergrundaufgaben (#9519)
+– Kontextparameter „Summon“ für Delegate-Aufgaben (#9518)
+– Working_dir-Überschreibung für Delegate-Aufgaben aufrufen (#9520)
+– Strukturierte Metadaten für Ladeergebnisse von Beschwörungsaufgaben (#9521)
+– TLS-Unterstützung für ACP-Server (#10088)
+– OpenAI Responses API-Speicherparameter-Konfigurierbarkeit (#10040)
+– Verfügbare Tools im ACP-Schema verfügbar gemacht (#10097)
+– Konfigurationsoption für den ACP-Denkaufwand (#10711)
+– Letzte Nachrichtenausschnitte für ACP-Sitzungen (#9798)
+– OTLP-Protokollierungsschema für die werkzeugübergreifende Erkennung (#9713)
+– Option zum Deaktivieren automatischer Update-Downloads (#9872)</li>
+<li>Cache-Token-Verfolgung für genaue Kostenberichte (#9752)</li>
+<li>Sitzungsimportfunktion (#9474)
+– xAI SuperGrok OAuth-Abonnementanbieter (#9420)</li>
+<li>Ratlosigkeit als deklarativer OpenAI-kompatibler Anbieter (#9324)</li>
+<li>Deklarativer Anbieter Alibaba (Qwen über DashScope) (#9443)</li>
+<li>Konfigurierbare Größenbeschränkung für die Werkzeugausgabe über <code>GOOSE_MAX_TOOL_RESPONSE_SIZE</code> (#9256)</li>
+<li><code>/model</code>-Slash-Befehl für den Sitzungsmodellwechsel (#8747)
+– Databricks AI Gateway-Anbieter (#9274)</li>
+<li>Unterstützung der russischen Sprache (#9406)</li>
+<li>Türkisches Desktop-Gebietsschema (#9392)</li>
+<li>NEAR AI Cloud-Anbieter (#9352)</li>
+<li>Scaleway-Anbieter (#9254)</li>
+<li>Harbor-Evaluierungsläufer (#9138)
+– <code>/goal</code>-Befehl zur Selbstbewertung des Agenten vor Abschluss (#9069)</li>
+<li>Anweisungen zum Beschwören des Subagenten (#9325)</li>
+<li>Open-Plugins-Verallgemeinerung + Fähigkeiten (#9112)</li>
+<li>PreToolUse-Ablehnung in Hooks (#9304)
+– Optionale api_key-Konfiguration für deklarative OpenAI-Engine-Anbieter (#9202)
+– <code>goose review</code>-Befehl zur Überprüfung des lokalen Codes (#9114)</li>
+<li>TUI-Diff-Viewer (#9260)
+– Paginierte Sitzungsliste in ACP (#9199)
+– Strukturierter Konfigurationsblock pro Anbieter mit zerstörungsfreiem Anbieterwechsel (#8977)</li>
+<li><code>tui</code>-Befehl auf goose-cli (#9385)
+– Konfigurierbares <code>MAX_CODE_BLOCK_LINES</code> über Env-Variablen (#9301)</li>
+<li><code>goose://resume</code>-Sitzungs-Deep-Link (#9343)</li>
+<li><code>GOOSE_FAST_MODEL</code>-Env-Var-Unterstützung (#9296)</li>
+<li>Vercel AI Gateway-Anbieter (#9144)</li>
+<li>Vierteljährliche Option für den Planer (#9076)</li>
+<li>Hakenfunktion (#9093)
+– Projekte als Backend-Quellen mit System-Prompt-Injection (#8739)</li>
+<li>Worktree-fähiger Verzeichnisumschalter (#8450)</li>
+<li>Funktion zur Suche im Chatverlauf (#8448)</li>
+<li>Optional <code>--parameters</code> für geplante Rezepte (#8741)</li>
+<li>GitHub Copilot <code>/responses</code> API (#9043)</li>
+<li>Einheitliche Steuerung des Denkaufwands über alle Anbieter hinweg (#9242)</li>
+<li>Slash-Befehle (integriert, Skill, Rezept) im ACP-Server (#9238)</li>
+<li>Nushell-Terminal- und Vervollständigungsunterstützung (#8628)</li>
+<li>Vereinfachte Chinesisch-Übersetzung (zh-CN) (#8765)</li>
+<li>Atomic Chat als deklarativer OpenAI-kompatibler Anbieter (#9210)
+– <code>GOOSE_OAUTH_CALLBACK_PORT</code> für stabile OAuth-Redirect_uri (#9209)
+– Proaktive OAuth-Token-Aktualisierung, um eine erneute Authentifizierung bei jeder Sitzung zu vermeiden (#8386)</li>
+<li><code>goose://new-session</code> Deep Link für frischen Chat (#9196)
+– Routstr als deklarativer Anbieter (#9175)</li>
+<li>FuturMix-Anbieter (#8840)
+– deklarativer oMLX-Anbieter (#9177)
+– Deklarative Anbieterunterstützung in der Kiste „goose-providers“ (#9992)</li>
+<li>Verbesserungen bei der ACP-Ermittlung (#9797)</li>
+<li>Bildlesetool (#9607)
+– <code>gpt-5.5</code>-Modellunterstützung für ChatGPT-Codex-Anbieter (#9292)</li>
+</ul>
+<h2>🐛 Fehlerbehebungen</h2>
+<ul>
+<li>Ausgabepfade kanonischer Modelle (#10196)</li>
+<li>Ausbreitung von ACP-Agent-Bereinigungsfehlern beim Löschen der Sitzung (#10112)</li>
+<li><code>claude-sonnet-5</code> zur kanonischen Modellregistrierung hinzugefügt (#10183)
+– MCP-app-guest-Anforderungstextlimit erhöht (#10180)</li>
+<li>Ausgabeelemente für Teilantworten werden toleriert (#10108)
+– Databricks-Tool-Parameter für OpenAI-Kompatibilität (#10101)</li>
+<li>Unescape-Shell-escaped Bildpfade (#10098)</li>
+<li>Seeding der automatischen Aktualisierung der Desktop-Mac-Konfiguration (#10132)</li>
+<li><code>/edit</code>-Eingabeaufforderungen im Verlauf gespeichert (#10011)</li>
+<li>Sitzungsliste mit <code>session.message_count</code> planen (#10026)
+– Synchronisierung des Sitzungsspeichers nach Anbieter-/Modellaktualisierung und Aktualisierung des Denkaufwands (#10060)
+– Fallback-REST-API-Aufruf im ACP-Modus zur direkten Bearbeitung entfernt (#10034)
+– Deterministisch-permanente 400er (Denkblock-Unveränderlichkeit) nicht erneut versuchen (#10005)
+– Async-Anforderung client für OTLP-Export im <code>goose serve</code>-Modus (#10100)</li>
+<li>Nicht-Objekt-Tool-Call-Argumente ablehnen, anstatt in Panik zu geraten (#9832)
+– Databricks-Preisauflösung und Kostenermittlung (#9925)
+– Nicht verwendete SubagentStart/SubagentStop-Hook-Ereignisse entfernt (#9960)</li>
+<li>Das Rezeptmodal wird geschlossen, wenn das Parameterformular abgebrochen wird (#9195)</li>
+<li>Der Zeitstempel der Werkzeuganforderung geht dem Zeitstempel der Werkzeugantwort voraus (#9462)
+– Aktivieren Sie Hermit unter macOS, damit STDIO-Erweiterungen den Knoten auflösen (#9482)</li>
+<li>Auto-Visualizer JSON-codierte String-Verarbeitung (#9838)</li>
+<li>User-Agent wurde beim Abrufen von URL-Bildern gesendet (#9927)
+– Geben Sie die Temperatur nicht an den ChatGPT-Codex-Anbieter weiter (#9931)</li>
+<li>Deduplizierung des Nostr-Sitzungs-Deep-Link-Imports (#9918)
+– Provider-Aktualisierung, wenn sich das Sitzungsarbeitsverzeichnis ändert (#9883)
+– GCP hat das gcloud-Token nach der erneuten Authentifizierung aktualisiert (Vertex AI auf 401/403 erneut versuchen) (#9849)</li>
+<li>Starten Sie eine Runde, wenn <code>/goal</code> oder <code>/grind</code> eingestellt ist (#9801)
+– Behandeln Sie Lebenslauf-Deep-Links (#9298)</li>
+<li>PATH-Reparatur für Plugin-Hook-Befehle (#9615)</li>
+<li>Cmd/Strg+T neue Chat-Verknüpfung wiederhergestellt (#9614)</li>
+<li>Menüsymbol Erwähnung öffnet Seitenleiste (#9643)</li>
+<li>Dedupe React, um mehrere Instanzen im Renderer zu verhindern (#9631)</li>
+<li>Hermit-Bereinigung zu UVX- und Jbang-Skripten hinzugefügt (#9616)
+– Blockieren des OTLP-HTTP-Exporters (#9599)
+– Zurückgreifen auf den Standardanbieter, wenn die Sitzung mit einem nicht verfügbaren Anbieter fortgesetzt wird (#9547)
+– Tokio-Laufzeit für OTLP-HTTP-Exporter-Batch-Thread bereitgestellt (#9541)
+– OpenAI meta.n_ctx liest aus <code>/v1/models</code> für lokales Server-Kontextlimit (#9530)</li>
+<li>Bildlaufleiste des Sitzungsverlaufs am Fensterrand ausgerichtet (#9601)
+– Aktualisierung des Sitzungsnamens in der Seitenleiste nach dem Umbenennen (#9543)</li>
+<li>Problem behoben, bei dem die Dateipfade für den Skill angezeigt wurden (#9584)</li>
+<li>Bedrock Real-Streaming über ConverseStream API (#9579)
+– OpenAI-native zwischengespeicherte_Tokens werden in der Nutzungsmessung erfasst (#9829)
+– URL-Überschreibungsoption des Moonshot-Anbieters API (#9819)</li>
+<li>Bildpfade mit Leerzeichen erkannt (#9387)</li>
+<li>Neue Chat-Verknüpfungsnavigation wiederhergestellt (#9528)</li>
+<li>Veraltete erledigte Aufgaben werden bei der Beschwörung entfernt (#9514)
+– OAuth-Rückruf-Timeout in WSL statt hängengeblieben (#9536)
+– Warnung zu nicht übereinstimmenden Erweiterungsnamen im Delegaten (#9513)
+– Die Auslösung von decline- und Abbruchaktionen wurde durchgängig weitergegeben (#9437)
+– Bedrock-Inferenzkonfiguration (max_tokens, Temperatur) an Converse gesendet (#9889)
+– Optimistischer Umschaltstatus wird beim Deaktivieren einer Erweiterung angezeigt (#9882)
+– Windows-Backslash-Pfade bleiben im benutzerdefinierten Erweiterungsbefehl erhalten (#9741)
+– ACP-Abbruch-Race-Bedingung behoben (#9804)</li>
+<li>Fenster wurde entfernt, wenn es geschlossen wurde (#9818)</li>
+<li>Kontextüberschreitungsprüfung präziser gemacht (#9831)
+– Login-Shell-PATH in erzeugten Subagenten geerbt (#9737)
+– String-Werte für <code>GOOSE_CONTEXT_LIMIT</code> akzeptiert (#9738)
+– Abgelehnte OAuth-Anmeldeinformationen wurden nach der Aktualisierung gelöscht (#9694)</li>
+<li>Erweitertes Denken innerhalb der anthropischen Ausgabeobergrenze gehalten (#9814)
+– RPM-Build-ID-Links deaktiviert (#9671)
+– Benutzerdefinierter API-Pfad in der OpenAI-base_url-Ableitung beibehalten (#9649)
+– Bedrock ValidationException klassifiziert als ExecutionError (#9735)
+– Nicht analysierbare Erweiterungseinträge bleiben während der Konfigurationsaktualisierung erhalten (#9439)</li>
+<li>Sitzungsinfo-ACP-Methode (#9729)</li>
+<li>Anthropic Stream-Ablehnungen wurden als sichtbare Fehler angezeigt (#9724)
+– Ollama_cloud wurde korrekt dem kanonischen Anbieter zugeordnet (#9639)
+– Maximale Token-Werte des Groq-Anbieters korrigiert (#9790)
+– Stream-Dekodierungsfehler als wiederholbar markiert (#9723)
+– Databricks AI Gateway v2-Endpunktpaginierung (#9753)</li>
+<li>Konfidenzwerte der musterbasierten Prompt-Injection-Erkennung angepasst (#9690)
+– ACP-Kompatibilität in TUI für Konfigurationserweiterungen (#9683)
+– Denken, dass Inhalte für DeepSeek/Kimi-Tool-Aufrufe über Stream-Chunks hinweg gepuffert werden (#9704)
+– Es traten umsetzbare Fehler für abgeschnittene Tool-Call-Argumente auf (#9946)
+– Beim Löschen einer kürzlich erstellten Sitzung und beim Erstellen einer neuen Sitzung werden gelöschte Inhalte nicht mehr angezeigt (#9351)
+– Benutzerdefinierter OpenAI-Anbieter-Port bleibt erhalten, wenn das URL-Schema weggelassen wird (#9730)
+– ACP agentInfo in der Initialisierungsantwort enthalten (#9765)
+– Lokale Inferenz-Medienmarkierungsteile, die für visuelle Eingabeaufforderungen verwendet werden (#9452)</li>
+<li>Das Erweiterungssymbol wird nach dem Sitzungswechsel angezeigt (#9787)</li>
+<li>Konfigurationsdateien, die nicht zum Rezept gehören, werden bei Summon übersprungen (#9808)</li>
+<li>Doppelte Werkzeugaufruf-IDs wurden innerhalb einer Runde dedupliziert (#9792)
+– Gebündelte Erweiterungen wurden durch die Erkennung behoben (#9759)
+– Thinking-Konfiguration wurde an Bedrock Anthropic-Modelle übergeben (#9794)
+– LiteLLM-Kontextlimit von <code>/model/info</code> für benutzerdefinierte Modelle (#9303)
+– Denkinhalte bleiben für den Anbieterkontext erhalten (#9314)
+– Konfigurierbare Timeout-Umgebungsvariablen, die im Ollama-Stream-Störungsfehler erwähnt werden (#9246)
+– Vollständige Rezeptparameterdetails in der Lade-/Erkennungsausgabe enthalten (#9233)
+– Nicht verwendeter Fetch-Metadata-IPC-Handler entfernt (SSRF) (#9340)</li>
+<li>Gateway respektiert <code>GOOSE_MAX_TURNS</code> (#9354)
+– Anthropisches leeres Objekt wurde anstelle von null für die Eingabe „tool_use“ gesendet (#9355)
+– Ausgewählter Zweig bleibt in allen Projektchats erhalten (#9010)</li>
+<li>Ausgabe fehlender Antworten wird toleriert (#9449)
+– Abfrageparameter der Azure api-Version optional gemacht (#9221)
+– Ausstehende Umgebungsvariablen werden im Formular „Erweiterung hinzufügen“ beibehalten (#9285)</li>
+<li>Linux x86_64 integriert in Manylinux_2_28 für glibc 2.28+ kompatibel (#9415)</li>
+<li>Das Hauptfenster wird bei jedem Start nicht mehr größer (#9409)</li>
+<li>Beschränkung der Desktop-Chat-Suchsitzung (#9366)
+– Die Agentenerstellung pro Sitzung wurde serialisiert, um doppelte MCP-Initialisierung zu verhindern (#9357)
+– OTLP-Signale werden übersprungen, wenn Protokoll=grpc ist, um Hintergrund-Thread-Panik zu vermeiden (#9512)</li>
+<li>Stop-Hook-Entscheidungen werden beim Blockieren berücksichtigt (#9468)</li>
+<li>Größe des ACP-Server-Kontextfensters wird an clients weitergeleitet (#9455)</li>
+<li>Aktualisierung der Anbieterliste in der Switch-Modellauswahl (#9408)
+– Neuer Chat wurde im aktuellen Fenster über das Rezeptparameter-Modal gestartet (#9422)
+– Trace_output wird als Span-Attribut statt als Ereignis ausgegeben (#9255)</li>
+<li>Datei-Fallback überprüft, wenn Schlüsselbund keinen Eintrag hat (#9279)</li>
+<li>ScheduleModal-Fehlermeldungsstil (#9278)</li>
+<li>Sidebar-Hamburger im macOS-Vollbildmodus ausgerichtet (#9257)</li>
+<li><code>current_exe()</code> wird beim Spawnen von Gänsen anstelle der PATH-Suche verwendet (#9236)</li>
+<li>TCP_USER_TIMEOUT auf streambare HTTP-clients gesetzt (#9207)</li>
+<li>Benutzerdefinierter Anbieter nach dem Hinzufügen über configure aktiviert (#9213)
+– OTLP-Traces werden beim Beenden mit konfigurierbarem Timeout zuverlässig geleert (#9228)
+– Übermäßige MISSING_TRANSLATION-Warnungen für Fallback-Gebietsschemas reduziert (#9294)</li>
+<li>Fensterübergreifende Deep-Link-Kontamination beseitigt (#9273)</li>
+<li>Telegram-Gateway-Fehlermeldung und Verbindungszuverlässigkeit verbessert (#9223)
+– VT-Verarbeitung auf dem Windows Console Host aktiviert (#9248)</li>
+<li>Kosten für lokale Anbieter (Ollama, Local) auf Null gesetzt (#9222)</li>
+<li>Tool-Use-Marker-Leckage in der Toolhim-Ausgabe verhindert (#8310)
+– Kanonische Beschwörungsgrenzen werden erneut angewendet, wenn der Delegierte das Modell überschreibt (#9183)
+– CLI kumulative total_tokens in Stream-json/json-Ausgabe gemeldet (#8910)
+– GCP-Metadaten-Server-Token bei Ablauf aktualisiert (#8929)
+– WSL2-Betriebssystemerkennung durch Entfernen der PWD-basierten Windows-Überschreibung korrigiert (#8869)</li>
+<li>Bedrock ReasoningContent-Blöcke werden ordnungsgemäß behandelt (#8843)</li>
+<li>Tool-Paar-Zusammenfassungen werden an chronologischer Position im Gespräch eingefügt (#9087)
+– SQLite-Fremdschlüsseldurchsetzung im Sitzungspool aktiviert (#9121)
+– Gelöschte Chat-Sitzung wird immer noch in der Seitenleistenliste angezeigt (#8674)
+– Erweiterungsname für read_resource erforderlich (#8989)
+– SACP benachrichtigt clients über generierte Sitzungsnamen (#8983)
+– Angegebene numerische Konfigurationswerte werden bei Bedarf in Zahlen umgewandelt (#8844)
+– SSE-Wiederverbindungsschleife bleibt bei langen Verbindungsabbrüchen bestehen (#8717)
+– OpenAI request_params wurde auf ausgehende API-Nutzdaten angewendet (#9151)</li>
+<li>Gemini 3.xknown_location Globales Routing und KNOWN_MODELS-Einträge (#9142)</li>
+<li>Anthropic Retry-After mit 429 Antworten ausgezeichnet (#9161)</li>
+<li>Streaming Thinking Deltas verschmolzen + verfügbare Tools aufgelistet auf nicht gefunden (#9162)
+– Vom Benutzer festgelegter Sitzungsname bleibt für rezeptbasierte Chats erhalten (#9079)
+– OIDC-Proxy-Exp-Erzwingung unabhängig von MAX_TOKEN_AGE_SECONDS (#8832)</li>
+<li>Inline-Code-Kontrast im Light-Design verbessert (#9058)
+– Max_tokens wird für OpenAI-kompatible Anfragen weggelassen, wenn es nicht festgelegt ist (#9123)
+– MCP-App-Hostfunktionen richtig eingestellt (#9116)
+– Nullable-Schemas wurden für die Kompatibilität mit Vertex Gemini normalisiert (#8930)</li>
+<li>GitHub-Rezept-Temp-Pfade isoliert (#8878)
+– X-Initiator-Header auf GitHub Copilot-Anfragen gesetzt (#8809)
+– Dynamic_models: FALSE wird in deklarativen Anbieterkonfigurationen berücksichtigt (#8795)
+– Sitzungsstatus und Toolrouten der Frontend-Erweiterung (#8464)
+– Nachgestellte Bedrock-Nachricht wird zwischengespeichert, um ein stabiles Präfix über alle Agentenrunden hinweg zu gewährleisten (#8916)
+– Modellnamensuche ohne Berücksichtigung der Groß- und Kleinschreibung für context_limit (#8906)
+– Kumulierte Token-Nutzung, ausgegeben im Stream-json/json-Abschlussereignis (#8870)
+– 400 zurückgegeben, anstatt in Panik zu geraten, wenn der CSP-Header-Wert ungültig ist (#8810)
+– ACP-Streaming-Blöcke wurden unter einer Nachrichten-ID zusammengeführt (#8788)
+– Goose2 Vite-Server bei Portkonflikt wiederverwendet (#8722)
+– Python3 wird in Entwicklererweiterungsanweisungen für macOS/Linux-Kompatibilität verwendet (#8784)</li>
+<li>ACP-Kind synchron geerntet, um SIGCHLD-Rennen zu vermeiden (#9023)</li>
+<li>Goose2-Chat- und Einstellungslayouts für kleine Fenster (#9019)
+– Fehlerbehebungen (#8999)
+– OpenAI-Null-Tool_Call-Argumente werden in Streaming-Chunks akzeptiert (#9035)
+– Einfache „&gt;“-Eingabeaufforderung anstelle des Gänse-Emojis in CLI (#9305)</li>
+<li>Goosed wird nicht getötet, wenn ein Fenster geschlossen wird (#9302)
+– Die parallelen Tool-Bildantworten von Databricks verschachteln die Tool-Ergebnisse nicht (#9241)
+– Kumulierte Kosten blieben in der Sitzungs-DB bestehen, um das Neuladen zu überstehen (#9191)
+– Publish-npm-Binärdatei, erstellt aus der aktuellen SHA + Kompatibilitätsprüfung (#9212)
+– Preprompt von der Sitzungstitelgenerierung ausgeschlossen (#8793)
+– Login-Shell-PATH-Probe verhindert, dass Goose beim Start angehalten wird (#8804)
+– Venice durch deklarative Konfiguration ersetzt (#9234)
+– MOIM-Zulassungsliste für erwartete fix_conversation-Warnungen erweitert (#9226)
+– mkdir -p wird für die Initialisierung des Selbsttest-Arbeitsbereichs verwendet (#9247)
+– Werkzeugname wird in der Genehmigungsaufforderung angezeigt (#9216)
+– ACP-Bilder werden beim Laden der Sitzung wiedergegeben (#9496)
+– Azure CLI wurde unter Windows mit az.cmd behoben (#9215)
+– Nicht interaktives Terminal wird in Goose-Konfiguration unter Windows behandelt (#9214)
+– ACP-Rezeptstatus wird beim Laden und Verzweigen der Sitzung angewendet (#9998)</li>
+<li>Strengere GGUF-Anforderungen für lokale Inferenz, automatische Erkennung der Unterstützung für Toolaufrufe, Analyse der Denkausgabe behoben (#9442)
+– Goose-Alias für Databricks v2-Inventar bevorzugt (#9430)</li>
+<li>Gestreamte Toolaufrufe ohne Indizes werden unterstützt (#10023)</li>
+<li>ACP-Ursprünge lokaler Dateien zulassen (#10194)
+– Lebenszyklus der MCP-App-Sandbox-Brücke behoben (#10064)</li>
+</ul>
+<h2>🔧 Verbesserungen</h2>
+<p>– Lokale Inferenzanbieterkisten überarbeitet (#10169)</p>
+<ul>
+<li>ACP-Authentifizierung und Ursprungs-Standards verbessert (#9886)</li>
+<li>Benutzeroberfläche direkt mit ACP verbunden statt aktiviert (#10081)</li>
+<li>Turn-Kontext aus dem Anthropic-Präfix-Cache ferngehalten (#10030)
+– Erweitertes Denken für schnelle Modelloperationen deaktiviert (#9815)
+– Diagnose wurde auf den JSON-Bericht migriert (#9964)
+– MCP-Erhebungen werden über Tool-Streams weitergeleitet (#9943)
+– Anbieter überarbeitet: Modellkonfiguration zum Erstellen eines Anbieters nicht erforderlich (#9953)</li>
+<li>Sitzungsname als Quelle der Wahrheit für angezeigte Sitzungstitel (#9841)</li>
+<li>Anbieterinventar nach Anbietern aufgeteilt (#9826)
+– MCP-Erweiterungen werden in offenen Plugins unterstützt (#9471)
+– Databricks Responses API-Unterstützungsprüfung (#9347)</li>
+<li>Erste Eingabeaufforderung mit <code>goose://new-session</code> (#9427)</li>
+<li>Modellinteraktionen anzeigen (#9806)</li>
+<li>API Client wurde zu goose-providers verschoben (#9869)
+– Request-Logger von Providern umgestaltet (#9847)</li>
+<li>Provider-Merkmal in goose-providers verschoben (#9860)
+– Der globale Konfigurationszugriff wurde aus ModelConfig verschoben (#9769)
+– Debug-Informationen für Abhängigkeiten im Entwicklerprofil gelöscht (#9843)
+– Formats/openai.rs wurde in die Kiste von goose-providers verschoben (#9633)
+– Goose-Providers-Kiste mit kanonischen Modellen, Konversationen und anderen Typen erstellt (#9588)
+– Allgemeiner Validator für deklarative Anbieter (#10010)
+– UI-Typen von generierten OpenAPI-Typen entkoppelt (#10149, #10109)
+– ACP SDK auf neue HTTP/WS-Kiste aktualisiert (#10082)</li>
+<li>MCP-Sampling-Unterstützung entfernt (#10087)
+– Legacy-MCP-UI-Proxy-Unterstützung entfernt (#10086)
+– Session_id aus den Streaming-Eigenschaftsmethoden des Anbieters entfernt (#9984)</li>
+<li>Ollama-Anbieter wechselte zu goose-providers (#9986)</li>
+<li>Anthropic-Anbieter wechselte zu goose-providers (#9985)
+– OpenAI-Anbieter wechselte zu goose-providers (#9880)
+– LRU-Cache wird für die Token-Zählung verwendet (#9586)
+– Hugging Face OAuth-Unterstützung mit der Registerkarte „Authentifizierung“ in den Einstellungen hinzugefügt (#9552)
+– Zeitüberschreitung des Überprüfungsunterprozesses durch Zugbegrenzungen ersetzt (#9571)</li>
+<li>Benchmarking verbessert (#9465, #9637)</li>
+<li>Kanonische Denkmodi hinzugefügt (#9743)</li>
+<li>Fertigkeitsanweisungen werden in jeder Runde dynamisch aktualisiert (#9217)</li>
+<li>Eingefügter HTML-Code wurde als Markdown besser geparst (#9190)</li>
+<li>Pflegehygiene verbessert (#9360)</li>
+<li>Pro Spielzug erstellte Beschwörungsanweisungen (#9329)</li>
+<li>Protokollbereinigung (#9147)</li>
+<li>Einstellungen in die App-Shell verschoben (#9047)</li>
+<li>Erweiterungsseite neu gestaltet (#8940)
+– Anbieterkatalog wurde in goose2 hinter die ACP-Schicht verschoben (#9030)</li>
+<li>Skills-Bibliothek neu gestaltet (#8868)</li>
+<li>Seitenleistennavigation und Projektsymbole poliert (#8896)
+– Provider-Auflösung parallelisiert und SQLite-Pool eifrig initialisiert (#8899)</li>
+<li>Fähigkeitskategorien entfernt (#9008)</li>
+<li>Aufeinanderfolgende Werkzeugaufrufe in einer zusammengefassten Kettenkarte gruppiert (#8995)</li>
+<li>Artefaktheuristiken/regexes durch Protokollnachrichten ersetzt (#8996)</li>
+<li>CLI-Hilfetext für <code>--session-id</code> aktualisiert (#10077)</li>
+<li>Canonical Model Registry aktualisiert (#10709, #9551, #9331)</li>
+<li>Anzeigename des EmpirioLabs-Anbieters aktualisiert (#10126)</li>
+</ul>
+<h2>📚 Dokumentation</h2>
+<p>– Leitfaden für benutzerdefinierte Agenten (#9293)</p>
+<ul>
+<li>Korrektur des Leitfadens für benutzerdefinierte Agenten (#9947)
+– Nachrichtenfeld im Hooks-Payload-Guide benannt (#9913)</li>
+<li>Anweisungen zum Release-Test aktualisiert (#10122)
+– ACP clients-Dokumentation aktualisiert (#9772)</li>
+<li>Navigation im Sitzungsverlauf/Dokumente löschen behoben (#9727)</li>
+<li>Anleitung zur Remote-Serververbindung (#9275)</li>
+<li>SaladCloud AI Gateway-Dokumentation (#9253)
+– Summon Extension-Anforderung für Delegate- und Load-Tools dokumentiert (#9231)</li>
+<li>Hakenführung (#9288)</li>
+<li>Hooks-Feature-Blogbeitrag (#9227)</li>
+<li>Dokumentation neu geordnet (#9310)
+– Dokumentation des Scaleway-Anbieters (#9423)</li>
+<li>Blogbeitrag über sich selbst verbessernde Agenten (#9846)</li>
+<li>AAIF-Migrations-Blogbeitrag (#9866)
+– Orchestrierung mit Goose-Blogbeitrag (#9104)</li>
+<li>Blogbeitrag zu Minimax- und Office-QA-Benchmark-Ergebnissen (#8984)</li>
+<li>Gans mit Guck-Blog-Beitrag (#8884)</li>
+<li>Integrierter lokaler Inferenz-Blogbeitrag (#8808)</li>
+<li>DCO-Referenzen entfernt (#9864)</li>
+<li>Interne Dokumentationsanker behoben (#9094)
+– Ophis MCP-Server zur Erweiterungsregistrierung hinzugefügt (#9861)</li>
+<li>Scholar Sidekick-Tutorialseite (#9477)</li>
+<li>Fehlerbehebung bei der Installation von Leerzeichen (#9867)</li>
+<li>Statistikaktualisierung (#9410)</li>
+<li>Tippfehler im MCP-Blogbeitrag behoben (#9641)</li>
+<li>Erweiterungsanweisungen analysieren aktualisiert (#9585)</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Quelle</strong> <a href="https://github.com/aaif-goose/goose">aaif-goose/goose</a> · <code>v1.41.0</code> · 2026-07-03 · <a href="https://github.com/aaif-goose/goose/releases/tag/v1.41.0">Upstream-Release</a>
+<em>Zum Indexieren wörtlich gespiegelt. Alle Rechte liegen beim Upstream-Projekt.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release notes werden vom Upstream-Projekt veröffentlicht und hier zur Indizierung gespiegelt. Alle Rechte liegen bei ihren Autoren. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/goose/1.42.0"> <span class="k">← Weiter</span> <span class="t">v1.42.0</span> </a> <a href="/releases/goose/1.40.0"> <span class="k">Zurück →</span> <span class="t">v1.40.0</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/aaif-goose/goose/releases/tag/v1.41.0" target="_blank" rel="noopener"> <span>Original auf GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/aaif-goose/goose" target="_blank" rel="noopener"> <span>aaif-goose/goose</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">Auf dieser Seite</div> <nav> <a href="#" class>✨ Funktionen</a><a href="#" class>🐛 Fehlerbehebungen</a><a href="#" class>🔧 Verbesserungen</a><a href="#" class>📚 Dokumentation</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Versionsverlauf</div> <ul class="rail-list"> <li> <a href="/releases/goose/1.60.2"> <span class="v">v1.60.2</span> <span class="d">26-11-20</span> </a> </li><li> <a href="/releases/goose/1.60.1"> <span class="v">v1.60.1</span> <span class="d">26-11-18</span> </a> </li><li> <a href="/releases/goose/1.60.0"> <span class="v">v1.60.0</span> <span class="d">26-11-17</span> </a> </li><li> <a href="/releases/goose/1.59.2"> <span class="v">v1.59.2</span> <span class="d">26-11-16</span> </a> </li><li> <a href="/releases/goose/1.59.0"> <span class="v">v1.59.0</span> <span class="d">26-11-10</span> </a> </li><li> <a href="/releases/goose/1.58.1"> <span class="v">v1.58.1</span> <span class="d">26-11-10</span> </a> </li><li> <a href="/releases/goose/1.58.0"> <span class="v">v1.58.0</span> <span class="d">26-11-09</span> </a> </li><li> <a href="/releases/goose/1.57.0"> <span class="v">v1.57.0</span> <span class="d">26-10-28</span> </a> </li> </ul> <a href="/de/releases/goose" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Alle anzeigen 63 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/de/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Open-Source-Release-Informationen, täglich veröffentlicht.</p> </div> <div class="footer-col"> <h3>Verfolgen</h3> <ul> <li><a href="/de/releases">Releases</a></li> <li><a href="/de/projects">Projekte</a></li> <li><a href="/de/releases.xml">RSS-Feed</a></li> </ul> </div> <div class="footer-col"> <h3>Archiv</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Chinesisches Archiv</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Technische Notizen</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Info</h3> <ul> <li><a href="/de/method">Methode</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release notes gehören zu ihren Upstream-Projekten.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Releases durchsuchen"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="Veröffentlichungen, Projekte, Versionen …" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

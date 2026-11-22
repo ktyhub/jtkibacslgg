@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="pt-BR"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>dubbo 3.0.3 — STAGS NextStack</title><meta name="description" content="Support attachment when triple\\'s resopnse is an exception（#8488） · Extract DubboSpringInitializer and support customize initialization（#8495） · Support triple server stream（#8542） · Enhance and fix check config（#8483）"><meta name="keywords" content="release notes de código aberto, rastreador de lançamento, agregador changelog, alterações significativas, rastreador de descontinuação, lançamentos Kafka, lançamentos Spring Boot, lançamentos Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/pt/releases/dubbo/3.0.3/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/pt/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/dubbo/3.0.3/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/dubbo/3.0.3/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/dubbo/3.0.3/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="dubbo 3.0.3 — STAGS NextStack"><meta property="og:description" content="Support attachment when triple\\'s resopnse is an exception（#8488） · Extract DubboSpringInitializer and support customize initialization（#8495） · Support triple server stream（#8542） · Enhance and fix check config（#8483）"><meta property="og:url" content="https://www.stags.cn/pt/releases/dubbo/3.0.3/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="pt_BR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"pt-BR","description":"STAGS indexa notas de versão de projetos de infraestrutura e IA – mudanças incompatíveis, descontinuações e migrações – em um feed único em inglês.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/pt/releases/dubbo/3.0.3/#article","headline":"dubbo 3.0.3 release notes","datePublished":"2021-09-19","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/apache/dubbo"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Ir para o conteúdo</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/pt/" class="brand" aria-label="STAGS NextStack — Inteligência de versões open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/pt/releases">Versões</a><a href="/pt/projects">Projetos</a><a href="/pt/method">Método</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Buscar versões"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Buscar</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Idioma"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">PT</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Idioma"> <p class="langmenu-head">Idioma</p> <a class="langmenu-item" href="/releases/dubbo/3.0.3/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/dubbo/dubbo_dubbo-3.0.3" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/dubbo/3.0.3/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/dubbo/3.0.3/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/dubbo/3.0.3/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/dubbo/3.0.3/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/dubbo/3.0.3/" hreflang="pt-BR" lang="pt-BR" aria-current="true" data-on="true"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/pt/">Início</a> <span class="sep">/</span> <a href="/pt/releases">Versões</a> <span class="sep">/</span> <a href="/pt/releases/dubbo">dubbo</a> </nav> <h1 class="detail-title"> <span class="p">dubbo</span> 3.0.3 </h1> <div class="detail-meta"> <span class="chip chip--patch">Patch</span> <span><span class="k">Publicado</span>19 de set. de 2021</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/apache/dubbo" target="_blank" rel="noopener"> <span class="k">Fonte</span>apache/dubbo </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/dubbo/3.0.3/"> Original em inglês </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/pt/releases/dubbo/3.0.3/">Copiar link</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Esta página é traduzida automaticamente. O texto original em inglês é a referência.</p>  <div><p>#dubbo dubbo-3.0.3</p>
+<h1>Recursos</h1>
+<ul>
+<li>Suporta anexo quando a resposta tripla é uma exceção（#8488）</li>
+<li>Extraia DubboSpringInitializer e suporte à inicialização personalizada（#8495）</li>
+<li>Suporte a fluxo de servidor triplo （#8542）</li>
+<li>Melhorar e corrigir configuração de verificação（#8483）</li>
+<li>Fluxo de suporte ao compilador Dubbo（#8566）</li>
+<li>Suporte a interfaces de rede ignoradas（#8616）</li>
+<li>Suporte para resposta de vazio triplo (#8608)</li>
+<li>Adicionar serviço de saúde triplo interno （#8644）</li>
+<li>Multi Instância Suporte(#8662,#8669,#8684,#8717,#8728,#8736,#8737,#8766,#8779,#8789 ,#8786,#8810,#8818,#8819,#8825,#8823,#8829,#8831,#8824,#8835,#8832)</li>
+<li>Suportado para definir configurações HTTP2（#8700）</li>
+</ul>
+<h1>Correções de bugs</h1>
+<ul>
+<li>Evite que recursos não sejam liberados durante a chamada de destroy（#8459）</li>
+<li>Correção ao usar protocolo triplo indisponível retorna exceção real（#8458）</li>
+<li>Triplo: Remover quebra automática quando o anexo for uma instância de objeto （#8473）</li>
+<li>Resolver o problema de entrega de endereços em cenários de descoberta de serviço（#8492）</li>
+<li>Correção de endereço no erro usado da porta 2181（#8466）</li>
+<li>Corrigido bug no formato do log de transmissão（#8484）</li>
+<li>Corrija o TLS usando o esquema HTTP ao usar o protocolo TRI（#8497）</li>
+<li>Corrija alguns comentários（#8526）</li>
+<li>Corrigir erro de conversão de classe e adicionar teste de unidade para ZoneAwareClusterInvoker（#8503）</li>
+<li>Corrigir grupo nacos inviável no lado do consumidor（#8533）</li>
+<li>Correção do NPE na verificação de serialização quando a solicitação expirou（#8547）</li>
+<li>Compacto com dubbo-all sem farbic-io（#8546）</li>
+<li>Corrigir bug do BroadcastClusterInvoker e adicionar casos de teste（#8532）</li>
+<li>Corrigir vazamento de conexões MetadataService （#8555）</li>
+<li>Corrigir configuração simulada:true（#8558）</li>
+<li>Corrigir inicialização de configuração duplicada（#8578）</li>
+<li>Ignorar serviços não dubbo nacos（#8573）</li>
+<li>Correção de erro em filtros que não podem ser retornados para client（#8615）</li>
+<li>Atualização da versão do compilador para o lançamento do 0.0.3（#8687）</li>
+<li>Correção de client que não reconhece apenas trailers（#8664）</li>
+<li>Corrigir falha de afirmação aleatória（#8703）</li>
+<li>Corrigido o método tri stream não consegue encontrar o methodDescriptor（#8705）</li>
+<li>Corrija o NPE do consumerModel em TripleClientHandler（#8734）</li>
+<li>Corrigir nome de interface ignorado que corresponde ao método （#8723）</li>
+<li>Correção de consumidor e provedor com a mesma tag, mas nenhum provedor encontrado（#8763）</li>
+<li>Corrigir carregador de classe triplo e adicionar versões anteriores de ServiceMetadata（#8800）</li>
+<li>Corrigir o estado do DubboProtocol e corrigir o NPE ao destruir （#8809）</li>
+<li>Corrigido consumidor usando conexão direta de URL que não consegue obter ServerContext（#8757）</li>
+<li>Corrigir Javaassist ClassPool ClassPath（#8828）</li>
+<li>Correção do protocolo de administração nacos que não consegue obter o nome da interface（#8782）</li>
+</ul>
+<h1>Otimização</h1>
+<ul>
+<li>Otimize a constante do tri-header e evite o tri-header em anexos（#8481）</li>
+<li>Triplo: otimizar a conexão e remover o executor （#8486）</li>
+<li>Compacte com algum registro sem endereço（#8496）</li>
+<li>Alterar estrutura de revisão de informações de serviço（#8478）</li>
+<li>Otimização sobre ShortResponseLoadBalance（#8441，#8519）</li>
+<li>Otimize a configuração do monitor dubbo （#8477，#8549）</li>
+<li>Refatorar configuração de referência（#8455）</li>
+<li>Corrigir erros de digitação e algumas otimizações（#8499）</li>
+<li>Otimize o tempo limite do zookeeper em todos os casos de teste（#8564）</li>
+<li>Ignorar exceção ao criar referência (para chamada genérica)（#8534）</li>
+<li>Adicione modificador volátil a algumas variáveis em ListenableRouter（#8579）</li>
+<li>Ajuste a aquisição do aplicativo, grupo e valor da versão do URL （#8582）</li>
+<li>Corrija algum mau cheiro de exportação de serviço e consulte （#8594）</li>
+<li>Verifique se habilita os metadados do relatório remoto antes de relatar as informações dos metadados do aplicativo（#8597）</li>
+<li>Adicionar filtro de cabeçalho para protocolo triplo（#8585）</li>
+<li>Remover manipulador de operação（#8637）</li>
+<li>Ajuste o escopo da extensão spi（#8600）</li>
+<li>Remova o cabeçalho tw-bin jogável e trunque a exceção （#8642）</li>
+<li>Ao usar atraso para exportar serviço, capture a exceção e registre-a.（#8584）</li>
+<li>Otimizar: exemplo adicionar demonstração de protocolo triplo（#8643）</li>
+<li>Adicione gen MethodDescriptor válido, evite situações estranhas（#8651）</li>
+<li>Adicionar suporte para destruição de ApplicationModel e suporte para ut（#8673）</li>
+<li>Capture alguma exceção inofensiva（#8663）</li>
+<li>OnError no executor（#8668）</li>
+<li>Adicionar mensagem de aviso de serialização à serialização java（#8716）</li>
+<li>Adicionar estratégia de fallback de protocolo preferido（#8699）</li>
+<li>Limpeza de recursos antes de destruir ou parar（#8636）</li>
+<li>Julgue se o sucesso ou não é baseado na perspectiva do usuário no mapeamento interface-appName（#8721）</li>
+<li>Simplifique e unifique o método de obtenção de endereço local（#8677）</li>
+<li>Apenas cancele a assinatura e não o ouvinte nulo em RegistryProtocol.unexport（#8682）</li>
+<li>Remover TripleRpcException（#8712）</li>
+<li>Remova código semelhante（#8671）</li>
+<li>Adicionar saída de log ao notificar erro（#8729）</li>
+<li>Adicionar ConsumerUrl adaptado a ServiceAddressURL（#8731）</li>
+<li>Remover bloco catch duplicado （#8750）</li>
+<li>Novas tentativas de failback com falha devem ser julgadas primeiro （#8719）</li>
+<li>Calcular a capacidade no construtor padrão de InternalThreadLocalMap（#8697）</li>
+<li>DefaultFuture desativa a otimização de registro para o canal（#8775）</li>
+<li>Fechar client imediatamente ao destruir invocador não utilizado（#8755）</li>
+<li>Usos ineficientes de coleções Java （#8784）</li>
+<li>Use o servidor Promise Catch para enviar uma exceção de cabeçalho grande（#8774）</li>
+<li>Refatorar AbstractRegistryFactory (campo estático exato) （#8808）</li>
+</ul>
+<h1>Mudanças de Dependência</h1>
+<ul>
+<li>Atualização da versão do curador: 5.0.0 -&gt; 5.1.0</li>
+<li>Atualizar nacos: 2.0.2 -&gt; 2.0.3</li>
+</ul>
+<h1>Compatibilidade</h1>
+<ul>
+<li>Compatível com mola 3.2.x （#8430）</li>
+</ul>
+<h1>Melhoria de estabilidade</h1>
+<ul>
+<li>Adicionar teste de unidade para VirtualServiceRule（#8428）</li>
+<li>Ignore o rastreamento de pilha de exceções desnecessário no caso de teste （#8420）</li>
+<li>Limpe a poluição do estado compartilhado para evitar testes instáveis na classe ExtensionLoaderTest（#8467）</li>
+<li>Torne ServiceConfigTest#testDelayExport mais razoável（#8471）</li>
+<li>Verifique o protocolo de registro de descoberta de serviço em vários centros de registro （#8493）</li>
+<li>Verifique o processo do provedor exportado no centro de registro único （#8501）</li>
+<li>Melhorar o teste de parâmetros de anotação（#8535）</li>
+<li>Verifique a configuração adicional durante a referência de serviço（#8543）</li>
+<li>Adicionar casos de teste ao Configurador após a versão 2.7（#8560）</li>
+<li>Correção: desabilitar testcase de ConfigTest#testReferGenericExport （#8580）</li>
+<li>Verifique o mapeamento entre o provedor exportado e os metadados（#8510）</li>
+<li>Adicionar caso de teste para verificar o serviço de metadados exportados em um único centro de registro（#8583）</li>
+<li>Verifique a referência local para a criação de um processo invocador local（#8592）</li>
+<li>Adicionar teste de unidade para MockInvokersSelector（#8593）</li>
+<li>Teste: adicione testcase para verificar o serviço exportado em vários centros de registro（#8598）</li>
+<li>Correção após desativar o relatório de metadados padrão（#8618）</li>
+<li>Adicionar caso de teste para processo de descoberta de serviço（#8607）</li>
+<li>Adicionar teste de bootstrap（#8639）</li>
+<li>Verifique a referência remota para registro（#8645）</li>
+<li>Teste: suporte para verificação de serviço de metadados em vários centros de registro （#8606）</li>
+<li>Tente reduzir o tempo consumido em UT（#8686）</li>
+<li>Verifique o retorno de chamada do método de múltiplas instâncias （#8670）</li>
+<li>Melhorar ExtensionLoaderTest（#8646）</li>
+<li>UT: consulte serviço de metadados（#8761）</li>
+<li>Teste: atualize a versão para UT em dubbo-config-spring（#8759）</li>
+<li>UT：consulte registro múltiplo（#8760）</li>
+<li>Adicionar caso de teste para InMemoryMetadataServiceTest（#8753）</li>
+<li>Adicionar teste de unidade para Base[Serviço/Aplicativo]MetadataIdentifier（#8767）</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Fonte</strong> <a href="https://github.com/apache/dubbo">apache/dubbo</a> · <code>dubbo-3.0.3</code> · 2021-09-19 · <a href="https://github.com/apache/dubbo/releases/tag/dubbo-3.0.3">lançamento upstream</a>
+<em>Espelhado literalmente para indexação. Todos os direitos pertencem ao projeto upstream.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release notes são publicados pelo projeto upstream e espelhados aqui para indexação. Todos os direitos pertencem aos seus autores. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/dubbo/3.0.4"> <span class="k">← Próximo</span> <span class="t">3.0.4</span> </a> <a href="/releases/dubbo/2.7.14"> <span class="k">Anterior →</span> <span class="t">2.7.14</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/apache/dubbo/releases/tag/3.0.3" target="_blank" rel="noopener"> <span>Original no GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/apache/dubbo" target="_blank" rel="noopener"> <span>apache/dubbo</span> <span class="d">↗</span> </a> </li> </ul> </div>  <div class="rail-card"> <div class="rail-title">Histórico de versões</div> <ul class="rail-list"> <li> <a href="/releases/dubbo/3.3.7"> <span class="v">3.3.7</span> <span class="d">26-10-26</span> </a> </li><li> <a href="/releases/dubbo/3.2.20"> <span class="v">3.2.20</span> <span class="d">26-05-17</span> </a> </li><li> <a href="/releases/dubbo/3.2.19"> <span class="v">3.2.19</span> <span class="d">25-11-13</span> </a> </li><li> <a href="/releases/dubbo/3.3.6"> <span class="v">3.3.6</span> <span class="d">25-10-17</span> </a> </li><li> <a href="/releases/dubbo/3.3.5"> <span class="v">3.3.5</span> <span class="d">25-05-29</span> </a> </li><li> <a href="/releases/dubbo/3.2.18"> <span class="v">3.2.18</span> <span class="d">25-05-29</span> </a> </li><li> <a href="/releases/dubbo/3.3.4"> <span class="v">3.3.4</span> <span class="d">25-03-05</span> </a> </li><li> <a href="/releases/dubbo/3.2.17"> <span class="v">3.2.17</span> <span class="d">25-03-05</span> </a> </li> </ul> <a href="/pt/releases/dubbo" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Ver tudo 80 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/pt/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Inteligência de lançamento de código aberto, publicada diariamente.</p> </div> <div class="footer-col"> <h3>Acompanhar</h3> <ul> <li><a href="/pt/releases">Versões</a></li> <li><a href="/pt/projects">Projetos</a></li> <li><a href="/pt/releases.xml">Feed RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Arquivo</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Arquivo chinês</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notas técnicas</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Sobre</h3> <ul> <li><a href="/pt/method">Método</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release notes pertencem aos seus projetos upstream.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Buscar versões"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="lançamentos, projetos, versões…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

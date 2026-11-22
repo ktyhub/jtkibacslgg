@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="fr"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LightRAG v1.5.8rc2 — STAGS NextStack</title><meta name="description" content="fix(jina): stop retrying permanent 4xx errors · fix(pipeline): round-trip sidecar URIs for Windows drive paths · fix(rerank): stop retrying permanent errors in generic_rerank_api"><meta name="keywords" content="release note open source, suivi des versions, agrégateur changelog, dernières modifications, suivi des dépréciations, versions Kafka, versions Spring Boot, versions Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/fr/releases/lightrag/1.5.8rc2/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/fr/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/lightrag/1.5.8rc2/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/lightrag/1.5.8rc2/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/lightrag/1.5.8rc2/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="LightRAG v1.5.8rc2 — STAGS NextStack"><meta property="og:description" content="fix(jina): stop retrying permanent 4xx errors · fix(pipeline): round-trip sidecar URIs for Windows drive paths · fix(rerank): stop retrying permanent errors in generic_rerank_api"><meta property="og:url" content="https://www.stags.cn/fr/releases/lightrag/1.5.8rc2/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="fr_FR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"fr","description":"STAGS indexe les notes de version des projets d'infrastructure et d'IA – changements incompatibles, dépréciations et migrations – dans un flux unique en anglais.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/fr/releases/lightrag/1.5.8rc2/#article","headline":"LightRAG v1.5.8rc2 release notes","datePublished":"2026-11-21","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/HKUDS/LightRAG"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Aller au contenu</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/fr/" class="brand" aria-label="STAGS NextStack — Veille des versions open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/fr/releases">Versions</a><a href="/fr/projects">Projets</a><a href="/fr/method">Méthode</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Rechercher des versions"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Recherche</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Langue"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">FR</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Langue"> <p class="langmenu-head">Langue</p> <a class="langmenu-item" href="/releases/lightrag/1.5.8rc2/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/LightRAG/LightRAG_v1.5.8rc2" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/lightrag/1.5.8rc2/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/lightrag/1.5.8rc2/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/lightrag/1.5.8rc2/" hreflang="fr" lang="fr" aria-current="true" data-on="true"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/lightrag/1.5.8rc2/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/lightrag/1.5.8rc2/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/fr/">Accueil</a> <span class="sep">/</span> <a href="/fr/releases">Versions</a> <span class="sep">/</span> <a href="/fr/releases/lightrag">LightRAG</a> </nav> <h1 class="detail-title"> <span class="p">LightRAG</span> v1.5.8rc2 </h1> <div class="detail-meta"> <span class="chip chip--patch">Correctif</span> <span><span class="k">Publié</span>21 nov. 2026</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/HKUDS/LightRAG" target="_blank" rel="noopener"> <span class="k">Source</span>HKUDS/LightRAG </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/lightrag/1.5.8rc2/"> Anglais original </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/fr/releases/lightrag/1.5.8rc2/">Copier le lien</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Cette page est traduite automatiquement. Le texte anglais original fait foi.</p>  <div><h1>LightRAG v1.5.8rc2</h1>
+<h2>Ce qui a changé</h2>
+<ul>
+<li>correctif (jina) : arrêtez de réessayer les erreurs 4xx permanentes par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4028</li>
+<li>correctif (pipeline) : URI side-car aller-retour pour les chemins de lecteur Windows par @rtmalikian dans https://github.com/HKUDS/LightRAG/pull/4273</li>
+<li>correctif (rerank) : arrêtez de réessayer les erreurs permanentes dans generic_rerank_api par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4420</li>
+<li>fix(query) : renvoie la forme d'échec de aquery_data lorsqu'aucun mot-clé n'est extrait par @Zhuoxi2000 dans https://github.com/HKUDS/LightRAG/pull/4419</li>
+<li>correctif (postgres) : donnez à AGE un nom de graphique valide pour les espaces de travail longs ou à début de chiffres par @zzjiho dans https://github.com/HKUDS/LightRAG/pull/4408</li>
+<li>correctif (llm) : réessayez les réponses d'achèvement OpenAI mal formées par @ZXLyyds100 dans https://github.com/HKUDS/LightRAG/pull/4279</li>
+<li>correctif (gemini) : convertir le mappage safety_settings en forme de liste SDK par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4423</li>
+<li>fix(nano) : empêche delete() d'avaler les échecs de file d'attente par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4424</li>
+<li>correctif (llm) : fermez Zhipu clients après le chat et l'intégration des appels par @remote-driven-man dans https://github.com/HKUDS/LightRAG/pull/4427</li>
+<li>test (rerank) : couvre le format de requête et de réponse ali_rerank aliyun par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4425</li>
+<li>correctif (mongo) : propager les échecs de suppression de KV pour documenter la récupération par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4167</li>
+<li>correctif (postgres) : propagation des échecs de suppression de KV et de statut de document par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4432</li>
+<li>correctif (postgres) : échappez aux caractères génériques LIKE dans PGGraphStorage.search_labels par @MohammadHijjawi97 dans https://github.com/HKUDS/LightRAG/pull/4431</li>
+<li>Correction : honorer les marqueurs d'en-tête de tableau DOCX désactivés par @LimbC-C dans https://github.com/HKUDS/LightRAG/pull/4430</li>
+<li>correctif (opensearch) : rejet du graphique incomplet et des suppressions de statut par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4169</li>
+<li>correctif (docx) : respectez les valeurs d'activation/désactivation OOXML partout et répétez uniquement les premières lignes d'en-tête de @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4433</li>
+<li>correctif (openai) : ne fermez pas un http_client fourni par l'appelant par @GautamVhavle dans https://github.com/HKUDS/LightRAG/pull/4237</li>
+<li>correctif (api) : supprime la source archivée d'un nom se terminant par _NNN par @MohammadHijjawi97 dans https://github.com/HKUDS/LightRAG/pull/4428</li>
+<li>correctif (api) : conserver les sources à préfixe temporaire pour l'analyse différée par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4173</li>
+<li>correctif (neo4j) : tronque un sous-graphe APOC surdimensionné de la marche déjà exécutée par @wkpark dans https://github.com/HKUDS/LightRAG/pull/4216</li>
+<li>fix(hf) : transmettez max_length résolu pour tronquer les entrées hf_embed par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4138</li>
+<li>correctif (analyseur) : correction du texte de pollution de la nomenclature UTF-8 et contournement de la vérification des fichiers vides par @2gg-bit dans https://github.com/HKUDS/LightRAG/pull/4132</li>
+<li>correctif (rerank) : correction du bloc de reclassement détruisant les caractères Unicode de @2gg-bit dans https://github.com/HKUDS/LightRAG/pull/4131</li>
+<li>correctif (analyseur) : accepte les fichiers texte UTF-16/UTF-32 avec une nomenclature par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4434</li>
+<li>correctif (ollama) : consomme les deux anciens indicateurs d'extraction par @xyi74976-del dans https://github.com/HKUDS/LightRAG/pull/4289</li>
+<li>correctif (vlm) : accepter les URL de données d'image insensibles à la casse par @Elon-Jiang dans https://github.com/HKUDS/LightRAG/pull/4287</li>
+<li>correctif (openai) : conserver les en-têtes par défaut configurés par client par @xujiantop-crypto dans https://github.com/HKUDS/LightRAG/pull/4152</li>
+<li>correctif (nvidia) : correction de la réponse intégrée en base64 qui ne peut pas renvoyer un vecteur numérique de @2gg-bit dans https://github.com/HKUDS/LightRAG/pull/4135</li>
+<li>Correction : appliquer le budget total des jetons pour le contexte de requête KG par @dafyy321-pixel dans https://github.com/HKUDS/LightRAG/pull/4221</li>
+<li>correctif (llama_index) : honorer l'intégration des politiques de traitement par lots et de cache par @lux-liang dans https://github.com/HKUDS/LightRAG/pull/4200</li>
+<li>fix(llama_index) : gérer le singleton Paramètres sans set_global par @heranliu dans https://github.com/HKUDS/LightRAG/pull/4209</li>
+<li>fix(config) : enregistrez les options du fournisseur pour la liaison efficace CLI par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4171</li>
+<li>docs(llm) : argument des paramètres du document llama_index_complete ignoré par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4436</li>
+<li>ci : diviser la suite hors ligne en quatre fragments de répertoire parallèles par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4437</li>
+<li>fix(tools) : ouvrez le plan de réparation en écriture avant os.fsync par @simpleqt dans https://github.com/HKUDS/LightRAG/pull/4251</li>
+<li>Correction : transférer les dimensions configurées vers Bedrock Titan V2 par @LimbC-C dans https://github.com/HKUDS/LightRAG/pull/4284</li>
+<li>correctif (analyseur) : préserve les décalages Unicode lors du découpage des tableaux HTML par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4438</li>
+<li>correctif (analyseur) : conserver w:cr, w:ptab et w:noBreakHyphen dans le texte DOCX natif par @L4XB dans https://github.com/HKUDS/LightRAG/pull/4239</li>
+<li>correctif (analyseur) : lisez w:cr, w:ptab et w:noBreakHyphen dans les fonctionnalités de titre intelligent par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4439</li>
+<li>correctif (analyseur) : répertorie uniquement les en-têtes d'ancêtres dans MinerU/Docling parent_headings par @hardness1020 dans https://github.com/HKUDS/LightRAG/pull/4227</li>
+<li>correctif (analyseur) : conserve les noms de fonctions OMML dans les exécutions et les scripts par @shuaiyafei dans https://github.com/HKUDS/LightRAG/pull/4259</li>
+<li>Correction des bundles d'analyseurs rejetant les noms de fichiers préfixés par un point par @IlyaKhalafi dans https://github.com/HKUDS/LightRAG/pull/4219</li>
+<li>correctif (analyseur) : résolvez les références d'image MinerU préfixées par un point à l'intérieur du bundle par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4440</li>
+<li>correctif (webui) : ignorer les demandes d'options asynchrones remplacées par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4181</li>
+<li>correctif (side-car) : conserver les noms d'actifs préfixés par un point par @Akaliup dans https://github.com/HKUDS/LightRAG/pull/4291</li>
+<li>correctif (webui) : conserve la composition du texte lors de la confirmation des candidats IME par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4177</li>
+<li>correctif (exemples) : transmettre la dimension d'intégration Gemini par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4185</li>
+<li>correctif (hf) : conserver les invites et l'historique lors du remplacement du modèle de discussion par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4441</li>
+<li>correctif (exemples) : créez le répertoire du journal de démonstration configuré par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4189</li>
+<li>correctif (exemples) : garder les erreurs d'initialisation visibles pendant le nettoyage par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4191</li>
+<li>correctif (reproduire) : conserver la requête répétée en sortie d'un seul tableau JSON par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4194</li>
+<li>correctif (configuration) : conserver les diagnostics de nouvelle tentative en dehors de la configuration capturée par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4183</li>
+<li>correctif (reproduire) : conserver la fenêtre de résumé de fin prévue par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4192</li>
+<li>test : broches des chemins utf-8 et posix dans quatre tests de lecture de source par @qhxwork dans https://github.com/HKUDS/LightRAG/pull/4269</li>
+<li>correctif (analyseur) : conserver le code en ligne et l'exemple d'image Markdown échappé par @2gg-bit dans https://github.com/HKUDS/LightRAG/pull/4133</li>
+<li>correctif (tests) : arrêtez la suite hors ligne du fournisseur d'installation pip SDKs par @UltimateWilliamWu dans https://github.com/HKUDS/LightRAG/pull/4275</li>
+<li>perf(docx) : ignorer les expressions rationnelles de numérotation pour le corps du texte (porte CB1 7.7 % plus rapide) par @dexhunter dans https://github.com/HKUDS/LightRAG/pull/4298</li>
+<li>correctif (api) : stocke les clés de limite de débit de connexion sous forme de résumés de taille fixe par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4442</li>
+<li>correctif (chunker) : récupérez le jeton F _source_span aux limites des emoji par @leilei3167 dans https://github.com/HKUDS/LightRAG/pull/4116</li>
+<li>test : activez les assertions POSIX uniquement pour que la suite hors ligne fonctionne sous Windows par @qhxwork dans https://github.com/HKUDS/LightRAG/pull/4270</li>
+<li>correctif : décoder les paires de substitution Unicode dans le texte diffusé par @LimbC-C dans https://github.com/HKUDS/LightRAG/pull/4274</li>
+<li>test(config) : utiliser les valeurs symboliques d'errno dans les tests de verrouillage de liaison par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4453</li>
+<li>correctif (base rocheuse) : réessayez en cas d'erreurs de connexion abandonnées par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4447</li>
+<li>correctif (docx) : empêche une cellule de tableau contenant &quot;&lt;/table&gt;&quot; de terminer la balise de table par @Dev-next-gen dans https://github.com/HKUDS/LightRAG/pull/4450</li>
+<li>test (rerank) : couvre la demande et le format de réponse jina_rerank par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4445</li>
+<li>test : suppression des odeurs de test de 18 modules de test (aucune modification du code de production) par @pedrorivald dans https://github.com/HKUDS/LightRAG/pull/4290</li>
+<li>fix (qdrant) : exécutez vector upsert pour éliminer la boucle d'événements par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4446</li>
+<li>correctif (lollms) : préserve le texte lors de la génération en streaming par @remote-driven-man dans https://github.com/HKUDS/LightRAG/pull/4281</li>
+<li>fix(table) : empêche une cellule &quot;&lt;/table&gt;&quot; de terminer toute balise de table réémise par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4454</li>
+<li>Correction : validez les limites des jetons de bloc personnalisés avant la journalisation par @adity982 dans https://github.com/HKUDS/LightRAG/pull/3930</li>
+<li>correctif (évaluation) : tokeniser le texte CJK dans la vérification de récupération hors ligne par @UltimateWilliamWu dans https://github.com/HKUDS/LightRAG/pull/4276</li>
+<li>correctif (lmdeploy) : réessayez sur les erreurs transitoires du moteur par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4458</li>
+<li>test(utils) : couverture generate_reference_list_from_chunks commandée par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4457</li>
+<li>correctif (networkx) : conservez l'itération limitée en direct et nommez la mutation provoquée par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4459</li>
+<li>docs : analyseur correct, multimodal et conseils de configuration par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4242</li>
+<li>documentation : correction de quelques fautes de frappe dans la documentation et les guides du serveur API. par @Superb0431 dans https://github.com/HKUDS/LightRAG/pull/4085</li>
+<li>correctif (chunker) : vérifiez les positions de la fenêtre des jetons avant d'attacher la provenance par @xixi-box dans https://github.com/HKUDS/LightRAG/pull/4463</li>
+<li>correctif (kg) : réessayez les erreurs transitoires de pointeur pendantes du cache d'étiquettes Apache AGE dans PGGraphStorage par @chengwudi1 dans https://github.com/HKUDS/LightRAG/pull/4212</li>
+<li>correctif (kg) : supprimez les substituts isolés des enregistrements NanoVectorDB lors de l'upsert par @rtmalikian dans https://github.com/HKUDS/LightRAG/pull/4472</li>
+<li>correctif (analyseur) : compte les lignes du tableau HTML avec les balises de fin omises par @shuaiyafei dans https://github.com/HKUDS/LightRAG/pull/4260</li>
+<li>fix(core) : validez chaque chemin de fichier KG personnalisé avant d'écrire par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4473</li>
+<li>correctif (bedrock) : honorez LLM_TIMEOUT dans bedrock_complete pour les appelants de la bibliothèque par @kimnamu dans https://github.com/HKUDS/LightRAG/pull/4076</li>
+<li>fix(kg) : refuser un curseur de planification qui n'est pas une liste à deux éléments par @simpleqt dans https://github.com/HKUDS/LightRAG/pull/4253</li>
+<li>correctif (milvus) : limite l'attente de chargement-collecte (600 s par défaut), avec une erreur de chargement tapée par @AdalbertoDam dans https://github.com/HKUDS/LightRAG/pull/4230</li>
+<li>correctif (vecteur) : effacez les vecteurs de chaque modèle d'intégration sur l'espace de travail effacé par @inamdarmihir dans https://github.com/HKUDS/LightRAG/pull/4263</li>
+<li>build(deps) : boostez le groupe llm-providers avec 3 mises à jour par @dependabot[bot] dans https://github.com/HKUDS/LightRAG/pull/4466</li>
+<li>build(deps) : faire passer pymongo de 4.18.3 à 4.19.0 dans le groupe de stockage par @dependabot[bot] dans https://github.com/HKUDS/LightRAG/pull/4467</li>
+<li>build(deps) : booste le groupe informatique avec 2 mises à jour par @dependabot[bot] dans https://github.com/HKUDS/LightRAG/pull/4468</li>
+<li>build(deps) : boostez le groupe dev-tools avec 2 mises à jour par @dependabot[bot] dans https://github.com/HKUDS/LightRAG/pull/4470</li>
+<li>correctif : nettoyer les téléchargements incomplets après annulation par @dafyy321-pixel dans https://github.com/HKUDS/LightRAG/pull/4223</li>
+<li>build(deps) : boostez le groupe web-framework avec 2 mises à jour par @dependabot[bot] dans https://github.com/HKUDS/LightRAG/pull/4469</li>
+<li>fix(llm) : honorez LLM_TIMEOUT dans chaque fournisseur client, ​​incl. par rôle et 0 par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4474</li>
+<li>fix(llm) : traite un LLM_TIMEOUT non positif comme aucun délai d'attente par @Lesereingrape dans https://github.com/HKUDS/LightRAG/pull/4098</li>
+<li>fix(query) : signaler une requête ayant échoué comme une erreur au lieu de &quot;pas de contexte&quot; par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4478</li>
+<li>correctif (intégration, reclassement) : remettre EMBEDDING_TIMEOUT / RERANK_TIMEOUT aux clients par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4479</li>
+<li>correctif (analyseur) : conserver les exemples de marqueurs Markdown littéraux par @dakjdakd dans https://github.com/HKUDS/LightRAG/pull/4204</li>
+<li>correctif (webui) : déplacez ThemeProviderContext hors du fichier de composant par @ankit2235 dans https://github.com/HKUDS/LightRAG/pull/4127</li>
+<li>correctif (webui) : arrêtez le test lightrag-stream de divulguer un faux axios dans des fichiers ultérieurs par @ankit2235 dans https://github.com/HKUDS/LightRAG/pull/4126</li>
+<li>correctif (chunker) : arrêtez les fenêtres de jeton F une fois que l'on atteint la fin par @Yuilona dans https://github.com/HKUDS/LightRAG/pull/4199</li>
+<li>correctif (reproduire) : aligner les réponses des juges sur leur requête enregistrée par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4187</li>
+<li>correctif (migration) : utiliser le suivi des morceaux faisant autorité pour les ancres héritées par @dajiaohuang dans https://github.com/HKUDS/LightRAG/pull/4157</li>
+<li>test(pg) : test de fumée de la migration d'ancre héritée sur PostgreSQL par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4481</li>
+<li>fix(auth) : rejeter les mots de passe dépassant la limite de 72 octets de bcrypt dans hash_password par @MohammadHijjawi97 dans https://github.com/HKUDS/LightRAG/pull/4489</li>
+<li>correctif (archive) : ignorer les noms de fichiers d'horodatage occupés par @passionworkeer dans https://github.com/HKUDS/LightRAG/pull/4490</li>
+<li>correctif (rerank) : rejeter le top_n négatif dans generic_rerank_api par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4487</li>
+<li>correctif (gemini) : relance l'erreur SDK une fois les tentatives épuisées par @MohammadHijjawi97 dans https://github.com/HKUDS/LightRAG/pull/4482</li>
+<li>correctif (requête) : ne jamais renvoyer ni mettre en cache une réponse de raisonnement uniquement de @cvidaillac dans https://github.com/HKUDS/LightRAG/pull/4483</li>
+<li>correctif (chunker) : rejeter les tailles de fragments inférieures à un minimum de configuration par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4488</li>
+<li>correctif : documenter les requêtes de streaming et annoter le résultat du flux query() en tant qu'AsyncIterator par @wToTw123 dans https://github.com/HKUDS/LightRAG/pull/4480</li>
+<li>correctif (extraction) : conserver les entités qui partagent une ligne avec d'autres enregistrements par @SulimanAbdulrazzaq dans https://github.com/HKUDS/LightRAG/pull/4099</li>
+<li>correctif (substrat) : joignez tous les blocs de texte au lieu du premier par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4060</li>
+<li>correctif (reconstruire) : attribut des lignes de cache d'extraction partagées via llm_cache_list par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4494</li>
+<li>feat(rebuild) : réextrait les morceaux survivants manquant leur extraction initiale par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4495</li>
+<li>fix(docx) : traite un gridSpan inférieur à 1 ou sans valeur entière comme une colonne par @RizgarOzan dans https://github.com/HKUDS/LightRAG/pull/3962</li>
+<li>correctif (analyseur) : faire en sorte que la validation et la classification des indices de nom de fichier soient acceptées par @RizgarOzan dans https://github.com/HKUDS/LightRAG/pull/3995</li>
+<li>feat(tools) : ajout d'un GC hors ligne pour les lignes de cache LLM orphelines par @cgycorey dans https://github.com/HKUDS/LightRAG/pull/4155</li>
+<li>fix(memgraph) : lier l'étiquette de l'espace de travail en tant que paramètre dans un contexte de chaîne littérale par @YashvantHange dans https://github.com/HKUDS/LightRAG/pull/4119</li>
+<li>correctif (analyseur) : refuse le préfixe SIIT traduit en IPv4 dans la protection de téléchargement d'images par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4500</li>
+<li>correctif (chunker) : résolveur side-car pris en charge et ChunkingContext paresseux (suite au #4010) par @mikelju dans https://github.com/HKUDS/LightRAG/pull/4136</li>
+<li>correctif (neo4j) : acheminez les recherches d'étiquettes coréennes et kana vers le chemin de requête CJK par @hyojin52 dans https://github.com/HKUDS/LightRAG/pull/4128</li>
+<li>exploit (webui) : transition de WebUI vers l'authentification par compte uniquement (#4125) par @Pioneer-Weirdo dans https://github.com/HKUDS/LightRAG/pull/4121</li>
+<li>correctif (requête) : récupérer le mot-clé JSON suivi de la prose entre crochets par @MohammadHijjawi97 dans https://github.com/HKUDS/LightRAG/pull/4118</li>
+<li>correctif (lollms) : faire en sorte que le prédicat de nouvelle tentative corresponde à ce que aiohttp soulève par @Pioneer-Weirdo dans https://github.com/HKUDS/LightRAG/pull/4122</li>
+<li>build(deps) : déplacer lucide-react de 1.70.0 à 1.72.0 dans /lightrag_webui dans le groupe ui-components par @dependabot[bot] dans https://github.com/HKUDS/LightRAG/pull/4501</li>
+<li>build(deps-dev) : boostez le groupe build-tools dans /lightrag_webui avec 4 mises à jour par @dependabot[bot] dans https://github.com/HKUDS/LightRAG/pull/4502</li>
+<li>build(deps) : boostez le groupe frontend-minor-patch dans /lightrag_webui avec 3 mises à jour par @dependabot[bot] dans https://github.com/HKUDS/LightRAG/pull/4503</li>
+<li>correctif (pipeline) : refuser les URI side-car Windows relatifs au lecteur sur chaque Python par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4512</li>
+<li>test(faiss) : effectuez des tests de clôture d'empreintes digitales indépendants de la résolution mtime par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4514</li>
+<li>test(parser) : gestion du Caire natif manquant dans les tests Markdown par @leilei3167 dans https://github.com/HKUDS/LightRAG/pull/4513</li>
+<li>docs(readme) : expliquez les délais d'attente d'intégration et EMBEDDING_TIMEOUT par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4516</li>
+<li>Rendre le mode JSON facultatif pour l'extraction de mots-clés de requête par @chengwudi1 dans https://github.com/HKUDS/LightRAG/pull/4026</li>
+<li>correctif (kg) : repli lorsque les limites de stockage sauvegardées par l'environnement sont inutilisables par @Lesereingrape dans https://github.com/HKUDS/LightRAG/pull/4097</li>
+<li>fix(utils) : avertir sur les valeurs d'environnement booléennes non reconnues au lieu de lire False par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4518</li>
+<li>correctif (outils) : résolvez la provenance de l'audit à partir du suivi des morceaux, pas le source_id plafonné par @JessYanCoding dans https://github.com/HKUDS/LightRAG/pull/4084</li>
+<li>correctif (postgres) : mettre à l'échelle hnsw.ef_search avec la requête vectorielle top_k par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4081</li>
+<li>fix(custom-kg) : fusionner la provenance dans les entités et relations existantes par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4506</li>
+<li>correctif (pipeline) : échec d'un commit dont l'écriture de suivi des morceaux a été conservée par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4521</li>
+<li>correctif (mongo) : recherche vectorielle à l'échelle numCandidates avec top_k par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4079</li>
+<li>correctif (networkx) : instantané une fois pour le graphique par lots lu par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4080</li>
+<li>correctif (ollama) : réessayez le type d'erreur de connexion réelle par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4078</li>
+<li>correctif (lollms) : rejet des réponses HTTP infructueuses de @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4522</li>
+<li>correctif (lollms) : rejet des réponses HTTP infructueuses de @yeliheng-010 dans https://github.com/HKUDS/LightRAG/pull/4057</li>
+<li>Correction : évitez la mutation de la configuration du chunker de l'appelant par @remote-driven-man dans https://github.com/HKUDS/LightRAG/pull/4073</li>
+<li>correctif (gemini) : analysez GOOGLE_GENAI_USE_VERTEXAI comme le google-genai SDK par @huiq777 dans https://github.com/HKUDS/LightRAG/pull/4074</li>
+<li>correctif (évaluation) : déduplication des documents attendus dans le dénominateur rappel_at par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4061</li>
+<li>correctif : ne pas avaler une suppression de document annulée dans adelete_by_doc_id par @YHC66 dans https://github.com/HKUDS/LightRAG/pull/4052</li>
+<li>correctif (anthropique) : extraire le texte de la réponse du bloc de contenu correct par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/3973</li>
+<li>correctif (milvus) : utilisez toujours la métrique COSINE et réindexez les anciennes collections L2/IP par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4527</li>
+<li>correctif (analyseur) : applique la règle des caractères interdits sur le chemin du dictionnaire des paramètres du moteur par @RizgarOzan dans https://github.com/HKUDS/LightRAG/pull/4005</li>
+<li>correctif (chunker) : conservez les segments de la taille d'un jeton via des séparateurs sans opération par @RaycarlLei dans https://github.com/HKUDS/LightRAG/pull/3979</li>
+<li>ci : annuler l'exécution de la demande d'extraction remplacée sur un nouveau push par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4530</li>
+<li>test(llm) : couvre la propagation de TokenTracker via les wrappers de rôles par @lorenzozanee dans https://github.com/HKUDS/LightRAG/pull/3969</li>
+<li>correctif : ajout de contrôles de cohérence du stockage et de reconstructions limitées par @leninworld dans https://github.com/HKUDS/LightRAG/pull/4071</li>
+<li>correctif (reclassement) : trier les résultats par score avant utilisation par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/3961</li>
+<li>correctif (multimodal) : ancrer le contexte de la table sur la table et non une citation de @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/3965</li>
+<li>correctif (kg) : arrêt du double comptage du poids du bord dans un lot par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/3964</li>
+<li>fix(kg) : privilégier le type d'entité établi sur une égalité par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/3959</li>
+<li>correctif (analyseur) : complétez les lignes de la table de canal Markdown vers une grille rectangulaire par @nurlanmnn dans https://github.com/HKUDS/LightRAG/pull/4493</li>
+<li>correctif (exemples) : migrez le générateur de requêtes hors GPT-4o mini par @JunaidAhamed-7777 dans https://github.com/HKUDS/LightRAG/pull/4499</li>
+<li>correctif (extraction) : échec de la fusion sur un résumé de description vide par @zzjiho dans https://github.com/HKUDS/LightRAG/pull/4498</li>
+<li>test (pipeline) : épinglez la limite du cycle de cause et fusionnez les tests de vidage en double par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4509</li>
+<li>correctif (extraction) : limiter les chemins de fichiers lors de la reconstruction d'une entité à partir de ses bords par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4510</li>
+<li>fix(export) : exportez chaque relation non orientée une fois par @67-luck dans https://github.com/HKUDS/LightRAG/pull/4515</li>
+<li>correctif (neo4j) : évitez les collisions de noms d'index de texte intégral entre les espaces de travail par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4486</li>
+<li>correctif (mongo) : ajout d'un critère de départage au tri de pagination du document par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4461</li>
+<li>correctif (requête) : ignorer les index de reclassement en double avant le top-k par @wToTw123 dans https://github.com/HKUDS/LightRAG/pull/4523</li>
+<li>correctif (markdown) : n'ouvrez pas de clôture sur une étendue de code d'une ligne par @MohammadHijjawi97 dans https://github.com/HKUDS/LightRAG/pull/4528</li>
+<li>fix(query) : signaler les mots-clés contenant une virgule dans les métadonnées de la requête par @Zhuoxi2000 dans https://github.com/HKUDS/LightRAG/pull/4529</li>
+<li>fix(query) : validez kg_chunk_pick_method et revenez à WEIGHT lorsque VECTOR n'est pas disponible par @SDLSY dans https://github.com/HKUDS/LightRAG/pull/4531</li>
+<li>correctif (markdown) : traite $$...$$ suivi de la prose sous forme de texte par @chuenchen309 dans https://github.com/HKUDS/LightRAG/pull/4526</li>
+<li>fix(llm) : gérer les comptes nullables dans TokenTracker par @wToTw123 dans https://github.com/HKUDS/LightRAG/pull/4524</li>
+<li>fix(jina) : aligner les lignes d'intégration avec les index d'entrée par @Ymmcc dans https://github.com/HKUDS/LightRAG/pull/4532</li>
+<li>test(retry) : épinglez la table de nouvelle tentative aiohttp une fois, un cas de câblage par branche par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4533</li>
+<li>correctif (nvidia) : relance l'exception d'origine après des tentatives épuisées par @aloneangel45 dans https://github.com/HKUDS/LightRAG/pull/4536</li>
+<li>fix(voyageai) : relance l'erreur d'origine au lieu de tenacity.RetryError par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4539</li>
+<li>test(chunker) : couvre le comportement de fusion min_chunk_size dans V chunker par @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4543</li>
+<li>correctif (zhipu) : supprimez le flux kwarg avant l'appel SDK pour éviter un crash de @Shizoqua dans https://github.com/HKUDS/LightRAG/pull/4541</li>
+<li>correctif (webui) : désactivez la détection automatique de la source Tailwind par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4546</li>
+<li>feat(webui) : chargez les langages Prism et les extensions KaTeX à la demande par @danielaskdd dans https://github.com/HKUDS/LightRAG/pull/4547</li>
+</ul>
+<h2>Nouveaux contributeurs</h2>
+<ul>
+<li>@rtmalikian a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4273</li>
+<li>@ZXLyyds100 a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4279</li>
+<li>@GautamVhavle a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4237</li>
+<li>@2gg-bit a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4132</li>
+<li>@xyi74976-del a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4289</li>
+<li>@Elon-Jiang a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4287</li>
+<li>@xujiantop-crypto a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4152</li>
+<li>@lux-liang a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4200</li>
+<li>@heranliu a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4209</li>
+<li>@hardness1020 a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4227</li>
+<li>@shuaiyafei a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4259</li>
+<li>@IlyaKhalafi a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4219</li>
+<li>@Akaliup a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4291</li>
+<li>@qhxwork a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4269</li>
+<li>@UltimateWilliamWu a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4275</li>
+<li>@dexhunter a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4298</li>
+<li>@Dev-next-gen a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4450</li>
+<li>@pedrorivald a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4290</li>
+<li>@adity982 a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/3930</li>
+<li>@Superb0431 a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4085</li>
+<li>@xixi-box a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4463</li>
+<li>@chengwudi1 a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4212</li>
+<li>@inamdarmihir a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4263</li>
+<li>@Lesereingrape a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4098</li>
+<li>@ankit2235 a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4127</li>
+<li>@Yuilona a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4199</li>
+<li>@SulimanAbdulrazzaq a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4099</li>
+<li>@cgycorey a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4155</li>
+<li>@mikelju a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4136</li>
+<li>@hyojin52 a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4128</li>
+<li>@Pioneer-Weirdo a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4121</li>
+<li>@yeliheng-010 a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4057</li>
+<li>@huiq777 a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4074</li>
+<li>@RaycarlLei a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/3979</li>
+<li>@lorenzozanee a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/3969</li>
+<li>@leninworld a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4071</li>
+<li>@nurlanmnn a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4493</li>
+<li>@JunaidAhamed-7777 a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4499</li>
+<li>@67-luck a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4515</li>
+<li>@SDLSY a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4531</li>
+<li>@chuenchen309 a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4526</li>
+<li>@Ymmcc a apporté sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4532</li>
+<li>@aloneangel45 a fait sa première contribution dans https://github.com/HKUDS/LightRAG/pull/4536
+<strong>Changelog complet</strong> : https://github.com/HKUDS/LightRAG/compare/v1.5.8rc1...v1.5.8rc2</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Source</strong> <a href="https://github.com/HKUDS/LightRAG">HKUDS/LightRAG</a> · <code>v1.5.8rc2</code> · 2026-11-21 · <a href="https://github.com/HKUDS/LightRAG/releases/tag/v1.5.8rc2">version en amont</a>
+<em>Verbatim reflété pour l'indexation. Tous les droits appartiennent au projet en amont.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Les Release note sont publiés par le projet en amont et mis en miroir ici pour l&#39;indexation. Tous les droits appartiennent à leurs auteurs. </p> <nav class="pager" aria-label="Release navigation"> <span></span> <a href="/releases/lightrag/1.5.8rc1"> <span class="k">Précédent →</span> <span class="t">v1.5.8rc1</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/HKUDS/LightRAG/releases/tag/v1.5.8rc2" target="_blank" rel="noopener"> <span>Original sur GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/HKUDS/LightRAG" target="_blank" rel="noopener"> <span>HKUDS/LightRAG</span> <span class="d">↗</span> </a> </li> </ul> </div>  <div class="rail-card"> <div class="rail-title">Historique des versions</div> <ul class="rail-list"> <li> <a href="/releases/lightrag/1.5.8rc2" aria-current="true"> <span class="v">v1.5.8rc2</span> <span class="d">26-11-21</span> </a> </li><li> <a href="/releases/lightrag/1.5.8rc1"> <span class="v">v1.5.8rc1</span> <span class="d">26-11-15</span> </a> </li><li> <a href="/releases/lightrag/1.5.7"> <span class="v">v1.5.7</span> <span class="d">26-09-02</span> </a> </li><li> <a href="/releases/lightrag/1.5.7rc2"> <span class="v">v1.5.7rc2</span> <span class="d">26-08-19</span> </a> </li><li> <a href="/releases/lightrag/1.5.6"> <span class="v">v1.5.6</span> <span class="d">26-08-06</span> </a> </li><li> <a href="/releases/lightrag/1.5.5"> <span class="v">v1.5.5</span> <span class="d">26-07-31</span> </a> </li><li> <a href="/releases/lightrag/1.5.4"> <span class="v">v1.5.4</span> <span class="d">26-06-24</span> </a> </li><li> <a href="/releases/lightrag/1.5.3"> <span class="v">v1.5.3</span> <span class="d">26-06-14</span> </a> </li> </ul> <a href="/fr/releases/lightrag" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Tout afficher 81 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/fr/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Informations sur les versions open source, publiées quotidiennement.</p> </div> <div class="footer-col"> <h3>Suivre</h3> <ul> <li><a href="/fr/releases">Versions</a></li> <li><a href="/fr/projects">Projets</a></li> <li><a href="/fr/releases.xml">Flux RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Archives</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Archives chinoises</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notes techniques</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>À propos</h3> <ul> <li><a href="/fr/method">Méthode</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Les Release note appartiennent à leurs projets en amont.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Rechercher des versions"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="Rechercher des versions, projets, numéros…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

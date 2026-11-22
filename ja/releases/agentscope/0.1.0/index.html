@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>agentscope v0.1.0 — STAGS NextStack</title><meta name="description" content="Support ZhipuAI API ( · Support Yi API ( · Support streaming mode in AgentScope ( · Support LiteLLM ("><meta name="keywords" content="オープンソース release note、リリース トラッカー、changelog アグリゲーター、重大な変更、非推奨トラッカー、Kafka リリース、Spring Boot リリース、Kubernetes リリース"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/ja/releases/agentscope/0.1.0/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/ja/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/agentscope/0.1.0/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/agentscope/0.1.0/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/agentscope/0.1.0/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="agentscope v0.1.0 — STAGS NextStack"><meta property="og:description" content="Support ZhipuAI API ( · Support Yi API ( · Support streaming mode in AgentScope ( · Support LiteLLM ("><meta property="og:url" content="https://www.stags.cn/ja/releases/agentscope/0.1.0/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="ja_JP"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"ja","description":"STAGS はインフラストラクチャおよび AI プロジェクトのリリースノートを索引化し、破壊的変更・非推奨・移行情報を英語優先の単一フィードで提供します。","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/ja/releases/agentscope/0.1.0/#article","headline":"agentscope v0.1.0 release notes","datePublished":"2024-09-09","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/agentscope-ai/agentscope"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">本文へスキップ</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/ja/" class="brand" aria-label="STAGS NextStack — オープンソースのリリース情報"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/ja/releases">リリース</a><a href="/ja/projects">プロジェクト</a><a href="/ja/method">仕組み</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="リリースを検索"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">検索</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="言語"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">日</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="言語"> <p class="langmenu-head">言語</p> <a class="langmenu-item" href="/releases/agentscope/0.1.0/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/agentscope/agentscope_v0.1.0" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/agentscope/0.1.0/" hreflang="ja" lang="ja" aria-current="true" data-on="true"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/agentscope/0.1.0/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/agentscope/0.1.0/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/agentscope/0.1.0/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/agentscope/0.1.0/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/ja/">ホーム</a> <span class="sep">/</span> <a href="/ja/releases">リリース</a> <span class="sep">/</span> <a href="/ja/releases/agentscope">agentscope</a> </nav> <h1 class="detail-title"> <span class="p">agentscope</span> v0.1.0 </h1> <div class="detail-meta"> <span class="chip chip--minor">マイナー</span> <span><span class="k">公開日</span>2024年9月9日</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/agentscope-ai/agentscope" target="_blank" rel="noopener"> <span class="k">出典</span>agentscope-ai/agentscope </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/agentscope/0.1.0/"> 英語原文 </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/ja/releases/agentscope/0.1.0/">リンクをコピー</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">このページは機械翻訳です。内容は必ず英文原文をご確認ください。</p>  <div><h1>エージェントスコープ v0.1.0</h1>
+<h2>何が変わったのか</h2>
+<h3>型式 APIs</h3>
+<ol>
+<li>ZhipuAI API (https://github.com/modelscope/agentscope/pull/181) をサポート
+2.サポートイーAPI (https://github.com/modelscope/agentscope/pull/343)</li>
+<li>AgentScope でのストリーミング モードのサポート (https://github.com/modelscope/agentscope/pull/347)</li>
+<li>LiteLLM (https://github.com/modelscope/agentscope/pull/204) をサポート</li>
+<li>モデル名に従って入力メッセージをフォーマットします (https://github.com/modelscope/agentscope/pull/381)</li>
+</ol>
+<h3>サービス</h3>
+<p>以下の新しいサービス機能を追加します</p>
+<ol>
+<li>トリップアドバイザーの検索</li>
+<li>DBLP検索</li>
+<li>ウィキペディア検索</li>
+<li>Webブラウザ制御</li>
+<li>OpenAI および DashScope マルチモーダル サービス機能</li>
+</ol>
+<h3>その他</h3>
+<ol>
+<li>AgentScope での MoA メソッドの実装 (https://github.com/modelscope/agentscope/pull/327)</li>
+<li>新しいプロンプトエンジニアリングモジュール (https://github.com/modelscope/agentscope/pull/242)</li>
+<li>RAGモジュールの改良（https://github.com/modelscope/agentscope/pull/184）</li>
+</ol>
+<h3>詳細</h3>
+<ul>
+<li>@garyzhang99 による ZhipuAI モデル ラッパーを https://github.com/modelscope/agentscope/pull/181 に追加</li>
+<li>【HOTFIX】https://github.com/modelscope/agentscope/pull/195の@DavdGaoによる五目並べの例のエラーを修正</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/199 の @pan-x-c による 0.0.4 README_ZH のタイプミスを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/177 に @PengHongyiNTU による DBLP 検索機能を実装</li>
+<li>https://github.com/modelscope/agentscope/pull/201に@rayrayraykkさんのバナーを追加</li>
+<li>[DOC] https://github.com/modelscope/agentscope/pull/207 の @eltociear による distribution_basic/README.md の更新</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/212 の @DavdGao によるボード エージェントのバグを修正</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/197 の @ZiTao-Li によるメモリ読み込みエラーを修正</li>
+<li>[HOTFIX] Ollama チャット API のプロンプト戦略を更新。 @DavdGao 著、https://github.com/modelscope/agentscope/pull/206</li>
+<li>https://github.com/modelscope/agentscope/pull/204 に @garyzhang99 による litellm ラッパーを追加</li>
+<li>@zyzhang1130 による <code>conversation_self_organizing</code> の README ファイルを https://github.com/modelscope/agentscope/pull/210 に追加</li>
+<li>https://github.com/modelscope/agentscope/pull/216 の @rayrayraykk による問題の更新</li>
+<li>OpenAI Chat API にビジョン モデルのサポートを追加します。 gpt-4o、gpt-4-turbo など (https://github.com/modelscope/agentscope/pull/221 の @DavdGao による)</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/224 の @pan-x-c によってパッケージが見つからない場合のエラー メッセージを最適化するために ImportErrorReporter を追加しました。</li>
+<li>https://github.com/modelscope/agentscope/pull/223 に @rayrayraykk によるアンケートを追加</li>
+<li>https://github.com/modelscope/agentscope/pull/173 の @garyzhang99 による SWE エージェントの例</li>
+<li>https://github.com/modelscope/agentscope/pull/225 の @rayrayraykk によるワークステーション上の dale のサポート</li>
+<li>辞書パーサーをより柔軟にし、https://github.com/modelscope/agentscope/pull/203 の @DavdGao により DictDialogAgent からタスク固有の情報を分離します。</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/226 の @DavdGao によるチュートリアルのフォーマット エラーを修正</li>
+<li>langchain ツールをラップする方法の例を追加し、ツールキットでアクセスできるツールへのダッシュスコープ api 呼び出しを追加します。 @PengHongyiNTU 著、https://github.com/modelscope/agentscope/pull/219</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/230 の @DavdGao による ollama と litellm のフォーマット メソッドのバグを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/232 の @garyzhang99 によるドキュメント/litellm ドキュメント</li>
+<li><code>as_server</code>コマンドを追加し、https://github.com/modelscope/agentscope/pull/211に@pan-x-cで<code>server_id</code>を追加</li>
+<li>删除マークダウン “-”.md by @ZhuangXialie in https://github.com/modelscope/agentscope/pull/236</li>
+<li>https://github.com/modelscope/agentscope/pull/241 の @garyzhang99 による Precommit flake8/black の競合を修正</li>
+<li>埋め込みモデル用のポスト API を追加し、https://github.com/modelscope/agentscope/pull/186 の @ZiTao-Li による埋め込みモデル ラッパーを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/250 に @rayrayraykk によるウェブサイトメンテナンスのニュースを追加</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/248 の @ZiTao-Li による RAG サンプルのバージョン仕様を追加</li>
+<li>https://github.com/modelscope/agentscope/pull/251 の @qbc2016 による game_werewolf のタイプミスとプロンプトを修正</li>
+<li>Gemini チャット ラッパーの修正 (https://github.com/modelscope/agentscope/pull/233 の @zyzhang1130 による)</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/253 で @pan-x-c によってエージェントスコープをインポートするときのインポート エラーを修正</li>
+<li>ゲーム五目録は、https://github.com/modelscope/agentscope/pull/247 の @zyzhang1130 によるモデルの更新をテストしました</li>
+<li>https://github.com/modelscope/agentscope/pull/246 の @zyzhang1130 による game_werewolf_README ブランチのクリーンアップされたバージョン</li>
+<li>https://github.com/modelscope/agentscope/pull/257 の @DavdGao によるリポジトリと人狼ゲームの両方のデモ ビデオを README.md に追加します</li>
+<li>[Hot Fix] https://github.com/modelscope/agentscope/pull/263 の @pan-x-c による save_dir が無効になるバグを修正</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/266の@DavdGaoによるログルの特殊タグが表示できないバグを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/267 の @qbc2016 による人狼ゲームのプロンプトを改良</li>
+<li>https://github.com/modelscope/agentscope/pull/271 の @zyzhang1130 による SWE エージェントの例のテスト済みモデル リストを更新</li>
+<li>一部のプレイヤーが棄権を宣言した場合でも、ゲームがスムーズに進行するようにします… by @AskyXXS in https://github.com/modelscope/agentscope/pull/272</li>
+<li>https://github.com/modelscope/agentscope/pull/217 の @KPCOFGS による README ファイルへのリンクを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/255 の @PengHongyiNTU により、AgentScope ライブラリに DashScope API ベースのマルチモーダル サービス関数を追加</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/274 の @qbc2016 によって検索された Web ページをダイジェストするために、setup.py に bs4 を追加します。</li>
+<li>[Hotfix] 単体テストのエラーを修正しました。 @DavdGao 著、https://github.com/modelscope/agentscope/pull/275</li>
+<li>https://github.com/modelscope/agentscope/pull/261 の @DavdGao による MarkdownJsonDictParser 内で Pydantic ベースの検証をサポート</li>
+<li>https://github.com/modelscope/agentscope/pull/277 の @zyzhang1130 によるサンプル <code>distributed_basic</code> の README ファイルを再フォーマットしました</li>
+<li>@pan-x-c による AgentScope Studio の再構築 (https://github.com/modelscope/agentscope/pull/238)</li>
+<li>https://github.com/modelscope/agentscope/pull/278 の @DavdGao による新しいバージョンのチュートリアルを更新</li>
+<li>v0.0.5 を @pan-x-c により https://github.com/modelscope/agentscope/pull/279 でリリース</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/280 の @DavdGao による PyPI のインポート エラーを修正</li>
+<li>[HOTFIX] setup.py のエラーを修正し、https://github.com/modelscope/agentscope/pull/283 の @DavdGao によるドキュメントを更新</li>
+<li>https://github.com/modelscope/agentscope/pull/184 の @ZiTao-Li による RAG モジュールとエージェントの再フォーマットと改善</li>
+<li>https://github.com/modelscope/agentscope/pull/290 の @pan-x-c によるプレリリース 0.0.6a2</li>
+<li>[ホットフィックス] 単体テストを追加し、https://github.com/modelscope/agentscope/pull/289 の @ZiTao-Li による LlamaIndexKnowledge のインポート エラーを修正</li>
+<li>UT は、https://github.com/modelscope/agentscope/pull/291 の @rayrayraykk による追加の py バージョンをサポートします</li>
+<li>修正（タイプミス）: https://github.com/modelscope/agentscope/pull/293 の @jianzs による 208-distribute.md を更新</li>
+<li>https://github.com/modelscope/agentscope/pull/285 の @qbc2016 によるゲーム人狼関連のファイルを更新します</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/294 の @qbc2016 によるチュートリアルのリンクの問題を修正</li>
+<li>https://github.com/modelscope/agentscope/pull/242 に @garyzhang99 によるプロンプト チューニング モジュールを追加</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/298 の @DavdGao によるシステム プロンプトの最適化に関連するチュートリアルのエラーを修正</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/299 の @DavdGao によるチュートリアルでラグが見つからないエラーを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/300 の @pan-x-c によるプレリリース 0.0.6a3</li>
+<li>https://github.com/modelscope/agentscope/pull/295 の @qbc2016 によりスタジオを gradio に変更します</li>
+<li>最新ニュース: ワークステーションがオンラインに戻りました (https://github.com/modelscope/agentscope/pull/305 の @rayrayraykk により)</li>
+<li>https://github.com/modelscope/agentscope/pull/284 の @qbc2016 によりワークステーションの各例にステップ モードを追加</li>
+<li>https://github.com/modelscope/agentscope/pull/306 の @zyzhang1130 による <code>distributed_debate</code> の README.md を更新</li>
+<li>https://github.com/modelscope/agentscope/pull/316 の @qbc2016 によりワークステーションのドメインを変更します</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/317 で @ZiTao-Li によってユーザー メッセージが 2 回表示される gradio を修正しました。</li>
+<li>エージェントの応答関数の入力を統一し、ドキュメント文字列を更新します。 @DavdGao 著、https://github.com/modelscope/agentscope/pull/314</li>
+<li>https://github.com/modelscope/agentscope/pull/322に@ZiTao-Liによるローカル埋め込みモデルの設定例を追加</li>
+<li>https://github.com/modelscope/agentscope/pull/323 の @garyzhang99 による論文参照名を修正</li>
+<li>AgentScope から <code>Tht</code> クラスを削除し、https://github.com/modelscope/agentscope/pull/313 の @DavdGao により MessageBase ではなく Msg に入力されるように統合されました</li>
+<li>https://github.com/modelscope/agentscope/pull/304 の @PenghongyiNTU により OpenAI をサービスとして追加</li>
+<li>https://github.com/modelscope/agentscope/pull/325 の @PatrickG1014 によるグループ ノードのワークステーションの表示バグを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/329 の @rayrayraykk による env のタイプミスを修正</li>
+<li>[HOTFIX] ノートブック ディレクトリを削除し、タイプミスを修正します。 @DavdGao 著、https://github.com/modelscope/agentscope/pull/330</li>
+<li>修正: https://github.com/modelscope/agentscope/pull/335 で @xuanmiss によってモデル構成を初期化するときに、空の api_key を dashscope.api_key に割り当てるように DashScopeWrapperBase を変更しました。</li>
+<li>https://github.com/modelscope/agentscope/pull/331 の @yanxi-chen による LLM ベースのアルゴリズムの研究に対する最初のコミット</li>
+<li>[HOTFIX] https://github.com/modelscope/agentscope/pull/342 の @DavdGao による DictDialogAgent のバグを修正</li>
+<li>@yanxi-chen による LLM ベースのアルゴリズムに関する研究プロジェクトのコードを https://github.com/modelscope/agentscope/pull/336 にアップロード</li>
+<li>json(str) の場合、https://github.com/modelscope/agentscope/pull/334 の @samchaolau によって json(dict) に変換されます</li>
+<li>https://github.com/modelscope/agentscope/pull/327 の @garyzhang99 による AgentScope への MoA モジュールの追加</li>
+<li>https://github.com/modelscope/agentscope/pull/346 に @garyzhang99 による MoA のテスト モジュールを追加</li>
+<li>https://github.com/modelscope/agentscope/pull/239の@pan-x-cによりエージェントサーバー管理機能を追加</li>
+<li>https://github.com/modelscope/agentscope/pull/348 の @rayrayraykk によるワークステーションを強調表示します</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/350 の @garyzhang99 による要約関数の潜在的なバグを修正</li>
+<li>AgentScope でのストリーミング モードのサポート (https://github.com/modelscope/agentscope/pull/347 の @DavdGao による)</li>
+<li>https://github.com/modelscope/agentscope/pull/354 の @yizhangliu による 101-agentscope.md の更新</li>
+<li>メッセージの色付きの名前を修正し、https://github.com/modelscope/agentscope/pull/357 の @zhijianma によるストリーミング モードのデモ画像を拡大しました</li>
+<li>https://github.com/modelscope/agentscope/pull/353 の @DavdGao による AgentScope の初期化効率の向上</li>
+<li>https://github.com/modelscope/agentscope/pull/341 の @DavdGao により、不確実なタグ名と数量に対応する新しいパーサーを追加</li>
+<li>https://github.com/modelscope/agentscope/pull/365 の @garyzhang99 による Ollama モデル ラッパーにホスト URL オプションを追加</li>
+<li>[HOTFIX] React Agentでの重複印刷を修正しました。 @DavdGao 著、https://github.com/modelscope/agentscope/pull/367</li>
+<li>cname を追加し、https://github.com/modelscope/agentscope/pull/369 の @rayrayraykk によって setuptools バージョンを更新します</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/371 の @pan-x-c による Studio でのスクリプトロードチェック機能を修正しました</li>
+<li>Notebook Executor をサービス関数として追加し、codeact エージェントを追加します。 @garyzhang99 著、https://github.com/modelscope/agentscope/pull/231</li>
+<li>モデル、スタジオ、ファイル、モニターを 1 つのマネージャーに統合します。 @DavdGao 著、https://github.com/modelscope/agentscope/pull/364</li>
+<li>OpenAI にモデル指向フォーマット機能を実装し、https://github.com/modelscope/agentscope/pull/381 の @DavdGao による API チャット ラッパーを投稿</li>
+<li>Studio は、https://github.com/modelscope/agentscope/pull/351 の @pan-x-c によるエージェント サーバーの割り当てをサポートします</li>
+<li>https://github.com/modelscope/agentscope/pull/379 の @qbc2016 によるワークステーションの反応エージェントのバグを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/386 の @DavdGao により、AgentScope でのメッセージ関連の入力を辞書ではなくメッセージに統一しました</li>
+<li>https://github.com/modelscope/agentscope/pull/391 の @qbc2016 によるフラスコのバグを修正</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/392 の @TangJiakai による check_port のバグを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/394 の @zyzhang1130 による README.md 内の名前を更新</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/397 の @pan-x-c による <code>_ModelConfig</code> 状態の取得と設定を修正</li>
+<li>https://github.com/modelscope/agentscope/pull/345 の @rayrayraykk によるオンライン ワークステーション</li>
+<li>ユーザーが、https://github.com/modelscope/agentscope/pull/404 の @DavdGao により、agentscope.init を呼び出さずにエージェントを初期化できるようにします</li>
+<li>https://github.com/modelscope/agentscope/pull/324 に @PengfeiHePower による Wiki 検索サービスを追加</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/410 の @qbc2016 による web/gradio/utils.py のgenerate_image_from_name の save_image のバグを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/414 の @qbc2016 による HTML 構成の as_gradio の実行をサポート</li>
+<li>https://github.com/modelscope/agentscope/pull/416 に @DavdGao によるルーター エージェントの例を追加</li>
+<li>https://github.com/modelscope/agentscope/pull/415 の @garyzhang99 による nl2sql サンプルの非推奨のload_model_by_config_name を修正</li>
+<li>https://github.com/modelscope/agentscope/pull/420 の @DavdGao によるサービス関数execute_shell_commandのセキュリティチェックを追加</li>
+<li>AgentScope でのメッセージ オブジェクトのシリアル化と未使用の引数の削除のサポート。 @DavdGao 著、https://github.com/modelscope/agentscope/pull/388</li>
+<li>非推奨のモジュールを削除し、同じ機能を持つファイルをマージして、リポジトリをクリーンアップします。 @DavdGao 著、https://github.com/modelscope/agentscope/pull/422</li>
+<li>https://github.com/modelscope/agentscope/pull/343 の @Haijian06 による集成Yi モデル</li>
+<li>トリップアドバイザー ツールの機能 (https://github.com/modelscope/agentscope/pull/332 の @zyzhang1130 による)</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/426 の @qbc2016 による Readme のオンライン ワークステーションのハイパーリンクを修正</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/428 の @pan-x-c による分散モードで <code>ModelManager</code> が初期化されない問題を修正</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/429 の @pan-x-c による遅延ロード llama-index-knownledge</li>
+<li>[ホットフィックス] https://github.com/modelscope/agentscope/pull/431 で @pan-x-c によるストリーム モードを使用する場合の ModelResponse のテキスト フィールドを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/296 の @garyzhang99 により、agentscope で Web ブラウジング機能を有効にします</li>
+<li>https://github.com/modelscope/agentscope/pull/434 内の @garyzhang99 によるタイプミスを修正</li>
+<li>https://github.com/modelscope/agentscope/pull/433 の @DavdGao によるバージョン v0.1.0 の準備</li>
+<li>https://github.com/modelscope/agentscope/pull/435 の @DavdGao により、setup.py を更新して、agentscope のインストールを容易にしました</li>
+</ul>
+<h2>新しい貢献者</h2>
+<ul>
+<li>@PengHongyiNTU が https://github.com/modelscope/agentscope/pull/177 で最初の投稿を行いました</li>
+<li>@zyzhang1130 が https://github.com/modelscope/agentscope/pull/210 に初めて投稿しました</li>
+<li>@ZhuangXialie が https://github.com/modelscope/agentscope/pull/236 で最初の投稿を行いました</li>
+<li>@AskyXXS が https://github.com/modelscope/agentscope/pull/272 に初めて投稿しました</li>
+<li>@KPCOFGS が https://github.com/modelscope/agentscope/pull/217 に初めて貢献しました</li>
+<li>@jianzs が https://github.com/modelscope/agentscope/pull/293 で最初の投稿を行いました</li>
+<li>@PatrickG1014 が https://github.com/modelscope/agentscope/pull/325 で最初の投稿を行いました</li>
+<li>@xuanmiss が https://github.com/modelscope/agentscope/pull/335 に初めて投稿しました</li>
+<li>@yanxi-chen が https://github.com/modelscope/agentscope/pull/331 に初めて投稿しました</li>
+<li>@samchaolau が https://github.com/modelscope/agentscope/pull/334 で最初の投稿を行いました</li>
+<li>@yizhangliu が https://github.com/modelscope/agentscope/pull/354 に初めて投稿しました</li>
+<li>@TangJiakai が https://github.com/modelscope/agentscope/pull/392 に初めて投稿しました</li>
+<li>@PengfeiHePower が https://github.com/modelscope/agentscope/pull/324 で最初の貢献をしました</li>
+<li>@Haijian06 が https://github.com/modelscope/agentscope/pull/343 に初めて投稿しました
+<strong>フル Changelog</strong>: https://github.com/modelscope/agentscope/compare/v0.0.4...v0.1.0</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>ソース</strong> <a href="https://github.com/agentscope-ai/agentscope">agentscope-ai/agentscope</a> · <code>v0.1.0</code> · 2024-09-09 · <a href="https://github.com/agentscope-ai/agentscope/releases/tag/v0.1.0">アップストリーム リリース</a>
+<em>インデックス作成のためにそのままミラーリングされます。すべての権利は上流プロジェクトに帰属します。</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release note は上流のプロジェクトによって公開され、インデックス作成のためにここにミラーリングされます。すべての権利はその作者に帰属します。 </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/agentscope/0.1.1"> <span class="k">← 次へ</span> <span class="t">v0.1.1</span> </a> <a href="/releases/agentscope/0.0.4"> <span class="k">前へ →</span> <span class="t">v0.0.4</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/agentscope-ai/agentscope/releases/tag/v0.1.0" target="_blank" rel="noopener"> <span>GitHub で見る</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/agentscope-ai/agentscope" target="_blank" rel="noopener"> <span>agentscope-ai/agentscope</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">このページの目次</div> <nav> <a href="#" class>何が変わったのか</a><a href="#" class="lv3">型式 APIs</a><a href="#" class="lv3">サービス</a><a href="#" class="lv3">その他</a><a href="#" class="lv3">詳細</a><a href="#" class>新しい貢献者</a> </nav> </div> <div class="rail-card"> <div class="rail-title">バージョン履歴</div> <ul class="rail-list"> <li> <a href="/releases/agentscope/2.0.12"> <span class="v">v2.0.12</span> <span class="d">26-11-16</span> </a> </li><li> <a href="/releases/agentscope/2.0.11"> <span class="v">v2.0.11</span> <span class="d">26-10-27</span> </a> </li><li> <a href="/releases/agentscope/2.0.10"> <span class="v">v2.0.10</span> <span class="d">26-10-12</span> </a> </li><li> <a href="/releases/agentscope/2.0.9"> <span class="v">v2.0.9</span> <span class="d">26-09-28</span> </a> </li><li> <a href="/releases/agentscope/2.0.8"> <span class="v">v2.0.8</span> <span class="d">26-09-08</span> </a> </li><li> <a href="/releases/agentscope/2.0.7.post1"> <span class="v">v2.0.7.post1</span> <span class="d">26-08-28</span> </a> </li><li> <a href="/releases/agentscope/2.0.7"> <span class="v">v2.0.7</span> <span class="d">26-08-24</span> </a> </li><li> <a href="/releases/agentscope/2.0.6"> <span class="v">v2.0.6</span> <span class="d">26-08-07</span> </a> </li> </ul> <a href="/ja/releases/agentscope" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> すべての 51 件を見る →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/ja/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>オープンソースのリリース インテリジェンスが毎日公開されます。</p> </div> <div class="footer-col"> <h3>追跡</h3> <ul> <li><a href="/ja/releases">リリース</a></li> <li><a href="/ja/projects">プロジェクト</a></li> <li><a href="/ja/releases.xml">RSS フィード</a></li> </ul> </div> <div class="footer-col"> <h3>アーカイブ</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">中文アーカイブ</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">技術ノート</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>情報</h3> <ul> <li><a href="/ja/method">仕組み</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release note は上流プロジェクトに属します。</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="リリースを検索"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="リリース、プロジェクト、バージョンを検索…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>druid 0.14.0-incubating — STAGS NextStack</title><meta name="description" content="Apache Druid (incubating) 0.14.0-incubating contains over 200 new features, performance/stability/documentation improvements, and bug fixes from 54 contributors. Major new features and improvements include"><meta name="keywords" content="release note de código abierto, rastreador de lanzamientos, agregador changelog, cambios importantes, rastreador de desuso, lanzamientos de Kafka, lanzamientos de Spring Boot, lanzamientos de Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/es/releases/druid/0.14.0-incubating/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/es/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/druid/0.14.0-incubating/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/druid/0.14.0-incubating/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/druid/0.14.0-incubating/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="druid 0.14.0-incubating — STAGS NextStack"><meta property="og:description" content="Apache Druid (incubating) 0.14.0-incubating contains over 200 new features, performance/stability/documentation improvements, and bug fixes from 54 contributors. Major new features and improvements include"><meta property="og:url" content="https://www.stags.cn/es/releases/druid/0.14.0-incubating/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="es_ES"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"es","description":"STAGS indexa las notas de versión de proyectos de infraestructura e IA – cambios incompatibles, obsolescencias y migraciones – en un único feed en inglés.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/es/releases/druid/0.14.0-incubating/#article","headline":"druid 0.14.0-incubating release notes","datePublished":"2019-04-09","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/apache/druid"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Ir al contenido</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/es/" class="brand" aria-label="STAGS NextStack — Información de versiones open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/es/releases">Versiones</a><a href="/es/projects">Proyectos</a><a href="/es/method">Método</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Buscar versiones"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Buscar</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Idioma"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">ES</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Idioma"> <p class="langmenu-head">Idioma</p> <a class="langmenu-item" href="/releases/druid/0.14.0-incubating/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/druid/druid_druid-0.14.0-incubating" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/druid/0.14.0-incubating/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/druid/0.14.0-incubating/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/druid/0.14.0-incubating/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/druid/0.14.0-incubating/" hreflang="es" lang="es" aria-current="true" data-on="true"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/druid/0.14.0-incubating/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/es/">Inicio</a> <span class="sep">/</span> <a href="/es/releases">Versiones</a> <span class="sep">/</span> <a href="/es/releases/druid">druid</a> </nav> <h1 class="detail-title"> <span class="p">druid</span> 0.14.0-incubating </h1> <div class="detail-meta"> <span class="chip chip--minor">Menor</span> <span><span class="k">Publicado</span>9 abr 2019</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/apache/druid" target="_blank" rel="noopener"> <span class="k">Fuente</span>apache/druid </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/druid/0.14.0-incubating/"> original en inglés </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/es/releases/druid/0.14.0-incubating/">Copiar enlace</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Esta página está traducida automáticamente. El texto original en inglés es la referencia.</p>  <div><h1>druida druida-0.14.0-incubating</h1>
+<p>Apache Druid (en incubación) 0.14.0-incubating contiene más de 200 funciones nuevas, mejoras de rendimiento/estabilidad/documentación y correcciones de errores de 54 contribuyentes. Las principales nuevas características y mejoras incluyen:</p>
+<ul>
+<li>Nueva consola web</li>
+<li>Servicio de indexación de Amazon Kinesis</li>
+<li>Modo de desmantelamiento para históricos.</li>
+<li>Caché de segmento publicado en Broker</li>
+<li>Agregador de filtros Bloom y expresión.</li>
+<li>Extensión Apache Parquet actualizada</li>
+<li>Opción de forzar la inserción hacia abajo para consultas GroupBy anidadas</li>
+<li>Mejor manejo de reglas de entrega y eliminación de segmentos</li>
+<li>Elimina automáticamente los trabajos de MapReduce cuando se eliminan las tareas de ingestión de Apache Hadoop.</li>
+<li>Soporte de etiquetas DogStatsD para emisor de estadísticas</li>
+<li>Nuevo API para recuperar todas las especificaciones de búsqueda</li>
+<li>Nuevas opciones de compactación</li>
+<li>Almacenamiento en caché más eficienteEstrategia de equilibrio de segmentos de costos
+La lista completa de cambios está aquí: https://github.com/apache/incubator-druid/pulls?q=is%3Apr+is%3Amerged+milestone%3A0.14.0
+La documentación para esta versión está en: http://druid.io/docs/0.14.0-incubating/</li>
+</ul>
+<h1>Destacados</h1>
+<h2>Nueva consola web</h2>
+<p><img src="https://user-images.githubusercontent.com/8729063/53989978-0e651880-40dc-11e9-96c9-9fa8b2b6eceb.png" alt="nueva-consola-druida" />
+Druid tiene una nueva consola web que proporciona funciones que anteriormente estaban divididas entre las consolas del coordinador y del señor supremo.
+La nueva consola permite al usuario administrar fuentes de datos, segmentos, tareas, procesos de datos (históricos y administradores intermedios) y la configuración dinámica del coordinador. El usuario también puede ejecutar consultas SQL y Druid nativas dentro de la consola.
+Para más detalles, consulte http://druid.io/docs/0.14.0-incubating/operations/management-uis.html
+Agregado por @vogievetsky en #6923.</p>
+<h2>Servicio de indexación de Kinesis</h2>
+<p>Druid ahora admite la ingesta de transmisiones de Kinesis, proporcionada por la nueva extensión principal <code>druid-kinesis-indexing-service</code>.
+Consulte http://druid.io/docs/0.14.0-incubating/development/extensions-core/kinesis-ingestion.html para obtener más detalles.
+Agregado por @ jsun98 en # 6431.</p>
+<h2>Modo de desmantelamiento para históricos</h2>
+<p>Los procesos históricos ahora se pueden poner en modo de &quot;desmantelamiento&quot;, donde el coordinador ya no considerará el proceso histórico como un objetivo para la replicación del segmento. El coordinador también trasladará segmentos del desmantelamiento histórico.
+Esto se controla mediante la configuración dinámica del Coordinador. Para más detalles, consulte http://druid.io/docs/0.14.0-incubating/configuration/index.html#dynamic-configuration.
+Agregado por @egor-ryashin en #6349.</p>
+<h2>Caché de segmento publicado en Broker</h2>
+<p>Druid Broker ahora tiene la capacidad de mantener un caché de segmentos publicados mediante el sondeo del Coordinador, lo que puede mejorar significativamente el tiempo de respuesta para consultas de metadatos en la tabla del sistema <code>sys.segments</code>.
+Consulte http://druid.io/docs/0.14.0-incubating/querying/sql.html#retrieving-metadata para obtener más detalles.
+Añadido por @surekhasaharan en #6901</p>
+<h2>Expresión y agregador de filtros Bloom</h2>
+<p>Se ha agregado a la extensión <code>druid-bloom-filter</code> un nuevo agregador para construir filtros Bloom en el momento de la consulta y soporte para realizar comprobaciones de filtros Bloom dentro de expresiones Druid.
+Por favor ver http://druid.io/docs/0.14.0-incubating/development/extensions-core/bloom-filter.html
+Agregado por @ clintropolis en # 6904 y # 6397</p>
+<h2>Extensión Parquet actualizada</h2>
+<p><code>druid-extensions-parquet</code> se ha movido al conjunto de extensiones principales desde las extensiones de contrib y ahora admite valores de aplanamiento e int96.
+Consulte http://druid.io/docs/0.14.0-incubating/development/extensions-core/parquet.html para obtener más detalles.
+Agregado por @clintropolis en #6360</p>
+<h2>Forzar la opción de empujar hacia abajo para consultas GroupBB anidadas</h2>
+<p>La ejecución de consultas externas para consultas GroupBy anidadas ahora se puede enviar a procesos históricos; Anteriormente, las consultas externas siempre se ejecutaban en el Broker.
+Consulte https://github.com/apache/incubator-druid/pull/5471 para obtener más detalles.
+Agregado por @samarthjain en #5471.</p>
+<h2>Mejor manejo de reglas de retención y transferencia de segmentos</h2>
+<p>La transferencia de segmentos ahora ignorará los segmentos que las reglas de retención de una fuente de datos eliminarían, evitando fallas de ingesta causadas por el problema #5868.
+Las reglas de carga de períodos ahora incluirán el futuro de forma predeterminada.
+Se ha agregado una nueva regla de &quot;caída del período antes&quot;. Consulte http://druid.io/docs/0.14.0-incubating/operations/rule-configuration.html#period-drop-before-rule para obtener más detalles.
+Agregado por @QiuMM en #6676, #6414 y #6415.</p>
+<h2>Eliminar automáticamente los trabajos de MapReduce cuando se eliminan las tareas de ingesta de Hadoop</h2>
+<p>Druid ahora finalizará automáticamente los trabajos de MapReduce creados por las tareas de ingesta por lotes de Hadoop cuando se finalice la tarea de ingesta.
+Agregado por @ ankit0811 en # 6828.</p>
+<h2>Soporte de etiquetas DogStatsD para statsd-emitter</h2>
+<p>La extensión <code>statsd-emitter</code> ahora admite etiquetas estilo DogStatsD. Por favor ver http://druid.io/docs/0.14.0-incubating/development/extensions-contrib/statsd.html
+Agregado por @deiwin en el n.° 6605, con soporte para etiquetas constantes agregadas por @glasser en el n.° 6791.</p>
+<h2>Nuevo API para recuperar todas las especificaciones de búsqueda</h2>
+<p>Se agregó un nuevo API para recuperar todas las especificaciones de búsqueda para todos los niveles. Consulte http://druid.io/docs/0.14.0-incubating/querying/lookups.html#get-all-lookups para obtener más detalles.
+Agregado por @jihoonson en #7025.</p>
+<h2>Nuevas opciones de compactación</h2>
+<p>La compactación automática ahora admite la opción <code>maxRowsPerSegment</code>. Consulte http://druid.io/docs/0.14.0-incubating/design/coordinator.html#compacting-segments para obtener más detalles.
+La tarea de compactación ahora admite una nueva opción <code>segmentGranularity</code>, que deja obsoleta la opción anterior <code>keepSegmentGranularity</code> para controlar la granularidad de los segmentos compactados. Consulte la tabla <code>segmentGranularity</code> en http://druid.io/docs/0.14.0-incubating/ingestion/compaction.html para obtener más información sobre estas propiedades.
+Agregado por @jihoonson en los números 6758 y 6780.</p>
+<h2>Almacenamiento en caché más eficienteEstrategia de equilibrio de segmentos de costos</h2>
+<p>La estrategia de equilibrio del segmento Coordinador <code>cachingCost</code> ahora solo considerará procesos históricos para las decisiones de equilibrio. Anteriormente, la estrategia también consideraría innecesariamente las tareas de los trabajadores activos, que no son objetivos para la replicación del segmento.
+Agregado por @QiuMM en #6879.</p>
+<h2>Nuevas métricas:</h2>
+<ul>
+<li>Nueva métrica de tasa de asignación <code>jvm/heapAlloc/bytes</code>, agregada por @egor-ryashin en el n.° 6710.</li>
+<li>Nueva métrica de recuento de consultas <code>query/count</code>, agregada por @QiuMM en el n.º 6473.</li>
+<li>Métricas de consulta SQL <code>sqlQuery/bytes</code> y <code>sqlQuery/time</code>, agregadas por @gaodayue en el n.° 6302.</li>
+<li>Métricas de retraso de ingesta Apache Kafka <code>ingest/kafka/maxLag</code> y <code>ingest/kafka/avgLag</code>, agregadas por @QiuMM en el n.º 6587</li>
+<li>Métricas de recuento de tareas <code>task/success/count</code>, <code>task/failed/count</code>, <code>task/running/count</code>, <code>task/pending/count</code>, <code>task/waiting/count</code>, agregadas por @QiuMM en #6657</li>
+</ul>
+<h2>Nuevas interfaces para desarrolladores de extensiones</h2>
+<h3>Evento de registro de solicitud</h3>
+<p>Ahora es posible controlar los campos en <code>RequestLogEvent</code>, emitidos por <code>EmittingRequestLogger</code>. Consulte el n.° 6477 para obtener más detalles. Agregado por @leventov.</p>
+<h3>Comprobaciones de certificados TLS personalizados</h3>
+<p>Se ha agregado un punto de extensión para verificaciones de certificados TLS personalizados. Consulte http://druid.io/docs/0.14.0-incubating/operations/tls-support.html#custom-tls-certificate-checks para obtener más detalles. Agregado por @ jon-wei en # 6432.</p>
+<h2>Kafka Indexing Service ya no es experimental</h2>
+<p>La extensión Kafka Indexing Service ha dejado de estar en estado experimental.</p>
+<h2>Mejoras de SQL</h2>
+<h3>Mejoras en dsql</h3>
+<p>La línea de comando <code>dsql</code> client ahora admite el historial de CLI, el autocompletado básico y la especificación de tiempos de espera de consulta en el contexto de la consulta.
+Agregado en el n.° 6929 por @gianm.</p>
+<h3>Agregar identificación de SQL, registros de solicitudes y métricas</h3>
+<p>Las consultas SQL ahora tienen un ID y las consultas nativas ejecutadas como parte de una consulta SQL tendrán el ID de consulta SQL asociado en los registros de solicitudes de la consulta nativa. Las consultas SQL ahora se registrarán en los registros de solicitudes.
+Ahora se emiten dos nuevas métricas, <code>sqlQuery/time</code> y <code>sqlQuery/bytes</code>, para consultas SQL.
+Consulte http://druid.io/docs/0.14.0-incubating/configuration/index.html#request-logging y http://druid.io/docs/0.14.0-incubating/querying/sql.html#sql-metrics para obtener más detalles.
+Añadido por @gaodayue en #6302</p>
+<h3>Más compatibilidad con el agregador SQL</h3>
+<p>Los siguientes agregadores ahora son compatibles con SQL:</p>
+<ul>
+<li>Bosquejo de DataSketches HLL</li>
+<li>Boceto Theta de DataSketches</li>
+<li>Bosquejo de cuantiles de DataSketches</li>
+<li>Histograma de contenedores fijo</li>
+<li>Agregador de filtros Bloom
+Agregado por @jon-wei en #6951 y @clintropolis en #6502</li>
+</ul>
+<h3>Otras mejoras de SQL</h3>
+<ul>
+<li>SQL: agregue soporte para consultas con proyecto después de semiunión. #6756</li>
+<li>SQL: Soporte para seleccionar dimensiones de múltiples valores. #6462</li>
+<li>SQL: admite AVG en tablas del sistema. #601</li>
+<li>SQL: Agregar función &quot;POSICIÓN&quot;. #6596</li>
+<li>SQL: establezca el nombre del catálogo INFORMACIÓN_SCHEMA en &quot;druida&quot;. #6595</li>
+<li>SQL: Se corrigió el orden de clasificación, sortProject en DruidSemiJoin. #6769
+Agregado por @gianm.</li>
+</ul>
+<h1>Actualización desde 0.13.0-incubating y anteriores</h1>
+<h2>Tiempo de inactividad de la ingestión de Kafka al actualizar</h2>
+<p>Debido al problema descrito en el número 6958, las tareas de indexación de Kafka existentes pueden finalizarse innecesariamente durante una actualización continua de Overlord. Overlord reiniciará las tareas finalizadas y funcionarán correctamente después del reinicio inicial.</p>
+<h2>Cambios en la extensión del parquet</h2>
+<p>La extensión <code>druid-parquet-extensions</code> se ha movido de <code>contrib</code> a <code>core</code>. Al implementar 0.14.0-incubating, asegúrese de que su directorio <code>extensions-contrib</code> no tenga versiones anteriores de la extensión Parquet.
+Además, ahora hay dos estilos de analizadores Parquet en la extensión:</p>
+<ul>
+<li><code>parquet-avro</code>: convierte Parquet a Avro y luego analiza la representación de Avro. Este era el analizador existente antes de 0.14.0-incubating.</li>
+<li><code>parquet</code>: Un nuevo analizador que analiza el formato Parquet directamente. Sólo este nuevo analizador admite valores int96.
+Antes de 0.14.0-incubating, al especificar un analizador de tipo <code>parquet</code> la tarea era utilizar el analizador de conversión Avro. En 0.14.0-incubating, para continuar usando el analizador de conversión Avro, deberá actualizar sus especificaciones de ingesta para usar <code>parquet-avro</code> en su lugar.
+El campo <code>inputFormat</code> en <code>inputSpec</code> para tareas que utilizan la entrada Parquet también debe coincidir con la elección del analizador:</li>
+<li><code>parquet</code>: <code>org.apache.druid.data.input.parquet.DruidParquetInputFormat</code></li>
+<li><code>parquet-avro</code>: <code>org.apache.druid.data.input.parquet.DruidParquetInputFormat</code>
+Consulte http://druid.io/docs/0.14.0-incubating/development/extensions-core/parquet.html para obtener más detalles.</li>
+</ul>
+<h3>Ejecutando Druid con Hadoop que no es 2.8.3</h3>
+<p>Si planea utilizar Druid 0.14.0-incubating con versiones de Hadoop distintas a 2.8.3, es posible que deba hacer lo siguiente:</p>
+<ul>
+<li>Establezca las coordenadas de dependencia de Hadoop para su versión de destino como se describe en http://druid.io/docs/0.14.0-incubating/operations/other-hadoop.html en <code>Tip #3: Use specific versions of Hadoop libraries</code>.</li>
+<li>Reconstruya Druid con su versión objetivo de Hadoop cambiando <code>hadoop.compile.version</code> en el Druid principal <code>pom.xml</code> y luego siguiendo las instrucciones de compilación estándar.</li>
+</ul>
+<h2>Otros cambios de comportamiento</h2>
+<h3>Limpieza de tareas antiguas</h3>
+<p>Las entradas de tareas antiguas en el almacenamiento de metadatos ahora se limpiarán automáticamente junto con sus registros de tareas. Consulte http:/druid.io/docs/0.14.0-incubating/development/extensions-core/configuration/index.html#task-logging y #6592 para obtener más detalles.</p>
+<h3>Tamaño del búfer de procesamiento automático</h3>
+<p>La propiedad <code>druid.processing.buffer.sizeBytes</code> tiene un nuevo comportamiento predeterminado si no está configurada. Druid ahora elegirá automáticamente un valor para el tamaño del búfer de procesamiento usando la siguiente fórmula:</p>
+<pre><code>processingBufferSize = totalDirectMemory / (numMergeBuffers + numProcessingThreads + 1)
+processingBufferSize = min(processingBufferSize, 1GB)
+</code></pre>
+<p>donde:</p>
+<ul>
+<li>totalDirectMemory: el límite de memoria directa para el JVM especificado por <code>-XX:MaxDirectMemorySize</code></li>
+<li>numMergeBuffers: el valor de <code>druid.processing.numMergeBuffers</code>.</li>
+<li>numProcessingThreads: el valor de <code>druid.processing.numThreads</code>.
+Como máximo, Druid utilizará 1 GB para el tamaño del búfer de procesamiento elegido automáticamente. El tamaño del búfer de procesamiento aún se puede especificar manualmente.
+Consulte el n.º 6588 para obtener más detalles.</li>
+</ul>
+<h3>Las reglas de retención ahora incluyen el futuro de forma predeterminada</h3>
+<p>Tenga en cuenta que las nuevas reglas de retención ahora incluirán el futuro de forma predeterminada. Consulte el n.° 6414 para obtener más detalles.</p>
+<h2>Cambios de propiedad</h2>
+<h3>Anuncio de segmento</h3>
+<p>La propiedad <code>druid.announcer.type</code> utilizada para elegir entre Zookeeper o la administración/descubrimiento de segmentos basados en HTTP se ha movido a <code>druid.serverview.type</code>. Si estaba usando <code>http</code> antes de 0.14.0-incubating, deberá actualizar sus configuraciones para usar el nuevo <code>druid.serverview.type</code>.
+Consulte lo siguiente para obtener más detalles:</p>
+<ul>
+<li>http://druid.io/docs/0.14.0-incubating/configuration/index.html#segment-management</li>
+<li>http://druid.io/docs/0.14.0-incubating/configuration/index.html#segment-discovery</li>
+</ul>
+<h3>corrige la propiedad que falta en JsonTypeInfo de SegmentWriteOutMediumFactory</h3>
+<p>Se ha corregido la propiedad <code>druid.peon.defaultSegmentWriteOutMediumFactory.@type</code>. La propiedad ahora es <code>druid.peon.defaultSegmentWriteOutMediumFactory.type</code> sin &quot;@&quot;.
+Consulte el n.° 6656 para obtener más detalles.</p>
+<h2>Depreciaciones</h2>
+<h3>Agregador de histograma aproximado</h3>
+<p>El agregador <a href="http:/druid.io/docs/0.14.0-incubating/development/extensions-core/approximate-histograms.html">AproximateHistogram</a> ha quedado obsoleto; es un algoritmo dependiente de la distribución sin límites de error formales y tiene importantes problemas de precisión.
+En su lugar, se debe utilizar el agregador <a href="http:/druid.io/docs/0.14.0-incubating/development/extensions-core/datasketches-quantiles.html">DataSketches quantiles</a> para casos de uso de cuantiles e histogramas.
+Consulte <a href="http://druid.io/docs/0.14.0-incubating/querying/aggregations.html#histograms-and-quantiles">Agregadores de histogramas y cuantiles</a></p>
+<h3>Agregador Cardinality/HyperUnique</h3>
+<p>Los agregadores Cardinality e HyperUnique han quedado obsoletos en favor del agregador <a href="http:/druid.io/docs/0.14.0-incubating/development/extensions-core/datasketches-hll.html">DataSketches HLL</a> y el agregador <a href="http://druid.io/docs/0.14.0-incubating/development/extensions-core/datasketches-theta.html">Theta Sketch</a>. Estos agregadores tienen mejores características de precisión y rendimiento.
+Consulte <a href="http://druid.io/docs/0.14.0-incubating/querying/aggregations.html#count-distinct">Contar agregadores distintos</a> para obtener más detalles.</p>
+<h3>Período de fragmento de consulta</h3>
+<p>La configuración del contexto de consulta <code>chunkPeriod</code> ahora está obsoleta, junto con la métrica <code>query/intervalChunk/time</code> asociada. Consulte el n.º 6591 para obtener más detalles.</p>
+<h3><code>keepSegmentGranularity</code> para compactación</h3>
+<p>La opción <code>keepSegmentGranularity</code> para tareas de compactación ha quedado obsoleta. Consulte el n.º 6758 y la tabla <code>segmentGranularity</code> en http://druid.io/docs/0.14.0-incubating/ingestion/compaction.html para obtener más información sobre estas propiedades.</p>
+<h2>Cambios en la interfaz para desarrolladores de extensiones</h2>
+<h3>clase <code>SegmentId</code></h3>
+<p>Druid ahora usa una clase <code>SegmentId</code> en lugar de cadenas simples para representar los ID de los segmentos. Consulte el n.º 6370 para obtener más detalles.
+Agregado por @leventov.</p>
+<h3><code>druid-api</code>, <code>druid-common</code>, <code>java-util</code> movidos a <code>druid-core</code></h3>
+<p>Los módulos <code>druid-api</code>, <code>druid-common</code>, <code>java-util</code> se han trasladado a <code>druid-core</code>. Actualice sus dependencias en consecuencia si su proyecto dependía de estas bibliotecas.
+Consulte el n.° 6443 para obtener más detalles.</p>
+<h1>Créditos</h1>
+<h2>¡Gracias a todos los que contribuyeron a este lanzamiento!
+@a2l007
+@AlexanderSaydakov
+@anantmf
+@ankit0811
+@asdf2014
+@awelsh93
+@benhopp
+@Carolina1000
+@clintropolis
+@dclim
+@deiwin
+@DiegoEliasCosta
+@drcrallen
+@dyf6372
+@Dylan1312
+@egor-ryashin
+@ellooooo
+@evans
+@FaxianZhao
+@gaodayue
+@gianm
+@glasser
+@Guadrado
+@odio13
+@hoesler
+@hpandeycodeit
+@janeklb
+@jihoonson
+@jon-wei
+@jorbay-au
+@jsun98
+@justinborromeo
+@kamaci
+@leventov
+@lxqfy
+@mirkojotic
+@navkumar
+@niketh
+@patelh
+@pzhdfy
+@QiuMM
+@rcgarcia74
+@richardstartin
+@robertervin
+@samarthjain
+@seoeun25
+@Shimi
+@surekhasaharan
+@taiii
+@thomask
+@VincentNewkirk
+@vogievetsky
+@yunwan
+@zhaojiandong</h2>
+<blockquote>
+<p><strong>Fuente</strong> <a href="https://github.com/apache/druid">apache/druida</a> · <code>druid-0.14.0-incubating</code> · 2019-04-09 · <a href="https://github.com/apache/druid/releases/tag/druid-0.14.0-incubating">versión ascendente</a>
+<em>Reflejado textualmente para indexación. Todos los derechos pertenecen al proyecto upstream.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Los Release note son publicados por el proyecto anterior y reflejados aquí para su indexación. Todos los derechos pertenecen a sus autores. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/druid/0.14.1-incubating"> <span class="k">← Siguiente</span> <span class="t">0.14.1-incubating</span> </a> <a href="/releases/druid/0.13.0-incubating"> <span class="k">Anterior →</span> <span class="t">0.13.0-incubating</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/apache/druid/releases/tag/0.14.0-incubating" target="_blank" rel="noopener"> <span>Original en GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/apache/druid" target="_blank" rel="noopener"> <span>apache/druid</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">En esta página</div> <nav> <a href="#" class>Nueva consola web</a><a href="#" class>Servicio de indexación de Kinesis</a><a href="#" class>Modo de desmantelamiento para históricos</a><a href="#" class>Caché de segmento publicado en Broker</a><a href="#" class>Expresión y agregador de filtros Bloom</a><a href="#" class>Extensión Parquet actualizada</a><a href="#" class>Forzar la opción de empujar hacia abajo para consultas GroupBB anidadas</a><a href="#" class>Mejor manejo de reglas de retención y transferencia de segmentos</a><a href="#" class>Eliminar automáticamente los trabajos de MapReduce cuando se eliminan las tareas de ingesta de Hadoop</a><a href="#" class>Soporte de etiquetas DogStatsD para statsd-emitter</a><a href="#" class>Nuevo API para recuperar todas las especificaciones de búsqueda</a><a href="#" class>Nuevas opciones de compactación</a><a href="#" class>Almacenamiento en caché más eficienteEstrategia de equilibrio de segmentos de costos</a><a href="#" class>Nuevas métricas:</a><a href="#" class>Nuevas interfaces para desarrolladores de extensiones</a><a href="#" class="lv3">Evento de registro de solicitud</a><a href="#" class="lv3">Comprobaciones de certificados TLS personalizados</a><a href="#" class>Kafka Indexing Service ya no es experimental</a><a href="#" class>Mejoras de SQL</a><a href="#" class="lv3">Mejoras en dsql</a><a href="#" class="lv3">Agregar identificación de SQL, registros de solicitudes y métricas</a><a href="#" class="lv3">Más compatibilidad con el agregador SQL</a><a href="#" class="lv3">Otras mejoras de SQL</a><a href="#" class>Tiempo de inactividad de la ingestión de Kafka al actualizar</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Historial de versiones</div> <ul class="rail-list"> <li> <a href="/releases/druid/39.0.0"> <span class="v">39.0.0</span> <span class="d">26-11-19</span> </a> </li><li> <a href="/releases/druid/38.0.0"> <span class="v">38.0.0</span> <span class="d">26-10-01</span> </a> </li><li> <a href="/releases/druid/37.0.0"> <span class="v">37.0.0</span> <span class="d">26-05-08</span> </a> </li><li> <a href="/releases/druid/36.0.0"> <span class="v">36.0.0</span> <span class="d">26-02-09</span> </a> </li><li> <a href="/releases/druid/35.0.1"> <span class="v">35.0.1</span> <span class="d">25-12-15</span> </a> </li><li> <a href="/releases/druid/35.0.0"> <span class="v">35.0.0</span> <span class="d">25-11-18</span> </a> </li><li> <a href="/releases/druid/34.0.0"> <span class="v">34.0.0</span> <span class="d">25-08-11</span> </a> </li><li> <a href="/releases/druid/33.0.0"> <span class="v">33.0.0</span> <span class="d">25-04-29</span> </a> </li> </ul> <a href="/es/releases/druid" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Ver todo 71 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/es/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Inteligencia de lanzamiento de código abierto, publicada diariamente.</p> </div> <div class="footer-col"> <h3>Seguimiento</h3> <ul> <li><a href="/es/releases">Versiones</a></li> <li><a href="/es/projects">Proyectos</a></li> <li><a href="/es/releases.xml">Feed RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Archivo</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Archivo chino</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notas técnicas</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Información</h3> <ul> <li><a href="/es/method">Método</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Los Release note pertenecen a sus proyectos upstream.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Buscar versiones"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="lanzamientos, proyectos, versiones..." autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

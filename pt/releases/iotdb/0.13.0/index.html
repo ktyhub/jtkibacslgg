@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="pt-BR"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>iotdb v0.13.0 — STAGS NextStack</title><meta name="description" content="[IOTDB-924] Support insert multi rows in SQL · [IOTDB-959] Add Create Storage Group Grammar · [IOTDB-1037] set rpc\\compression as a parameter in JDBC URL · [IOTDB-1059] Support sql statement insert without timestamp"><meta name="keywords" content="release notes de código aberto, rastreador de lançamento, agregador changelog, alterações significativas, rastreador de descontinuação, lançamentos Kafka, lançamentos Spring Boot, lançamentos Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/pt/releases/iotdb/0.13.0/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/pt/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/iotdb/0.13.0/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/iotdb/0.13.0/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/iotdb/0.13.0/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="iotdb v0.13.0 — STAGS NextStack"><meta property="og:description" content="[IOTDB-924] Support insert multi rows in SQL · [IOTDB-959] Add Create Storage Group Grammar · [IOTDB-1037] set rpc\\compression as a parameter in JDBC URL · [IOTDB-1059] Support sql statement insert without timestamp"><meta property="og:url" content="https://www.stags.cn/pt/releases/iotdb/0.13.0/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="pt_BR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"pt-BR","description":"STAGS indexa notas de versão de projetos de infraestrutura e IA – mudanças incompatíveis, descontinuações e migrações – em um feed único em inglês.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/pt/releases/iotdb/0.13.0/#article","headline":"iotdb v0.13.0 release notes","datePublished":"2022-03-18","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/apache/iotdb"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Ir para o conteúdo</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/pt/" class="brand" aria-label="STAGS NextStack — Inteligência de versões open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/pt/releases">Versões</a><a href="/pt/projects">Projetos</a><a href="/pt/method">Método</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Buscar versões"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Buscar</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Idioma"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">PT</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Idioma"> <p class="langmenu-head">Idioma</p> <a class="langmenu-item" href="/releases/iotdb/0.13.0/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/iotdb/iotdb_v0.13.0" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/iotdb/0.13.0/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/iotdb/0.13.0/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/iotdb/0.13.0/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/iotdb/0.13.0/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/iotdb/0.13.0/" hreflang="pt-BR" lang="pt-BR" aria-current="true" data-on="true"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/pt/">Início</a> <span class="sep">/</span> <a href="/pt/releases">Versões</a> <span class="sep">/</span> <a href="/pt/releases/iotdb">iotdb</a> </nav> <h1 class="detail-title"> <span class="p">iotdb</span> v0.13.0 </h1> <div class="detail-meta"> <span class="chip chip--minor">Minor</span> <span><span class="k">Publicado</span>18 de mar. de 2022</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/apache/iotdb" target="_blank" rel="noopener"> <span class="k">Fonte</span>apache/iotdb </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/iotdb/0.13.0/"> Original em inglês </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/pt/releases/iotdb/0.13.0/">Copiar link</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Esta página é traduzida automaticamente. O texto original em inglês é a referência.</p>  <div><p>#iotdb v0.13.0</p>
+<h2>Novos recursos</h2>
+<ul>
+<li>[IOTDB-924] Suporte para inserção de múltiplas linhas em SQL</li>
+<li>[IOTDB-959] Adicionar gramática de grupo de armazenamento</li>
+<li>[IOTDB-1037] define rpc_compression como parâmetro na URL JDBC</li>
+<li>[IOTDB-1059] Suporte para inserção de instrução SQL sem carimbo de data/hora</li>
+<li>[IOTDB-1143] Suporte a consulta contínua</li>
+<li>[IOTDB-1199] Suporte a séries temporais alinhadas e modelo de esquema</li>
+<li>[IOTDB-1319] Gatilho de suporte</li>
+<li>[IOTDB-1391] Adicione uma nova função de agregação extrema (valor absoluto máximo)</li>
+<li>[IOTDB-1399] Adicione uma interface de sessão para conectar vários nós</li>
+<li>[IOTDB-1400] Suporte a operações aritméticas em cláusulas SELECT</li>
+<li>[IOTDB-1403] Codificação de dicionário para TEXT</li>
+<li>[IOTDB-1490] Adicionar UDTFs integrados: sinh, conh, tanh</li>
+<li>[IOTDB-1514] Suporte nulo em insertTablet</li>
+<li>[IOTDB-1524] Suporte à cláusula SELECT ... INTO ...</li>
+<li>[IOTDB-1647] Expressões aninhadas em cláusulas SELECT</li>
+<li>[IOTDB-1673] Atualização do CLI para JLine3</li>
+<li>[IOTDB-1739] Funções geradoras de séries temporais constantes (const, pi e e)</li>
+<li>[IOTDB-1760] Suporta média, contagem, extremo, primeiro_valor, último_valor, max_time, max_value, min_time, min_value, agregações de soma em grupo por preenchimento</li>
+<li>[IOTDB-1761] Adicionar estrutura métrica para IoTDB</li>
+<li>[IOTDB-1775] Adicionada função CAST para converter tipo de dados</li>
+<li>[IOTDB-1823] Grupo de suporte por multinível</li>
+<li>[IOTDB-1844] Correspondência de prefixo e sufixo de série temporal de suporte de consulta: root.*sg*</li>
+<li>[IOTDB-1859] Suporte REST API</li>
+<li>[IOTDB-1860] Novo plugin Grafana</li>
+<li>[IOTDB-1886] Suporte a expressões constantes em cláusulas selecionadas</li>
+<li>[IOTDB-1973] Suporta consultas agregadas, constantes e expressões aritméticas aninhadas em cláusulas SELECT</li>
+<li>[IOTDB-1986] Suporte para seleção de UDF como cláusulas alisa</li>
+<li>[IOTDB-1989] Conector Spark-IoTDB suporta inserção de dados</li>
+<li>[IOTDB-2131] Suporta função de preenchimento de valor anterior, linear e constante Novo preenchimento</li>
+<li>[IOTDB-2593] Suporte usando IoTDB com JDK17</li>
+<li>[ISSUE-3811] Forneça uma coluna de tipo de dados para o último conjunto de dados de consulta</li>
+<li>adicione exemplo de coelhomq</li>
+</ul>
+<h2>Melhorias</h2>
+<ul>
+<li>[IOTDB-1280] Reescreva o arquivo de gramática Antlr</li>
+<li>[IOTDB-1372] Melhore o gerenciamento de TsFileResource</li>
+<li>[IOTDB-1428] Solicita que os threads de consulta sejam encerrados se a consulta atingir o tempo limite</li>
+<li>[IOTDB-1450] A exclusão deve excluir apenas partições de tempo relacionadas</li>
+<li>[IOTDB-1463] Implementar padrão de construtor para Session e SessionPool</li>
+<li>[IOTDB-1477] Otimize a lógica do código de generateAlignByDevicePlan()</li>
+<li>[IOTDB-1559] Refatore a estrutura de TI</li>
+<li>[IOTDB-1564] Tornar os parâmetros de heartbeat e tempo limite de eleição configuráveis</li>
+<li>[IOTDB-1581] Considere exclusões ao recuperar tsFileResource de tsfile incompleto</li>
+<li>[IOTDB-1607] Otimizar rastreamento</li>
+<li>[IOTDB-1613] Recuperar arquivo mods se a modificação de gravação falhar</li>
+<li>[IOTDB-1639] Refatoração da estrutura de classes do cluster para torná-la consistente com o módulo do servidor</li>
+<li>[IOTDB-1730] client-cpp, melhora o desempenho de session::insertTablet() etc.</li>
+<li>[IOTDB-1852] Acelere consultas usando estatísticas</li>
+<li>[IOTDB-1857] Remova a lógica de identificador inútil para CountPlan em executeNonQuery no módulo de cluster</li>
+<li>[IOTDB-1884] Distinguir entre valores zero e nulos na agregação de soma</li>
+<li>[IOTDB-1924] Remova a operação de limpeza do cache após o término da compactação</li>
+<li>[IOTDB-1950] Adicionar cache do filtro Bloom para consulta</li>
+<li>[IOTDB-2001] Remover StorageGroupNotReadyException redundante</li>
+<li>[IOTDB-2011] Atualize o último cache enquanto mostra a última consulta de série temporal</li>
+<li>[IOTDB-2022] SessionDataSet implementa AutoCloseable</li>
+<li>[IOTDB-2075] Acelere o processo de insertTablets usando pool de threads</li>
+<li>[IOTDB-2119] Ferramentas de exportação IoTDB CSV adicionam função de configuração de precisão de carimbo de data/hora</li>
+<li>[IOTDB-2162] Simplifique o processo de mesclagem de recuperação</li>
+<li>[IOTDB-2176] Limite o tamanho do bloco alvo ao realizar a compactação do espaço interno</li>
+<li>[IOTDB-2193] Reduza operações de bloqueio desnecessárias do RaftLogManager para melhorar o desempenho de gravação</li>
+<li>[IOTDB-2195] Controlar o thread de execução de consulta simultânea</li>
+<li>[IOTDB-2632] Defina compaction_write_throughput_mb_per_sec como 16 por padrão</li>
+<li>[ISSUE-3445] Nova estratégia de compactação e estratégia de programação de compactação</li>
+<li>[ISSUE-3856] refinar a lógica de tratamento de exceções em commitTo no RaftLogManager</li>
+<li>[Cluster] Não há necessidade de apertar a mão de si mesmo quando um nó é reiniciado</li>
+</ul>
+<h2>Alterações incompatíveis</h2>
+<ul>
+<li>[IOTDB-1026] Suporta curinga ** no caminho e substitui o uso de PrefixPath por PathPattern no IOTDB-SQL</li>
+<li>[IOTDB-1620] Suporta caracteres de crase (`) e aspas duplas (&quot;) para citar identificadores</li>
+<li>[IOTDB-1650] Renomeie o comando sql <code>move</code> para <code>unload</code></li>
+</ul>
+<h2>Mudanças diversas</h2>
+<ul>
+<li>[IOTDB-1342] modifica mensagem de erro sobre LIMIT e OFFSET usados em conjunto com a cláusula FILL</li>
+<li>[IOTDB-1372] campo de exclusão de dispositivos no FileTimeIndex</li>
+<li>[IOTDB-1531] Verifique o horário de criação do tsfile durante a recuperação</li>
+<li>[IOTDB-1541] Alterar sequência de wal e memtable na inserção</li>
+<li>[IOTDB-1923] Separe a lógica de descompactação de solicitação e processamento de execução de TSServiceImpl</li>
+<li>[IOTDB-1969] Remover recursos estatísticos da estrutura métrica antiga do servidor iotdb</li>
+<li>[IOTDB-2014] MicrometerPrometheusReporter#getReporterType retorna nulo</li>
+<li>[IOTDB-2043] refatorador: remova o parâmetro haveSorted da sessão</li>
+<li>[IOTDB-2154] adicione TsFileUtils.isTsFileComplete</li>
+<li>[IOTDB-2206] Renomeie StorageGroupProcessor para VirtualStorageGroupProcessor</li>
+<li>[IOTDB-2208] Reconstrua o processo de geração do cabeçalho do conjunto de resultados da consulta</li>
+<li>[ISSUE-4047] Tipo genérico em Estatísticas estende Serializable</li>
+<li>Adicione versão de compactação na chave de cache</li>
+<li>Adicione um construtor de IoTDBDescriptorHolder para proibir a instanciação</li>
+</ul>
+<h2>Correções de bugs</h2>
+<ul>
+<li>[IOTDB-1266] Correção SHOW TIMESERIES exibirá apenas 2.000 séries temporais</li>
+<li>[IOTDB-1478] Todo o IoTDB não pode ler/gravar se algum sg não estiver pronto</li>
+<li>[IOTDB-1562] Corrigido processamento de exceção incorreto em insertXXX() API</li>
+<li>[IOTDB-1583] O log do Raft não foi confirmado na versão do cluster</li>
+<li>[IOTDB-1592] BugFix: SLimit não é eficaz no alinhamento por dispositivo</li>
+<li>[IOTDB-1736] O código de erro de correção não é impresso no log do TSServiceImpl</li>
+<li>[IOTDB-1749] A dose lockInstance() da ferramenta de sincronização não entra em vigor</li>
+<li>[IOTDB-1758] ferramenta de sincronização, arquivo uuid vazio porque a ferramenta não pode ser recuperada automaticamente</li>
+<li>[IOTDB-1848] Falha ao inicializar o pool: não suporta setReadOnly no conector grafana</li>
+<li>[IOTDB-1853] Corrigido bug sobre mais de um TimeseriesMetadata em TsFile</li>
+<li>[IOTDB-2010] corrige resultado de série temporal de exibição incompleta</li>
+<li>[IOTDB-2021] Corrigir bug do cache do filtro Bloom que não entra em vigor</li>
+<li>[IOTDB-2060] Corrigido NPE ao usar preenchimento sem filtro</li>
+<li>[IOTDB-2074] Correção de NullPointerException ao recuperar compactação no MacOS</li>
+<li>[IOTDB-2077] Exceção inesperada ao executar consulta de dados brutos sem VF com cláusula de limite</li>
+<li>[IOTDB-2088] Correção da exceção IndexOutOfBound em AggregationPlan.groupAggResultByLevel</li>
+<li>[IOTDB-2116] Corrigir todas as conexões client com bug travado causado por bug de logback</li>
+<li>[IOTDB-2129] Resultado errado retornado ao consultar por expressões aninhadas com aliases</li>
+<li>[IOTDB-2143] corrige precisão errada no modo cluster</li>
+<li>[IOTDB-2153] [IOTDB-2157] corrige espaço de pesquisa de caminho incorreto</li>
+<li>[IOTDB-2159] Corrigido código de status incorreto ao inserir dados em um cluster somente leitura</li>
+<li>[IOTDB-2163] Corrigida quantidade inesperada de colunas em uma consulta de limite de cluster</li>
+<li>[IOTDB-2174] Corrigido erro de serialização e desserialização do filtro Regexp</li>
+<li>[IOTDB-2180] Correção para mostrar a série temporal mais recente no cluster</li>
+<li>[IOTDB-2183] Corrija os problemas de configuração no modo cluster</li>
+<li>[IOTDB-2185] Correção de exceção ao analisar o cabeçalho do CSV</li>
+<li>[IOTDB-2209] Corrigido problema de logback CVE-2021-42550</li>
+<li>[IOTDB-2251] [IOTDB-2252] Corrigir impasse de consulta</li>
+<li>[IOTDB-2267] UDF: Código de erro 500 causado pela lógica do usuário</li>
+<li>[IOTDB-2282] corrige bug de recuperação de tag após upsert de tag</li>
+<li>[IOTDB-2290] Corrigido resultado de consulta incorreto em C++ client</li>
+<li>[IOTDB-2520] Corrigido <code>list user privilege root</code> retorna vazio</li>
+<li>[IOTDB-2544] Corrigido erro de sincronização de informações de tags durante a sincronização de metadados</li>
+<li>[IOTDB-2550] Evite mostrar erro de série temporal após alterar tag no remetente de sincronização</li>
+<li>[IOTDB-2654] Correção de Alias não exibido ao usar grupo por nível</li>
+<li>Corrigir CPP client não pôde ser construído com sucesso no Windows</li>
+<li>Corrigir bloqueio morto no método setDataTTL</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Fonte</strong> <a href="https://github.com/apache/iotdb">apache/iotdb</a> · <code>v0.13.0</code> · 2022-03-18 · <a href="https://github.com/apache/iotdb/releases/tag/v0.13.0">lançamento upstream</a>
+<em>Espelhado literalmente para indexação. Todos os direitos pertencem ao projeto upstream.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release notes são publicados pelo projeto upstream e espelhados aqui para indexação. Todos os direitos pertencem aos seus autores. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/iotdb/0.12.6"> <span class="k">← Próximo</span> <span class="t">v0.12.6</span> </a> <a href="/releases/iotdb/0.12.5"> <span class="k">Anterior →</span> <span class="t">v0.12.5</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/apache/iotdb/releases/tag/v0.13.0" target="_blank" rel="noopener"> <span>Original no GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/apache/iotdb" target="_blank" rel="noopener"> <span>apache/iotdb</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">Nesta página</div> <nav> <a href="#" class>Novos recursos</a><a href="#" class>Melhorias</a><a href="#" class>Alterações incompatíveis</a><a href="#" class>Mudanças diversas</a><a href="#" class>Correções de bugs</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Histórico de versões</div> <ul class="rail-list"> <li> <a href="/releases/iotdb/2.0.11"> <span class="v">v2.0.11</span> <span class="d">26-09-11</span> </a> </li><li> <a href="/releases/iotdb/2.0.10"> <span class="v">v2.0.10</span> <span class="d">26-07-04</span> </a> </li><li> <a href="/releases/iotdb/2.0.8"> <span class="v">v2.0.8</span> <span class="d">26-04-13</span> </a> </li><li> <a href="/releases/iotdb/2.0.7"> <span class="v">v2.0.7</span> <span class="d">26-03-04</span> </a> </li><li> <a href="/releases/iotdb/1.3.7"> <span class="v">v1.3.7</span> <span class="d">26-03-04</span> </a> </li><li> <a href="/releases/iotdb/2.0.6"> <span class="v">v2.0.6</span> <span class="d">26-01-20</span> </a> </li><li> <a href="/releases/iotdb/1.3.6"> <span class="v">v1.3.6</span> <span class="d">26-01-07</span> </a> </li><li> <a href="/releases/iotdb/1.3.5"> <span class="v">v1.3.5</span> <span class="d">25-09-11</span> </a> </li> </ul> <a href="/pt/releases/iotdb" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Ver tudo 54 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/pt/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Inteligência de lançamento de código aberto, publicada diariamente.</p> </div> <div class="footer-col"> <h3>Acompanhar</h3> <ul> <li><a href="/pt/releases">Versões</a></li> <li><a href="/pt/projects">Projetos</a></li> <li><a href="/pt/releases.xml">Feed RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Arquivo</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Arquivo chinês</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notas técnicas</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Sobre</h3> <ul> <li><a href="/pt/method">Método</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release notes pertencem aos seus projetos upstream.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Buscar versões"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="lançamentos, projetos, versões…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

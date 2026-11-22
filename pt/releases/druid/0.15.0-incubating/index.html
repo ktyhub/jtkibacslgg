@@ -1,0 +1,211 @@
+<!DOCTYPE html><html lang="pt-BR"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>druid 0.15.0-incubating — STAGS NextStack</title><meta name="description" content="Apache Druid 0.15.0-incubating contains over 250 new features, performance/stability/documentation improvements, and bug fixes from 39 contributors. Major new features and improvements include"><meta name="keywords" content="release notes de código aberto, rastreador de lançamento, agregador changelog, alterações significativas, rastreador de descontinuação, lançamentos Kafka, lançamentos Spring Boot, lançamentos Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/pt/releases/druid/0.15.0-incubating/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/pt/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/druid/0.15.0-incubating/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/druid/0.15.0-incubating/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/druid/0.15.0-incubating/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="druid 0.15.0-incubating — STAGS NextStack"><meta property="og:description" content="Apache Druid 0.15.0-incubating contains over 250 new features, performance/stability/documentation improvements, and bug fixes from 39 contributors. Major new features and improvements include"><meta property="og:url" content="https://www.stags.cn/pt/releases/druid/0.15.0-incubating/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="pt_BR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"pt-BR","description":"STAGS indexa notas de versão de projetos de infraestrutura e IA – mudanças incompatíveis, descontinuações e migrações – em um feed único em inglês.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/pt/releases/druid/0.15.0-incubating/#article","headline":"druid 0.15.0-incubating release notes","datePublished":"2019-06-27","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/apache/druid"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Ir para o conteúdo</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/pt/" class="brand" aria-label="STAGS NextStack — Inteligência de versões open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/pt/releases">Versões</a><a href="/pt/projects">Projetos</a><a href="/pt/method">Método</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Buscar versões"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Buscar</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Idioma"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">PT</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Idioma"> <p class="langmenu-head">Idioma</p> <a class="langmenu-item" href="/releases/druid/0.15.0-incubating/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/druid/druid_druid-0.15.0-incubating" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/druid/0.15.0-incubating/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/druid/0.15.0-incubating/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/druid/0.15.0-incubating/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/druid/0.15.0-incubating/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/druid/0.15.0-incubating/" hreflang="pt-BR" lang="pt-BR" aria-current="true" data-on="true"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/pt/">Início</a> <span class="sep">/</span> <a href="/pt/releases">Versões</a> <span class="sep">/</span> <a href="/pt/releases/druid">druid</a> </nav> <h1 class="detail-title"> <span class="p">druid</span> 0.15.0-incubating </h1> <div class="detail-meta"> <span class="chip chip--minor">Minor</span> <span><span class="k">Publicado</span>27 de jun. de 2019</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/apache/druid" target="_blank" rel="noopener"> <span class="k">Fonte</span>apache/druid </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/druid/0.15.0-incubating/"> Original em inglês </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/pt/releases/druid/0.15.0-incubating/">Copiar link</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Esta página é traduzida automaticamente. O texto original em inglês é a referência.</p>  <div><h1>druida druida-0.15.0-incubating</h1>
+<p>Apache Druid 0.15.0-incubating contém mais de 250 novos recursos, melhorias de desempenho/estabilidade/documentação e correções de bugs de 39 colaboradores. Os principais novos recursos e melhorias incluem:</p>
+<ul>
+<li>Nova IU do carregador de dados</li>
+<li>Suporte ao tópico Kafka transacional</li>
+<li>Nova consulta de média móvel</li>
+<li>Ordenação de tempo para consulta de digitalização</li>
+<li>Novo agregador Moments Sketch</li>
+<li>Melhorias SQL</li>
+<li>Módulo de pesquisa leve para roteadores</li>
+<li>Extensão ORC principal</li>
+<li>Extensão principal do GCP</li>
+<li>Melhorias de documentos
+A lista completa de alterações está aqui: https://github.com/apache/incubator-druid/pulls?q=is%3Apr+is%3Aclosed+milestone%3A0.15.0
+A documentação para esta versão está em: http://druid.apache.org/docs/0.15.0-incubating/</li>
+</ul>
+<h1>Destaques</h1>
+<h2>Nova UI do Data Loader (parte de indexação em lote)</h2>
+&lt;img width=&quot;1440&quot; alt=&quot;0 15 0-data-loader&quot; src=&quot;https://user-images.githubusercontent.com/2322288/59154870-f41b3d80-8a30-11e9-97d4-18800d91402d.png&quot;&gt;
+Druid tem uma nova UI do Data Loader que é integrada ao [Druid Console](http://druid.apache.org/docs/latest/operations/management-uis.html#druid-console). A nova IU do Data Loader mostra alguns dados de amostra para verificar facilmente a especificação de ingestão e gera a especificação de ingestão final automaticamente. Espera-se que os usuários emitam facilmente tarefas de índice de lote em vez de escreverem uma especificação JSON sozinhos.
+Adicionado por @vogievetsky e @dclim em https://github.com/apache/incubator-druid/pull/7572 e https://github.com/apache/incubator-druid/pull/7531, respectivamente.
+## Apoie os tópicos transacionais do Kafka
+O serviço de indexação Kafka agora oferece suporte a Tópicos Transacionais Kafka.
+Observe que apenas Kafka 0.11.0 ou versões posteriores serão suportadas após esta alteração.
+Adicionado por @surekhasaharan em https://github.com/apache/incubator-druid/pull/6496.
+## Nova consulta de média móvel
+Um novo tipo de consulta foi introduzido para calcular [média móvel](https://en.wikipedia.org/wiki/Moving_average). 
+Consulte http://druid.apache.org/docs/0.15.0-incubating/development/extensions-contrib/moving-average-query.html para obter mais detalhes.
+Adicionado por @yurmix em https://github.com/apache/incubator-druid/pull/6430.
+## Ordem de tempo para consulta de verificação
+O tipo de consulta Scan agora oferece suporte à ordenação por tempo. Consulte http://druid.apache.org/docs/0.15.0-incubating/querying/scan-query.html#time-ordering para obter mais detalhes.
+Adicionado por @justinborromeo em https://github.com/apache/incubator-druid/pull/7133.
+## Agregador de esboço de novos momentos
+O [Moments Sketch](https://github.com/stanford-futuredata/momentsketch) é um novo tipo de esboço para cálculo aproximado de quantis. Consulte http://druid.apache.org/docs/0.15.0-incubating/development/extensions-contrib/momentsketch-quantiles.html para obter mais detalhes.
+Adicionado por @ edgan8 em https://github.com/apache/incubator-druid/pull/6581.
+## Melhorias SQL
+A comunidade Druida tem se esforçado para melhorar o suporte SQL e agora não é mais experimental.
+### Novas funções SQL
+- Funções LPAD e RPAD foram adicionadas por @xueyumusic em https://github.com/apache/incubator-druid/pull/7388.
+- As funções GRAUS e RADIANS foram adicionadas por @xueyumusic em https://github.com/apache/incubator-druid/pull/7336.
+- A função STRING_FORMAT foi adicionada por @gianm em https://github.com/apache/incubator-druid/pull/7327.
+- A função PARSE_LONG foi adicionada por @gianm em https://github.com/apache/incubator-druid/pull/7326.
+- A função ROUND foi adicionada por @gianm em https://github.com/apache/incubator-druid/pull/7224.
+- Funções trigonométricas foram adicionadas por @xueyumusic em https://github.com/apache/incubator-druid/pull/7182.
+### Preenchimento automático no console Druid
+&lt;img width=&quot;915&quot; alt=&quot;0 15 0-autocomplete&quot; src=&quot;https://user-images.githubusercontent.com/2322288/59154863-e9f93f00-8a30-11e9-8232-a8e5cafd43bb.png&quot;&gt;
+Druid Console agora oferece suporte ao preenchimento automático para SQL.
+Adicionado por @shuqi7 em https://github.com/apache/incubator-druid/pull/7244.
+### Suporte de verificação ordenada por tempo para SQL
+Druid SQL oferece suporte a consultas de verificação ordenadas por tempo.
+Adicionado por @justinborromeo em https://github.com/apache/incubator-druid/pull/7373.
+## Visualização de pesquisas adicionada ao console da web
+&lt;img width=&quot;1439&quot; alt=&quot;0 15 0-lookup-view&quot; src=&quot;https://user-images.githubusercontent.com/2322288/59154856-ce8e3400-8a30-11e9-812f-ea46e0effaae.png&quot;&gt;
+Agora você pode configurar suas pesquisas diretamente no console da web.
+Adicionado por @shuqi7 em https://github.com/apache/incubator-druid/pull/7259.
+## Diversas melhorias no console da web
+#### Modo &quot;NoSQL&quot;: https://github.com/apache/incubator-druid/pull/7493 [@shuqi7]
+O console da web agora possui um modo de backup que permite que ele funcione da melhor maneira possível se o DruidSQL estiver desativado ou indisponível.
+#### Adicionada caixa de diálogo de configuração de compactação: https://github.com/apache/incubator-druid/pull/7242 [@shuqi7]
+Agora você pode definir as configurações de compactação automática para uma fonte de dados na visualização Fonte de dados.
+#### Consulta automática com limite: https://github.com/apache/incubator-druid/pull/7449 [@vogievetsky]
+&lt;img largura=&quot;390&quot; alt=&quot;0 15 0-misc&quot; src=&quot;https://user-images.githubusercontent.com/2322288/59154873-05644a00-8a31-11e9-88cf-81441d321b37.png&quot;&gt;
+A visualização de consulta do console agora irá (por padrão) agrupar consultas DruidSQL com um `SELECT * FROM (...) LIMIT 1000`, permitindo que você insira consultas como `SELECT * FROM your_table` sem se preocupar com o impacto no cluster. Você ainda pode enviar consultas 'brutas' selecionando a opção no menu `...`.
+#### SQL explica consulta: https://github.com/apache/incubator-druid/pull/7402 [@shuqi7]
+Agora você pode click no menu `...` na visualização de consulta para obter uma explicação da consulta DruidSQL.
+#### Superfície `is_overshadowed` como uma coluna na tabela de segmentos https://github.com/apache/incubator-druid/pull/7555 , https://github.com/apache/incubator-druid/pull/7425 [@shuqi7][@surekhasaharan]
+A coluna `is_overshadowed` representa que este segmento é ofuscado por quaisquer segmentos publicados. Pode ser útil ver quais segmentos devem ser carregados pelos históricos. Consulte http://druid.apache.org/docs/0.15.0-incubating/querying/sql.html para obter mais detalhes.
+#### UI de status aprimorada para ações em tarefas, supervisores e fontes de dados: https://github.com/apache/incubator-druid/pull/7528 [shuqi7]
+Este PR condensa a lista de ações em um menu organizado e permite ver o status detalhado dos supervisores e tarefas. Novas ações para fontes de dados relacionadas ao carregamento e eliminação de dados por intervalo também foram adicionadas.
+## Módulo de pesquisa leve para roteadores
+O módulo Light Lookup foi introduzido para roteadores e agora eles precisam apenas de uma quantidade mínima de memória. Consulte http://druid.apache.org/docs/0.15.0-incubating/operations/basic-cluster-tuning.html#router para ajuste básico de memória.
+Adicionado por @clintropolis em https://github.com/apache/incubator-druid/pull/7222.
+## Extensão ORC principal
+A extensão ORC agora é promovida a uma extensão principal. Por favor, leia a seção abaixo 'Atualizando de 0.14.0-incubating e anteriores' se você estiver usando a extensão ORC em uma versão anterior do Druid.
+Adicionado por @clintropolis em https://github.com/apache/incubator-druid/pull/7138.
+## Extensão principal do GCP
+A extensão do GCP agora foi promovida a uma extensão principal. Leia a seção abaixo 'Atualizando de 0.14.0-incubating e anteriores' se você estiver usando a extensão GCP em uma versão anterior do Druid.
+Adicionado por @drcrallen em https://github.com/apache/incubator-druid/pull/6953.
+## Melhorias nos documentos
+### Exemplos de configurações e scripts de implantação em uma única máquina
+Várias configurações e scripts foram adicionados para facilitar a configuração de uma única máquina. Consulte http://druid.apache.org/docs/0.15.0-incubating/operations/single-server.html para obter detalhes.
+Adicionado por @jon-wei em https://github.com/apache/incubator-druid/pull/7590.
+### Ferramenta para migração de metadados de armazenamento profundo local/Derby
+Uma nova ferramenta foi adicionada para facilitar a migração de uma única máquina para um ambiente de cluster. Consulte http://druid.apache.org/docs/0.15.0-incubating/operations/deep-storage-migration.html para obter detalhes.
+Adicionado por @ jon-wei em https://github.com/apache/incubator-druid/pull/7598.
+### Documento para guia básico de ajuste
+Documentos para guia de ajuste básico foram adicionados. Consulte http://druid.apache.org/docs/0.15.0-incubating/operations/basic-cluster-tuning.html para obter detalhes.
+Adicionado por @ jon-wei em https://github.com/apache/incubator-druid/pull/7629.
+## Melhoria de segurança
+A tabela do sistema Druid agora requer apenas permissões obrigatórias em vez da permissão de leitura para todo o banco de dados `sys`. Consulte http://druid.apache.org/docs/0.15.0-incubating/development/extensions-core/druid-basic-security.html para obter detalhes.
+Adicionado por @jon-wei em https://github.com/apache/incubator-druid/pull/7579.
+## Obsoleto/removido
+### Eliminar suporte para mesclagem automática de segmentos
+A mesclagem automática de segmentos pelo coordenador não é mais suportada. Utilize [compactação automática](http://druid.apache.org/docs/0.15.0-incubating/design/coordinator.html#compacting-segments).
+Adicionado por @jihoonson em #6883.
+### Drop suporte para ferramenta `insert-segment-to-db`
+No Druid 0.14.x ou anterior, o Druid armazena metadados de segmento (arquivo `descriptor.json`) em armazenamento profundo, além do armazenamento de metadados. Este comportamento mudou no 0.15.0 e ele não armazena mais arquivos de metadados de segmento em armazenamento profundo. Como resultado, a ferramenta `insert-segment-to-db` também não é mais suportada, pois funciona com base em arquivos `descriptor.json` em armazenamento profundo. Consulte http://druid.apache.org/docs/0.15.0-incubating/operations/insert-segment-db.html para obter detalhes.
+Observe que a tarefa kill falhará se você estiver usando HDFS como armazenamento profundo e o arquivo `descriptor.json` estiver ausente no 0.14.x ou em versões anteriores.
+Adicionado por @jihoonson em https://github.com/apache/incubator-druid/pull/6911.
+### Removida a configuração &quot;useFallback&quot; para SQL
+Esta opção foi removida porque gera planos de consulta não escalonáveis ​​e não funciona com algumas funções SQL.
+Adicionado por @gianm em https://github.com/apache/incubator-druid/pull/7567.
+### Removido um API público em `CompressionUtils` para desenvolvedores de extensão
+`public static void gunzip(File pulledFile, File outDir)` foi removido em https://github.com/apache/incubator-druid/pull/6908 por @clintropolis.
+## Outras mudanças de comportamento
+### Coordenador aguarda inicialização antes de terminar a inicialização
+Uma nova configuração (`druid.coordinator.segment.awaitInitializationOnStart`) foi adicionada para fazer o Coordenador aguardar a inicialização da visualização do segmento. Esta opção está habilitada por padrão.
+Adicionado por @QiuMM em https://github.com/apache/incubator-druid/pull/6847.
+### Mudança de comportamento do Coordenador API
+O coordenador pesquisa periodicamente as informações de metadados do segmento do armazenamento de metadados e as armazena em cache na memória. No Druid 0.14.x ou anterior, a remoção de segmentos por meio do coordenador APIs (`/druid/coordinator/v1/datasources/{dataSourceName}` e `/druid/coordinator/v1/datasources/{dataSourceName}/segments/{segmentId}`) atualiza imediatamente o cache do segmento na memória, bem como o armazenamento de metadados. Mas esse comportamento mudou no 0.15.0 e o cache é atualizado por pesquisa em vez de ser atualizado imediatamente após a remoção. Os APIs abaixo podem retornar segmentos removidos por meio das chamadas API acima até que o cache seja atualizado na próxima pesquisa.
+-`/druid/coordinator/v1/metadata/datasources/{dataSourceName}`
+-`/druid/coordinator/v1/metadata/datasources/{dataSourceName}/segments`
+-`/druid/coordinator/v1/metadata/datasources/{dataSourceName}/segments/{segmentId}`
+-`/druid/coordinator/v1/metadata/datasources`
+-`/druid/coordinator/v1/loadstatus`
+As métricas abaixo também podem conter segmentos removidos por meio das chamadas API acima até que o cache seja atualizado na próxima enquete.
+-`segment/unavailable/count`
+-`segment/underReplicated/count`
+Este comportamento foi alterado no https://github.com/apache/incubator-druid/pull/7595 por @surekhasaharan.
+### Pesquisa de listagem API alteração
+O `/druid/coordinator/v1/lookups/config` API agora retorna uma lista de camadas atualmente ativas no cluster, além daquelas conhecidas na configuração dinâmica.
+Adicionado por @clintropolis em https://github.com/apache/incubator-druid/pull/7647.
+### Perda Zookeeper
+Com uma nova configuração (`druid.zk.service.terminateDruidProcessOnConnectFail`), os processos Druidas podem encerrar-se na desconexão do ZooKeeper.
+Adicionado por @michael-trelinski em https://github.com/apache/incubator-druid/pull/6740.
+# Atualizando de 0.14.0-incubating e anteriores
+## Alteração de versão mínima compatível do Kafka para o serviço de indexação Kafka
+Kafka 0.11.x ou versões posteriores são suportadas apenas após https://github.com/apache/incubator-druid/pull/6496.. Considere atualizar a versão do Kafka se estiver usando uma versão mais antiga.
+## Alterações na extensão ORC
+A extensão ORC foi promovida para extensão `core`. Ao implantar 0.15.0-incubating, certifique-se de que seu diretório `extensions` não tenha versões mais antigas da extensão `druid-orc-extensions`.
+Além disso, embora a nova extensão principal possa indexar quaisquer dados que a antiga extensão `contrib` pudesse, a especificação JSON para a tarefa de ingestão é *incompatível* e precisará ser modificada para funcionar com a extensão `core` mais recente. 
+Para migrar para 0.15.0-incubating:
+* Em `inputSpec` de `ioConfig`, `inputFormat` deve ser alterado de `&quot;org.apache.hadoop.hive.ql.io.orc.OrcNewInputFormat&quot;` para 
+`&quot;org.apache.orc.mapreduce.OrcInputFormat&quot;`
+* A extensão `contrib` suportava uma propriedade `typeString`, que fornecia o esquema do
+Arquivo ORC, do qual era essencialmente necessário ter os tipos corretos, mas notavelmente _não_ os nomes das colunas, o que facilitou a renomeação das colunas. Na extensão `core`, a renomeação de coluna pode ser obtida com [expressões `flattenSpec`](http://druid.apache.org/docs/0.15.0-incubating/ingestion/flatten-json.html).
+* A extensão `contrib` suportava uma propriedade `mapFieldNameFormat`, que fornecia uma maneira de especificar uma dimensão para nivelar colunas `OrcMap` com tipos primitivos. Esta funcionalidade também foi substituída por [expressões `flattenSpec`](http://druid.apache.org/docs/0.15.0-incubating/ingestion/flatten-json.html).
+Para mais detalhes e exemplos, consulte http://druid.apache.org/docs/0.15.0-incubating/development/extensions-core/orc.html.
+## Alterações na extensão do GCP
+A extensão GCP foi promovida para extensão `core`. Ao implantar 0.15.0-incubating, certifique-se de que seu diretório `extensions` não possua versões mais antigas da extensão `druid-google-extensions`.
+## Mesclagem automática de segmentos descartada
+A configuração do coordenador para mesclagem automática de segmentos (`druid.coordinator.merge.on`) não é mais suportada. Utilize [compactação automática](http://druid.apache.org/docs/0.15.0-incubating/design/coordinator.html#compacting-segments).
+## Arquivo de metadados `descriptor.json` removido do armazenamento profundo
+O arquivo de metadados do segmento (`descriptor.json`) não é mais armazenado em armazenamento profundo. Se você estiver usando HDFS como armazenamento profundo e precisar reverter para 0.14.x ou anterior, considere que a tarefa de eliminação pode falhar devido à falta de arquivos `descriptor.json`. 
+# Créditos
+Obrigado a todos que contribuíram para este lançamento!
+@a2l007
+@asdf2014
+@capistrant
+@clintrópolis
+@dampcake
+@dclim
+@donbowman
+@drcrallen
+@Dylan1312
+@edgan8
+@es1220
+@esevastyanov
+@FaxianZhao
+@fjy
+@gianm
+@glasser
+@hpandeycodeit
+@jihoonson
+@jon-wei
+@jorbay-au
+@justinborromeo
+@kamaci
+@KazuhitoT
+@leventov
+@lxqfy
+@michael-trelinski
+@peferron
+@puneetjaiswal
+@QiuMM
+@richardstartin
+@samarthjain
+@scrawfor
+@shuqi7
+@surekhasaharan
+@venkatramanp
+@vogievetsky
+@xueyumusic
+@xvrl
+@yurmix
+---
+&gt; **Fonte** [apache/druid](https://github.com/apache/druid) · `druid-0.15.0-incubating` · 27/06/2019 · [lançamento upstream](https://github.com/apache/druid/releases/tag/druid-0.15.0-incubating)
+*Espelhado literalmente para indexação. Todos os direitos pertencem ao projeto upstream.*</div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release notes são publicados pelo projeto upstream e espelhados aqui para indexação. Todos os direitos pertencem aos seus autores. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/druid/0.15.1-incubating"> <span class="k">← Próximo</span> <span class="t">0.15.1-incubating</span> </a> <a href="/releases/druid/0.14.2-incubating"> <span class="k">Anterior →</span> <span class="t">0.14.2-incubating</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/apache/druid/releases/tag/0.15.0-incubating" target="_blank" rel="noopener"> <span>Original no GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/apache/druid" target="_blank" rel="noopener"> <span>apache/druid</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">Nesta página</div> <nav> <a href="#" class>Nova UI do Data Loader (parte de indexação em lote)</a><a href="#" class>Apoie os tópicos transacionais do Kafka</a><a href="#" class>Nova consulta de média móvel</a><a href="#" class>Ordem de tempo para consulta de verificação</a><a href="#" class>Agregador de esboço de novos momentos</a><a href="#" class>Melhorias SQL</a><a href="#" class="lv3">Novas funções SQL</a><a href="#" class="lv3">Preenchimento automático no console Druid</a><a href="#" class="lv3">Suporte de verificação ordenada por tempo para SQL</a><a href="#" class>Visualização de pesquisas adicionada ao console da web</a><a href="#" class>Diversas melhorias no console da web</a><a href="#" class>Módulo de pesquisa leve para roteadores</a><a href="#" class>Extensão ORC principal</a><a href="#" class>Extensão principal do GCP</a><a href="#" class>Melhorias nos documentos</a><a href="#" class="lv3">Exemplos de configurações e scripts de implantação em uma única máquina</a><a href="#" class="lv3">Ferramenta para migração de metadados de armazenamento profundo local/Derby</a><a href="#" class="lv3">Documento para guia básico de ajuste</a><a href="#" class>Melhoria de segurança</a><a href="#" class>Obsoleto/removido</a><a href="#" class="lv3">Eliminar suporte para mesclagem automática de segmentos</a><a href="#" class="lv3">Drop suporte para ferramenta insert-segment-to-db</a><a href="#" class="lv3">Removida a configuração &quot;useFallback&quot; para SQL</a><a href="#" class="lv3">Removido um API público em CompressionUtils para desenvolvedores de extensão</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Histórico de versões</div> <ul class="rail-list"> <li> <a href="/releases/druid/39.0.0"> <span class="v">39.0.0</span> <span class="d">26-11-19</span> </a> </li><li> <a href="/releases/druid/38.0.0"> <span class="v">38.0.0</span> <span class="d">26-10-01</span> </a> </li><li> <a href="/releases/druid/37.0.0"> <span class="v">37.0.0</span> <span class="d">26-05-08</span> </a> </li><li> <a href="/releases/druid/36.0.0"> <span class="v">36.0.0</span> <span class="d">26-02-09</span> </a> </li><li> <a href="/releases/druid/35.0.1"> <span class="v">35.0.1</span> <span class="d">25-12-15</span> </a> </li><li> <a href="/releases/druid/35.0.0"> <span class="v">35.0.0</span> <span class="d">25-11-18</span> </a> </li><li> <a href="/releases/druid/34.0.0"> <span class="v">34.0.0</span> <span class="d">25-08-11</span> </a> </li><li> <a href="/releases/druid/33.0.0"> <span class="v">33.0.0</span> <span class="d">25-04-29</span> </a> </li> </ul> <a href="/pt/releases/druid" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Ver tudo 71 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/pt/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Inteligência de lançamento de código aberto, publicada diariamente.</p> </div> <div class="footer-col"> <h3>Acompanhar</h3> <ul> <li><a href="/pt/releases">Versões</a></li> <li><a href="/pt/projects">Projetos</a></li> <li><a href="/pt/releases.xml">Feed RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Arquivo</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Arquivo chinês</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notas técnicas</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Sobre</h3> <ul> <li><a href="/pt/method">Método</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release notes pertencem aos seus projetos upstream.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Buscar versões"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="lançamentos, projetos, versões…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

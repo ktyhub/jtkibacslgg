@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="pt-BR"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>druid 0.7.0 — STAGS NextStack</title><meta name="description" content="Druid 0.7.0 requires a new ingestion spec format. Druid 0.6.172 supports both the old and new formats of ingestion and has scripts to convert from the old to the new format. This script can be run with 'tools convertSpec' using…"><meta name="keywords" content="release notes de código aberto, rastreador de lançamento, agregador changelog, alterações significativas, rastreador de descontinuação, lançamentos Kafka, lançamentos Spring Boot, lançamentos Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/pt/releases/druid/0.7.0/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/pt/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/druid/0.7.0/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/druid/0.7.0/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/druid/0.7.0/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="druid 0.7.0 — STAGS NextStack"><meta property="og:description" content="Druid 0.7.0 requires a new ingestion spec format. Druid 0.6.172 supports both the old and new formats of ingestion and has scripts to convert from the old to the new format. This script can be run with 'tools convertSpec' using…"><meta property="og:url" content="https://www.stags.cn/pt/releases/druid/0.7.0/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="pt_BR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"pt-BR","description":"STAGS indexa notas de versão de projetos de infraestrutura e IA – mudanças incompatíveis, descontinuações e migrações – em um feed único em inglês.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/pt/releases/druid/0.7.0/#article","headline":"druid 0.7.0 release notes","datePublished":"2015-02-24","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/apache/druid"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Ir para o conteúdo</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/pt/" class="brand" aria-label="STAGS NextStack — Inteligência de versões open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/pt/releases">Versões</a><a href="/pt/projects">Projetos</a><a href="/pt/method">Método</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Buscar versões"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Buscar</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Idioma"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">PT</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Idioma"> <p class="langmenu-head">Idioma</p> <a class="langmenu-item" href="/releases/druid/0.7.0/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/druid/druid_druid-0.7.0" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/druid/0.7.0/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/druid/0.7.0/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/druid/0.7.0/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/druid/0.7.0/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/druid/0.7.0/" hreflang="pt-BR" lang="pt-BR" aria-current="true" data-on="true"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/pt/">Início</a> <span class="sep">/</span> <a href="/pt/releases">Versões</a> <span class="sep">/</span> <a href="/pt/releases/druid">druid</a> </nav> <h1 class="detail-title"> <span class="p">druid</span> 0.7.0 </h1> <div class="detail-meta"> <span class="chip chip--minor">Minor</span> <span><span class="k">Publicado</span>24 de fev. de 2015</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/apache/druid" target="_blank" rel="noopener"> <span class="k">Fonte</span>apache/druid </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/druid/0.7.0/"> Original em inglês </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/pt/releases/druid/0.7.0/">Copiar link</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Esta página é traduzida automaticamente. O texto original em inglês é a referência.</p>  <div><h1>druida druida-0.7.0</h1>
+<h2>Atualizando para Druida 0.7.0 – Coisas a serem observadas</h2>
+<ul>
+<li><strong>Nova especificação de ingestão</strong>
+Druid 0.7.0 requer um novo formato de especificação de ingestão. Druid 0.6.172 suporta formatos de ingestão antigos e novos e possui scripts para converter do formato antigo para o novo. Este script pode ser executado com 'tools convertSpec' usando o mesmo Main usado para executar nós Druid. Você pode atualizar seu cluster Druid para 0.6.172, atualizar suas especificações de ingestão para o novo formato e, em seguida, atualizar para Druid 0.7.0. Se você atualizar seu cluster diretamente para Druid 0.7.0, certifique-se de que seu pipeline de ingestão em tempo real entenda a nova especificação.</li>
+<li><strong>MySQL não é mais o armazenamento de metadados padrão</strong>
+Druid agora tem como padrão incorporar o Apache Derby, que foi escolhido principalmente para fins de testabilidade. No entanto, <strong>não recomendamos o uso do Derby em produção</strong>. Para qualquer coisa que não seja teste, use o armazenamento de metadados MySQL ou PostgreSQL.
+<a href="http://druid.io/docs/0.7.0/Configuration.html#metadata-storage">Parâmetros de configuração para armazenamento de metadados</a> foram renomeados de <code>druid.db</code> para <code>druid.metadata.storage</code> e um <code>druid.metadata.storage.type=&lt;mysql|postgresql&gt;</code> adicional é necessário para usar qualquer coisa diferente de Derby.
+A ferramenta <code>convertProps</code> pode ajudá-lo a converter todas as propriedades 0.6.x em propriedades 0.7.</li>
+<li><strong>Druida agora diferencia maiúsculas de minúsculas</strong>
+Os nomes das colunas druidas agora diferenciam maiúsculas de minúsculas. Anteriormente, tentamos não diferenciar maiúsculas de minúsculas para consultas e preservar maiúsculas de minúsculas para dados, mas decidimos fazer essa alteração porque havia vários bugs relacionados a vários problemas de caixa.
+Se você estiver atualizando da versão 0.6.x:
+<ol>
+<li>Certifique-se de que a caixa da coluna em suas consultas corresponda à caixa dos nomes das colunas em seus dados e atualize suas consultas de acordo.</li>
+<li>Uma coisa muito importante a ser observada é que 0.6 coloca internamente em minúsculas todos os nomes de colunas no momento da ingestão e no momento da consulta. No 0.7, este não é mais o caso, no entanto, ainda recomendamos fortemente que você use nomes de colunas em letras minúsculas no 0.7 para simplificar.</li>
+<li>Se você estiver ingerindo dados com nomes de colunas com maiúsculas e minúsculas como parte de seus dados ou esquema de ingestão:
+<ul>
+<li>para dados TSV ou CSV, basta colocar os nomes das colunas em letras minúsculas no esquema ao atualizar para 0.7.0.</li>
+<li>para dados JSON com campos de letras maiúsculas e minúsculas e se você não estava especificando os nomes das colunas, você pode usar o <a href="http://druid.io/docs/0.7.0/Ingestion.html#json-lowercase-parsespec"><code>jsonLowerCase</code> parseSpec</a> para colocar os dados em letras minúsculas para você no momento da ingestão e manter a compatibilidade com versões anteriores.
+Para todas as outras especificações de análise, você precisará colocar em minúsculas o
+nomes de métricas/agregadores se você estava usando maiúsculas e minúsculas antes.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>O anúncio do segmento em lote agora é o padrão</strong>
+Druid agora usa anúncio de segmento em lote por padrão para todos os nós. Se você já estiver usando <a href="http://druid.io/docs/0.7.0-rc3/Configuration.html#data-segment-announcer">anúncio de segmento em lote</a>, estará tudo pronto.
+Se você ainda não atualizou para usar o anúncio de segmentos em lote, leia <a href="https://groups.google.com/forum/#!searchin/druid-development/eric$200.5$20batch$20segment/druid-development/vKV8pTAd0Gg/VgC8ee6XWZ0J">este guia no fórum</a> sobre como atualizar seu cluster 0.6.x atual para usar o anúncio em lote primeiro.</li>
+<li><strong>Kafka 0.7.x removido em favor de Kafka 0.8.x</strong>
+Se estiver usando Kafka 0.7, você terá que construir a extensão <code>kafka-seven</code> manualmente. Está comentado na compilação, pois Kafka 0.7 não está disponível no Maven Central. A extensão Kafka 0.8 (<code>kafka-eight</code>) não é afetada.</li>
+<li><strong>Alterações no endpoint do coordenador</strong>
+Vários pontos de extremidade do coordenador foram alterados. Consulte a <a href="http://druid.io/docs/0.7.0-rc3/Coordinator.html#http-endpoints">documentação do coordenador</a> para saber o que são.
+Em particular:</li>
+</ul>
+<ol>
+<li><code>/info</code> do coordenador foi removido.</li>
+<li><code>/health</code> em nós históricos foi removido</li>
+</ol>
+<ul>
+<li><strong>É necessário um frasco separado para <code>com.metamx.metrics.SysMonitor</code></strong>
+Se você atualmente tem <code>com.metamx.metrics.SysMonitor</code> como parte de sua configuração <code>druid.monitoring.monitors</code> e gostaria de mantê-lo, você terá que adicionar o <a href="https://repository.jboss.org/nexus/content/repositories/thirdparty-uploads/org/hyperic/sigar/1.6.5.132/sigar-1.6.5.132.jar">jar da biblioteca SIGAR</a> ao seu classpath.
+Alternativamente, você pode simplesmente remover <code>com.metamx.metrics.SysMonitor</code> se não confiar nas métricas <code>sys/.*</code>.
+Tivemos que remover a dependência direta do SIGAR para mover os artefatos Druidas para o Maven Central, já que o SIGAR não está disponível lá no momento.</li>
+<li><strong>Procedimento de atualização</strong>
+Se você estiver executando uma versão do Druid anterior a 0.6.172, atualize primeiro para 0.6.172. Consulte <a href="https://github.com/druid-io/druid/releases/tag/druid-0.6.172">0.6.172 release notes</a> para obter instruções.
+Para garantir uma atualização contínua sem tempo de inatividade, os nós devem ser atualizados na seguinte ordem:
+<ol>
+<li>nós históricos</li>
+<li>serviço de indexação/nós em tempo real</li>
+<li>nós do roteador (se houver),</li>
+<li>Nós do corretor</li>
+<li>nós coordenadores</li>
+</ol>
+</li>
+</ul>
+<h2>Novos recursos</h2>
+<ul>
+<li><strong>Suporte a colunas métricas longas</strong>
+Até agora, o Druid armazenava todas as métricas como valores de ponto flutuante de precisão única, o que poderia introduzir erros de arredondamento e resultados inesperados com consultas usando agregadores <code>longSum</code>, especialmente para consultas groupBy.</li>
+<li><strong>Armazenamento de metadados conectável</strong>
+MySQL, PostgreSQL e Derby (para teste) agora são suportados imediatamente.  Derby suporta apenas master único ou não deve ser usado para produção de alta disponibilidade, use failover MySQL ou PostgreSQL para isso.</li>
+<li><strong>Ingestão de dados simplificada API</strong>
+refaça completamente a ingestão de dados do Druid API.</li>
+<li><strong>Alternar compactação para colunas métricas de LZF para LZ4</strong>
+Os testes iniciais de desempenho mostram que ele pode ser entre 15% e 25% mais rápido e resulta em segmentos cerca de 3 a 5% menores em conjuntos de dados típicos.</li>
+<li><strong>Índices de bitmap invertidos configuráveis</strong>
+Druid agora suporta Roaring Bitmaps além dos Concise Bitmaps padrão. Os testes iniciais de desempenho mostram que o Roaring pode ser até 20% mais rápido para certos tipos de consultas, às custas de segmentos serem 20% maiores, em média.</li>
+<li><strong>Testes de integração</strong>
+Adicionamos um conjunto de testes de integração que usam Docker para ativar um cluster Druid para executar uma série de testes de indexação e consulta.</li>
+<li><strong>Novo console do Coordenador Druida</strong>
+Introduzimos um novo console Druid que deve fornecer uma melhor visão geral do status do seu cluster e ser um pouco mais escalonável se você tiver centenas de milhares de segmentos. Planejamos expandir este console para fornecer mais informações sobre o estado atual de um cluster Druida.</li>
+<li><strong>Contexto do resultado da consulta</strong>
+Os contextos de resultados podem reportar erros durante consultas nos cabeçalhos de consulta. No momento, estamos usando esse recurso para novas tentativas internas, mas esperamos expandi-lo para relatar mais informações ao clients.</li>
+</ul>
+<h2>Melhorias</h2>
+<ul>
+<li><strong>Velocidades de consulta mais rápidas</strong>
+Muitas melhorias de velocidade graças ao formato de compactação mais rápido, pequenas otimizações na estrutura de colunas e otimizações de consultas com múltiplas agregações, bem como inúmeras melhorias de desempenho de consulta groupBy.  No geral, algumas consultas podem ser até duas vezes mais rápidas usando o novo formato de índice.</li>
+<li><strong>Artefatos druidas no Maven Central</strong>
+Os artefatos druidas agora estão <a href="http://search.maven.org/#search%7Cga%7C1%7Cio.druid">disponíveis no Maven Central</a> para facilitar suas próprias compilações e implantações.</li>
+<li><strong>Arquivo de configuração comum</strong>
+Druid agora tem um common.runtime.properties onde você pode declarar todas as propriedades globais, bem como todas as suas dependências externas. Isso evita configurações repetidas em vários nós e esperançosamente tornará a configuração de um cluster Druida um pouco menos dolorosa.</li>
+<li><strong>Nomes de host, portas e nomes de serviço padrão</strong>
+Nomes de host, portas e nomes de serviço padrão para todos os nós significam que muito menos configuração será necessária antecipadamente se você estiver satisfeito com os padrões. Isso também significa que você pode executar todos os tipos de nós em uma única máquina sem se preocupar com conflitos de porta.</li>
+<li><strong>Os nomes das colunas Druid agora diferenciam maiúsculas de minúsculas</strong>
+Morte aos bugs do revestimento. Esteja ciente dos perigos de atualizar para 0.7.0 se você tiver colunas de maiúsculas e minúsculas mistas e estiver usando 0.6.x. Veja acima para mais detalhes.</li>
+<li><strong>Repetições de consulta</strong>
+O Druid agora tentará novamente consultas automaticamente para determinadas classes de falhas.</li>
+<li><strong>Cache em segundo plano</strong>
+Para determinados tipos de consultas, especialmente aquelas que envolvem contagens distintas (hiperloglog), isso pode melhorar o desempenho em mais de 20%.  O cache em segundo plano está desabilitado por padrão.</li>
+<li><strong>Redução do uso de memória do coordenador</strong>
+Uso reduzido de memória do coordenador (em até 50%). Isso resolve um problema em que um coordenador às vezes perdia a liderança devido a GCs frequentes.</li>
+<li><strong>As métricas agora podem ser emitidas para endpoints SSL</strong></li>
+<li><strong>Suporte adicional para credenciais da AWS</strong>, obrigado @gnethercutt</li>
+<li><strong>Métricas adicionais de persistência e limitação para ingestão em tempo real</strong>
+Isso deve ajudar a diagnosticar quando a ingestão em tempo real está sendo limitada e quanto tempo a persistência está demorando. Essas métricas fornecem uma boa indicação de quando é hora de aumentar a ingestão em tempo real.</li>
+<li><strong>Endpoint de inicialização do corretor</strong>
+Os corretores agora fornecem um endpoint de status em /druid/broker/v1/loadstatus para indicar se estão prontos para serem consultados, facilitando atualizações/reinicializações contínuas.</li>
+</ul>
+<h2>Correções de bugs</h2>
+<ul>
+<li>Suporte a vários fragmentos da mesma fonte de dados no mesmo nó em tempo real. Obrigado @zhaown</li>
+<li>Os logs de tarefas do HDFS agora devem funcionar conforme esperado. Obrigado @flowbehappy.</li>
+<li>Possível condição de deadlock corrigida no Broker.</li>
+<li>Várias correções para compactação GZIP no retorno de resultados.</li>
+<li><code>druid.host</code> agora também deve suportar endereços IPv6.</li>
+</ul>
+<h2>Documentação</h2>
+<ul>
+<li>Novos tutoriais.</li>
+<li>Nova documentação de ingestão.</li>
+<li>Nova documentação de configuração.</li>
+<li>Melhorias na documentação de regras. Obrigado @mrijke</li>
+</ul>
+<h2>Problemas conhecidos</h2>
+<ul>
+<li>Atualmente, não é possível mesclar segmentos com diferentes tipos de índices de bitmap, portanto, se você tiver os dois tipos de índices em seu cluster, deverá definir <code>druid.coordinator.merge.on</code> como falso. ‘false’ é o valor padrão da configuração.</li>
+<li>Problema https://github.com/druid-io/druid/issues/1045 com consultas GoupBy com agregações complexas e pós-agregações usando o mesmo nome</li>
+<li>https://github.com/druid-io/druid-api/pull/38 Se você estiver usando longSum em sua especificação de ingestão, ter dados de ponto flutuante pode gerar exceções.</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Fonte</strong> <a href="https://github.com/apache/druid">apache/druid</a> · <code>druid-0.7.0</code> · 2015-02-24 · <a href="https://github.com/apache/druid/releases/tag/druid-0.7.0">versão upstream</a>
+<em>Espelhado literalmente para indexação. Todos os direitos pertencem ao projeto upstream.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release notes são publicados pelo projeto upstream e espelhados aqui para indexação. Todos os direitos pertencem aos seus autores. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/druid/0.7.1.1"> <span class="k">← Próximo</span> <span class="t">0.7.1.1</span> </a> <a href="/releases/druid/0.6.172"> <span class="k">Anterior →</span> <span class="t">0.6.172</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/apache/druid/releases/tag/0.7.0" target="_blank" rel="noopener"> <span>Original no GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/apache/druid" target="_blank" rel="noopener"> <span>apache/druid</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">Nesta página</div> <nav> <a href="#" class>Atualizando para Druida 0.7.0 – Coisas a serem observadas</a><a href="#" class>Novos recursos</a><a href="#" class>Melhorias</a><a href="#" class>Correções de bugs</a><a href="#" class>Documentação</a><a href="#" class>Problemas conhecidos</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Histórico de versões</div> <ul class="rail-list"> <li> <a href="/releases/druid/39.0.0"> <span class="v">39.0.0</span> <span class="d">26-11-19</span> </a> </li><li> <a href="/releases/druid/38.0.0"> <span class="v">38.0.0</span> <span class="d">26-10-01</span> </a> </li><li> <a href="/releases/druid/37.0.0"> <span class="v">37.0.0</span> <span class="d">26-05-08</span> </a> </li><li> <a href="/releases/druid/36.0.0"> <span class="v">36.0.0</span> <span class="d">26-02-09</span> </a> </li><li> <a href="/releases/druid/35.0.1"> <span class="v">35.0.1</span> <span class="d">25-12-15</span> </a> </li><li> <a href="/releases/druid/35.0.0"> <span class="v">35.0.0</span> <span class="d">25-11-18</span> </a> </li><li> <a href="/releases/druid/34.0.0"> <span class="v">34.0.0</span> <span class="d">25-08-11</span> </a> </li><li> <a href="/releases/druid/33.0.0"> <span class="v">33.0.0</span> <span class="d">25-04-29</span> </a> </li> </ul> <a href="/pt/releases/druid" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Ver tudo 71 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/pt/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Inteligência de lançamento de código aberto, publicada diariamente.</p> </div> <div class="footer-col"> <h3>Acompanhar</h3> <ul> <li><a href="/pt/releases">Versões</a></li> <li><a href="/pt/projects">Projetos</a></li> <li><a href="/pt/releases.xml">Feed RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Arquivo</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Arquivo chinês</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notas técnicas</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Sobre</h3> <ul> <li><a href="/pt/method">Método</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release notes pertencem aos seus projetos upstream.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Buscar versões"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="lançamentos, projetos, versões…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

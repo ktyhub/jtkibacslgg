@@ -1,0 +1,224 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>rocketmq rocketmq-all-4.9.4 — STAGS NextStack</title><meta name="description" content="[ISSUE #3887 ] fix validate fail after update acl · [ISSUE #3898]fix the spell in MQClientAPIImpl · [ISSUE #3890] add 'brokerAddress' param for ConsumerConnectionSubCommand"><meta name="keywords" content="オープンソース release note、リリース トラッカー、changelog アグリゲーター、重大な変更、非推奨トラッカー、Kafka リリース、Spring Boot リリース、Kubernetes リリース"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/ja/releases/rocketmq/rocketmq-all-4.9.4/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/ja/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/rocketmq/rocketmq-all-4.9.4/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/rocketmq/rocketmq-all-4.9.4/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/rocketmq/rocketmq-all-4.9.4/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="rocketmq rocketmq-all-4.9.4 — STAGS NextStack"><meta property="og:description" content="[ISSUE #3887 ] fix validate fail after update acl · [ISSUE #3898]fix the spell in MQClientAPIImpl · [ISSUE #3890] add 'brokerAddress' param for ConsumerConnectionSubCommand"><meta property="og:url" content="https://www.stags.cn/ja/releases/rocketmq/rocketmq-all-4.9.4/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="ja_JP"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"ja","description":"STAGS はインフラストラクチャおよび AI プロジェクトのリリースノートを索引化し、破壊的変更・非推奨・移行情報を英語優先の単一フィードで提供します。","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/ja/releases/rocketmq/rocketmq-all-4.9.4/#article","headline":"rocketmq rocketmq-all-4.9.4 release notes","datePublished":"2022-06-27","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/apache/rocketmq"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">本文へスキップ</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/ja/" class="brand" aria-label="STAGS NextStack — オープンソースのリリース情報"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/ja/releases">リリース</a><a href="/ja/projects">プロジェクト</a><a href="/ja/method">仕組み</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="リリースを検索"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">検索</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="言語"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">日</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="言語"> <p class="langmenu-head">言語</p> <a class="langmenu-item" href="/releases/rocketmq/rocketmq-all-4.9.4/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/rocketmq/rocketmq_rocketmq-all-4.9.4" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/rocketmq/rocketmq-all-4.9.4/" hreflang="ja" lang="ja" aria-current="true" data-on="true"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/rocketmq/rocketmq-all-4.9.4/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/rocketmq/rocketmq-all-4.9.4/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/rocketmq/rocketmq-all-4.9.4/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/rocketmq/rocketmq-all-4.9.4/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/ja/">ホーム</a> <span class="sep">/</span> <a href="/ja/releases">リリース</a> <span class="sep">/</span> <a href="/ja/releases/rocketmq">rocketmq</a> </nav> <h1 class="detail-title"> <span class="p">rocketmq</span> rocketmq-all-4.9.4 </h1> <div class="detail-meta"> <span class="chip chip--release">リリース</span> <span><span class="k">公開日</span>2022年6月27日</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/apache/rocketmq" target="_blank" rel="noopener"> <span class="k">出典</span>apache/rocketmq </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/rocketmq/rocketmq-all-4.9.4/"> 英語原文 </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/ja/releases/rocketmq/rocketmq-all-4.9.4/">リンクをコピー</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">このページは機械翻訳です。内容は必ず英文原文をご確認ください。</p>  <div><h1>rocketmq rocketmq-all-4.9.4</h1>
+<h2>何が変わったのか</h2>
+<ul>
+<li>[問題 #3887] https://github.com/apache/rocketmq/pull/3888 の @yuz10 による ACL 更新後の検証失敗を修正</li>
+<li>[問題 #3898] https://github.com/apache/rocketmq/pull/3899 の @zhangjidi2016 による MQClientAPIImpl の呪文を修正</li>
+<li>[問題 #3890] https://github.com/apache/rocketmq/pull/3891 の @MatrixHB による ConsumerConnectionSubCommand の 'brokerAddress' パラメータを追加</li>
+<li>[問題 #3877] https://github.com/apache/rocketmq/pull/3880 の @HScarb によって MQClientAPIImpl#createSubscriptionGroup によってスローされる不要な例外を削除します</li>
+<li>[問題 #2993] マップされたファイルを解放することで、Windows 上の testTruncateCQ を修正します。 @HScarb 著、https://github.com/apache/rocketmq/pull/3865</li>
+<li>[問題 #3859] @cserwen による https://github.com/apache/rocketmq/pull/3862 へのメッセージ書き込みのレイテンシの計算を強化</li>
+<li>[問題 #3911] ThreadLocalIndexTest が https://github.com/apache/rocketmq/pull/3912 の @HScarb によって実際に値をアサートしない問題を修正しました。</li>
+<li>[問題 #3875] 最後の ACL アカウントを削除できない問題を修正しました。 @yuz10 著、https://github.com/apache/rocketmq/pull/3876</li>
+<li>[問題 #3918] https://github.com/apache/rocketmq/pull/3919 の @cserwen による rocketmq ダッシュボード リンクを追加する Readme</li>
+<li>[問題 #3915] https://github.com/apache/rocketmq/pull/3916 の @odbozhou による rocketmq 接続リンクを追加する Readme</li>
+<li>[問題 #3900] https://github.com/apache/rocketmq/pull/3901 の @cserwen によるマルチディレクトリ ストレージを使用すると間違ったディレクトリが作成される問題を修正</li>
+<li>[#3903] トピック検証を追加し、https://github.com/apache/rocketmq/pull/3904 の @sunxi92 によるシステム トピックへのメッセージの送信を禁止します</li>
+<li>https://github.com/apache/rocketmq/pull/3926 の @Hen1ng によるいくつかのドキュメント エラーを修正</li>
+<li>[問題 #3896] https://github.com/apache/rocketmq/pull/3897 の @panzhi33 によるログ形式エラーを修正</li>
+<li>https://github.com/apache/rocketmq/pull/3932 の @lizhanhui による問題テンプレートを改善</li>
+<li>https://github.com/apache/rocketmq/pull/3931 に @lizhanhui による Rust の言語コードを追加</li>
+<li>[問題 #3922] https://github.com/apache/rocketmq/pull/3927 の @caigy による ACL 変更のバグを修正</li>
+<li>[問題 #3561] https://github.com/apache/rocketmq/pull/3936 の @ymingxu による修正</li>
+<li>https://github.com/apache/rocketmq/pull/3939 の @HMYDK による best_practice.md の更新</li>
+<li>[問題 #3950] https://github.com/apache/rocketmq/pull/3951 で @li-xiao-shuang によって匿名の新しい Callable() がラムダに置き換えられました</li>
+<li>[問題 #3957] https://github.com/apache/rocketmq/pull/3958 の @tianliuliu による #3957 LmqConsumerOffsetManager デシリアライズ エラーを修正</li>
+<li>ドキュメント: https://github.com/apache/rocketmq/pull/3971 の @XiaoyiPeng による readme.md に Apache RocketMQ MQTT へのリンクを追加します。</li>
+<li>https://github.com/apache/rocketmq/pull/3959 の @MundaneImmortal による不安定なテストを修正</li>
+<li>[問題# 3966] https://github.com/apache/rocketmq/pull/3967 の @RongtongJin による ScheduleService で配信するときに間違ったオフセットを使用する問題を修正しました。</li>
+<li>[問題 #3882] ネームサーバーの変更により、https://github.com/apache/rocketmq/pull/3881 の @WJL3333 によって <code>RouteInfoManager</code> の <code>topicQueueTable</code> が変更されました</li>
+<li>[問題 #3955] https://github.com/apache/rocketmq/pull/3956 の @ferrirW による無駄なチェックを削除</li>
+<li>[ISSUE#3983] クラス DefaultMQProducerImpl の重複した警告ログは不要です。 @XiaoyiPeng 著、https://github.com/apache/rocketmq/pull/3984</li>
+<li>[問題 #3985] 「FaultItem」のリストを並べ替える前にシャッフル操作を削除しました。 @XiaoyiPeng 著、https://github.com/apache/rocketmq/pull/3986</li>
+<li>[#3942] ACL とメッセージ トレースの両方が有効で、デフォルトのトピック RMQ_SYS_TRACE_TOPIC がメッセージ トレースに使用されている場合、RMQ_SYS_TRACE_TOPIC トピックの PUB 権限を ACL 設定に追加する必要はありません。 @sunxi92 著、https://github.com/apache/rocketmq/pull/3943</li>
+<li>[問題 #4000] https://github.com/apache/rocketmq/pull/4001 の @zhangjidi2016 によるコマンド ツールの警告ログ入力を修正</li>
+<li>https://github.com/apache/rocketmq/pull/4015 に @humkum によるバッチプロデューサー.sh のシャットダウン スクリプトを追加</li>
+<li>[問題 #4002] https://github.com/apache/rocketmq/pull/4003 で @zhangjidi2016 によって出力された一部の mqadmin コマンド実行結果を最適化します。</li>
+<li>[問題 #3924] StoreStatsService#initPutMessageDistributeTime() メソッドをプライベートに変更した方がよい場合があります。 @XiaoyiPeng 著、https://github.com/apache/rocketmq/pull/3925</li>
+<li>https://github.com/apache/rocketmq/pull/4023 の @Hen1ng によるドキュメント エラーを修正</li>
+<li>[問題 #4028] https://github.com/apache/rocketmq/pull/4029 で @panzhi33 によって出力された間違ったログ</li>
+<li>[問題 #4004] https://github.com/apache/rocketmq/pull/4032 の @HScarb によって ScheduleService が開始されたときに、deliverPendingTable を初期化する</li>
+<li>[問題 #4040] https://github.com/apache/rocketmq/pull/4041 の @hjl11 によって削除された不要な toString メソッド</li>
+<li>[マイナー] RemotingCommandException は、https://github.com/apache/rocketmq/pull/4030 の @li-xiao-shuang によるメソッドではスローされません</li>
+<li>[問題 #4048] https://github.com/apache/rocketmq/pull/4049 の @HScarb により、storePathCommitLog を storePathRootDir に基づいて作成します</li>
+<li>[問題 #4053] https://github.com/apache/rocketmq/pull/4027 の @li-xiao-shuang による NamesrvController コードの最適化</li>
+<li>[問題 #4054] https://github.com/apache/rocketmq/pull/4055 の @Git-Yang によるドキュメント形式を修正</li>
+<li>[問題 #4050] https://github.com/apache/rocketmq/pull/4051 の @Git-Yang によるデッド レター メッセージからオリジン メッセージ ID が欠落していた問題を修正</li>
+<li>https://github.com/apache/rocketmq/pull/4047の@meateggmilkによるclusterRTとcheckMsgSendRTを修正</li>
+<li>[問題 #3699] https://github.com/apache/rocketmq/pull/3700 の @Git-Yang による単体テストを修正</li>
+<li>[問題 #4035] https://github.com/apache/rocketmq/pull/4036 の @yuz10 によって一部のコマンドの名前が変更されました</li>
+<li>[問題 #4048] https://github.com/apache/rocketmq/pull/4057 の @HScarb により、storePathCommitLog を storePathRootDir に基づいて作成します</li>
+<li>[ドキュメント] user_guide.md を更新: リンクを修正。 @dugenkui03 著、https://github.com/apache/rocketmq/pull/4085</li>
+<li>[問題 #4110] https://github.com/apache/rocketmq/pull/4111 の @RongtongJin により、帳簿のバージョンを 0.2.4 に更新します</li>
+<li>[問題 #4125] 匿名の新しい Runnable() は、https://github.com/apache/rocketmq/pull/4031 の @li-xiao-shuang によってラムダに置き換えられる可能性があります</li>
+<li>https://github.com/apache/rocketmq/pull/4012 の @zfs9521 による RocketMQ_Example.md ファイルの getStartIndex メソッドのタイプミスを修正</li>
+<li>[問題 #3940] AllocateMessageQueueStrategy の最適化 (@zhangjidi2016、https://github.com/apache/rocketmq/pull/3941)</li>
+<li>[問題 #4129] https://github.com/apache/rocketmq/pull/4126 の @drgnchan による CommitLog.java のタイプミスを修正</li>
+<li>https://github.com/apache/rocketmq/pull/4119 の @dependabot による /test の 4.12 から 4.13.1 への junit のバンプ</li>
+<li>https://github.com/apache/rocketmq/pull/4136 の @Hen1ng によるいくつかのエラーを修正</li>
+<li>https://github.com/apache/rocketmq/pull/4010 の @luky116 による Mac 12+ の遅いバグを修正</li>
+<li>[問題 #4155] https://github.com/apache/rocketmq/pull/4156 の @caigy による ACL テストでデータの競合を引き起こすシステム プロパティ設定を修正しました</li>
+<li>[問題 #4150] https://github.com/apache/rocketmq/pull/4141 の @gogodjzhu による docs/en のスペルの問題を修正</li>
+<li>[問題 #4033] https://github.com/apache/rocketmq/pull/4045 の @Git-Yang によってサービスが利用できない場合、非同期配信メッセージが永久に再送信される問題を修正しました</li>
+<li>https://github.com/apache/rocketmq/pull/4082の@BurningCNによるMessageDecoder#decodeMessageIdメソッドのロジックを最適化</li>
+<li>[問題 #4103] https://github.com/apache/rocketmq/pull/4104 の @dugenkui03 による <code>Message</code> の string-list-join を簡素化</li>
+<li>https://github.com/apache/rocketmq/pull/4024 の @6U-U9 により、Charset.forName(&quot;UTF-8&quot;) を StandardCharsets.UTF_8 に置き換えます。</li>
+<li>マイナー: https://github.com/apache/rocketmq/pull/4013 の @Kvicii によるクリーンアップ コード</li>
+<li>https://github.com/apache/rocketmq/pull/4135 の @BurningCN によりインデックス ファイル内のファイル ロック関連のコード スニペットを削除</li>
+<li>[問題 #4123] https://github.com/apache/rocketmq/pull/4124 の @li-xiao-shuang により、RouteInfoManager の明示的な型引数が &lt;&gt; に置き換えられる可能性があります</li>
+<li>[問題 #4175] https://github.com/apache/rocketmq/pull/4176 の @HScarb によるスレーブでのトピックの更新を防止する</li>
+<li>[問題 #4160] https://github.com/apache/rocketmq/pull/4163 の @xyjForCoding により、既に最終クラスにあるメソッドの最終修飾子を削除します</li>
+<li>[問題 #4165] https://github.com/apache/rocketmq/pull/4166 の @yuz10 により sendMsgStatus に新しい行を追加</li>
+<li>https://github.com/apache/rocketmq/pull/4168 の @HScarb による Dledger モードの DefaultMessageStore#getEarliestMessageTime() のバグを修正</li>
+<li>[問題 #4185] 明示的な型引数は、https://github.com/apache/rocketmq/pull/4186 の @li-xiao-shuang によって &lt;&gt; に置き換えられる可能性があります</li>
+<li>[問題 #4127] [BrokerOuterAPI] 匿名の新しい Runnable() は、https://github.com/apache/rocketmq/pull/4128 の @li-xiao-shuang によってラムダに置き換えることができます</li>
+<li>[問題 #4187] https://github.com/apache/rocketmq/pull/4188 の @HScarb によるプロデューサー ベンチマークでの非同期パブリッシュのサポート</li>
+<li>[問題 #4183] reportSlaveMaxOffset メソッドが失敗した場合、https://github.com/apache/rocketmq/pull/4184 の @BurningCN によって現在のループを早期に終了します</li>
+<li>[問題 #4181] <code>TraceContext</code> での int オーバーフローの防止 (https://github.com/apache/rocketmq/pull/4182 の @dugenkui03 による)</li>
+<li>[問題 #3914] DLedger でのマルチ ディレクトリ ストレージのサポート (https://github.com/apache/rocketmq/pull/4122 の @cserwen による)</li>
+<li>[問題 #4147] javadoc: IDE によって要求される警告メッセージに記載されている問題を修正します。 @XiaoyiPeng 著、https://github.com/apache/rocketmq/pull/4148</li>
+<li>[問題 #4107] rocketmq-tools は、https://github.com/apache/rocketmq/pull/4108 の @yuz10 による rocketmq-store に依存すべきではありません</li>
+<li>https://github.com/apache/rocketmq/pull/4205 の @samz406 による cn 設計ドキュメントを更新</li>
+<li>[最適化] https://github.com/apache/rocketmq/pull/4208 の @Oliverwqcwrw によってタイマーを ScheduleExecutorService に置き換えます</li>
+<li>[問題 3585] [パート B] https://github.com/apache/rocketmq/pull/3588 の @areyouok によるエンコード/デコードのパフォーマンスの向上</li>
+<li>[問題 #4099] https://github.com/apache/rocketmq/pull/4180 の @dugenkui03 による <code>AsyncTraceDispatcher</code> での TraceMessage 送信のパフォーマンスを最適化しました。</li>
+<li>[ドキュメント] https://github.com/apache/rocketmq/pull/4221 の @ferrirW による CONTRIBUTING にスカッシュ ガイドと Apache コントリビューター ガイドのリンクを追加</li>
+<li>[問題 #4130] https://github.com/apache/rocketmq/pull/4132 の @dugenkui03 によるメソッド シグネチャからメソッドによって決してスローされない例外を削除</li>
+<li>https://github.com/apache/rocketmq/pull/4222 の @123monkey によるフォーマット コード KVConfigManager</li>
+<li>[問題 #4211] https://github.com/apache/rocketmq/pull/4212 の @cserwen により、dLedger で discMaxusedSpaceRatio が有効にならない問題を修正しました。</li>
+<li>[問題 #4215] OFFSET_OVERFLOW_BADLY は最初から消費につながり、https://github.com/apache/rocketmq/pull/4219 の @iamqq23ue による大量の繰り返し消費につながります</li>
+<li>[問題 #4237] https://github.com/apache/rocketmq/pull/4238 の @yuancheng314 による不要な最終修飾子を削除してください</li>
+<li>[問題 #4239] 関数 computeIfAbsent を使用して、https://github.com/apache/rocketmq/pull/4231 の @MinXie1209 で if を置き換えます</li>
+<li>[最適化] https://github.com/apache/rocketmq/pull/4240 の @Oliverwqcwrw により冗長なキューを削除</li>
+<li>[問題 #4216] https://github.com/apache/rocketmq/pull/4217 で @francisoliverlee によるベンチマークを使用すると HmacSHA1 が利用できない問題を修正</li>
+<li>[問題 #4203] https://github.com/apache/rocketmq/pull/4213 の @ferrirW による送受信パフォーマンスを向上させるための zstd/lz4 圧縮のサポート</li>
+<li>[問題-#4251] @dongeforever によるバッチ フラグを https://github.com/apache/rocketmq/pull/4252 に追加</li>
+<li>[問題 #3857] https://github.com/apache/rocketmq/pull/3879 の @xichaodong による getPublishTopicList メソッドとサブスクリプション メソッドの冗長コードをリファクトします</li>
+<li>[問題 #4254] 関数 computeIfAbsent を使用して、https://github.com/apache/rocketmq/pull/4255 の @MinXie1209 で if を置き換えます</li>
+<li>[問題 #4227] Windows での ACL テストを修正 (https://github.com/apache/rocketmq/pull/4278 の @HScarb による)</li>
+<li>[問題 #4284] Readme にプロトコルを追加し、https://github.com/apache/rocketmq/pull/4285 の @123liuziming による言語 clients の説明を削除</li>
+<li>[問題 #4286] https://github.com/apache/rocketmq/pull/4288 の @logicalee による readme に rocketmq-site のリンクを追加</li>
+<li>[問題 #4291] https://github.com/apache/rocketmq/pull/4294 の @hyl-xidian による README に説明テキストを追加</li>
+<li>[問題 #4283] Readme に説明を追加。  @TuringLiu 著、https://github.com/apache/rocketmq/pull/4293</li>
+<li>修正: https://github.com/apache/rocketmq/pull/4298 の @Jacob-Mr-Yang による Readme の機能を削除</li>
+<li>[問題 #4304] https://github.com/apache/rocketmq/pull/4305 の @caigy によるライセンス チェックの失敗を修正</li>
+<li>[問題 #4310] https://github.com/apache/rocketmq/pull/4311 の @hzh0425 によるサービスプロバイダーのコードの最適化</li>
+<li>[問題 #3962] https://github.com/apache/rocketmq/pull/4312 の @tsunghanjacktsai による MappedFile#isAbleToCommit() の変数名を修正</li>
+<li>[問題 # 4308] https://github.com/apache/rocketmq/pull/4309 の @hzh0425 により、brokerController でいくつかの変数を最終変数にします</li>
+<li>https://github.com/apache/rocketmq/pull/4307 の @gobbq によるブローカーのログ パスのタイプミスを修正</li>
+<li>[問題 #4315] https://github.com/apache/rocketmq/pull/4316 の @hzh0425 による ha モジュールのコードの最適化</li>
+<li>[問題 #4320] 匿名の新しい PrivilegedAction は、https://github.com/apache/rocketmq/pull/4321 の @hzh0425 によってラムダに置き換えられる可能性があります</li>
+<li>[問題 #4332] https://github.com/apache/rocketmq/pull/4331 の @coderbruis による重複コードを削除</li>
+<li>[問題 #4317] https://github.com/apache/rocketmq/pull/4314 の @coderbruis による for ステートメントがループしない問題を修正</li>
+<li>[問題 #4318] https://github.com/apache/rocketmq/pull/4319 の @hzh0425 により、いくつかの変数が IndexHeader の最終変数になるようにしました</li>
+<li>[問題 #4287] https://github.com/apache/rocketmq/pull/4295 の @xyjForCoding による詳細説明を Readme に追加</li>
+<li>[問題 #4292] https://github.com/apache/rocketmq/pull/4296 の @terrance-swn による README ファイルのコミュニティ リストに説明を追加</li>
+<li>[問題 #4289] https://github.com/apache/rocketmq/pull/4303 の @wzgliang による README に詳細な説明を追加</li>
+<li>https://github.com/apache/rocketmq/pull/4302 に @gobbq によるクイック スタートのための概略ガイドを追加</li>
+<li>[問題 #4327] https://github.com/apache/rocketmq/pull/4214 の @Oliverwqcwrw による初期コレクション サイズ</li>
+<li>[問題 #4326] https://github.com/apache/rocketmq/pull/4258 の @Oliverwqcwrw によって最適化されたコード</li>
+<li>[問題 #4325] https://github.com/apache/rocketmq/pull/4279 の @Oliverwqcwrw により、読みやすさを向上させるために冗長な例外を削除しました。</li>
+<li>[問題 #4335] https://github.com/apache/rocketmq/pull/4336 の非推奨の api を @Oliverwqcwrw で置き換えます</li>
+<li>[問題 #4323] https://github.com/apache/rocketmq/pull/4347 の @li-xiao-shuang による最適化されたオープンメッセージングのサンプル コード</li>
+<li>[問題 #3804] 特定の MessageQueue によるコミット消費オフセット。 by @ni-ze in https://github.com/apache/rocketmq/pull/3838</li>
+<li>[問題 #4362] https://github.com/apache/rocketmq/pull/4363 の @GLBB による org.apache.rocketmq.client.impl.Producer.DefaultMQProducerImpl#checkConfig メソッドの null の冗長グループ名チェックを削除</li>
+<li>https://github.com/apache/rocketmq/pull/4371 の @aaron-ai による Maven 依存関係管理のコードのフォーマット</li>
+<li>[問題 #4372] https://github.com/apache/rocketmq/pull/4373 の @aaron-ai により Java9+ でコンパイルされるようにする</li>
+<li>[問題 #4067] 修正: TLS 構成ドキュメントを追加。 @chris-joys 著、https://github.com/apache/rocketmq/pull/4387</li>
+<li>[問題 #4391] https://github.com/apache/rocketmq/pull/4392 の @dugenkui03 による printObjectProperties の最適化</li>
+<li>[問題 #4323] https://github.com/apache/rocketmq/pull/4352 の @li-xiao-shuang によるデフォルトの NamesrvAddr を追加するスケジュールの例</li>
+<li>[問題 #4226] https://github.com/apache/rocketmq/pull/4338 の @ni-ze によるセンドバック時にメッセージの長さが最大長を超えます</li>
+<li>ドキュメント内の何かが、https://github.com/apache/rocketmq/pull/4403 の @Dios314 によって混乱を引き起こす可能性があります</li>
+<li>[iSSUE-4396] https://github.com/apache/rocketmq/pull/4395 の @francisoliverlee による 1 つのブローカーでのすべてのプロデューサーの取得のサポート</li>
+<li>[問題 #4410] メソッド org.apache.rocketmq.common.message.MessageDecoder#messageProperties2String を最適化し、https://github.com/apache/rocketmq/pull/4411 の @GLBB による無駄なチェックを削除します</li>
+<li>[問題 #4323] https://github.com/apache/rocketmq/pull/4346 の @li-xiao-shuang による最適化された名前空間サンプル コード</li>
+<li>[問題 #2435] https://github.com/apache/rocketmq/pull/4313 の @li-xiao-shuang により、DefaultMQProducer#request() がメッセージを送信してタイムアウトを同期的に待機する問題を解決</li>
+<li>[問題 #4323] クイックスタートは、https://github.com/apache/rocketmq/pull/4322 の @li-xiao-shuang によるデフォルトの NamesrvAddr を追加します</li>
+<li>[問題 #4323] https://github.com/apache/rocketmq/pull/4328 の @li-xiao-shuang によるデフォルトの NamesrvAddr を追加するバッチ例</li>
+<li>[問題 #4323] ブロードキャストの例では、https://github.com/apache/rocketmq/pull/4344 で @li-xiao-shuang によるデフォルトの NamesrvAddr を追加します</li>
+<li>[問題 #4323] トレースメッセージの例では、https://github.com/apache/rocketmq/pull/4353 の @li-xiao-shuang によるデフォルトの NamesrvAddr を追加します</li>
+<li>[問題 #4323] トランザクション例では、https://github.com/apache/rocketmq/pull/4354 で @li-xiao-shuang によるデフォルトの NamesrvAddr を追加します</li>
+<li>[問題 #23] https://github.com/apache/rocketmq/pull/3869 の @TianMing2018 によって java_home が見つからない場合、エラー アルゴリズム HmacSHA1 が利用できない問題を解決します</li>
+<li>[問題 #4416] https://github.com/apache/rocketmq/pull/4417 の @RongtongJin により、dledger バージョンを 0.2.6 に更新します</li>
+<li>[問題 #4377] https://github.com/apache/rocketmq/pull/4378 の @coderbruis によるメソッド呼び出し前の不要な null チェック</li>
+<li>[問題 #4365] acl PlainPermissionManager キー ファイル パスが https://github.com/apache/rocketmq/pull/4366 の @fulln によって同じに設定される</li>
+<li>[問題 #4263] トピックを削除するときに、クラスターに基づいてトピック ルート情報を削除します。 @sunxi92 著、https://github.com/apache/rocketmq/pull/4268</li>
+<li>[問題 #4419] https://github.com/apache/rocketmq/pull/4420 の @drpmma による maven-checkstyle-plugin を 3.1.2 にアップグレードする</li>
+<li>[#4151] updateGlobalWhiteAddr コマンドにオプション p を追加します。 @sunxi92 著、https://github.com/apache/rocketmq/pull/4152</li>
+<li>https://github.com/apache/rocketmq/pull/4432 の @lizhanhui によるトピック ルート クエリを処理するときに、ネーム サーバーが有効な JSON 応答を生成するようにします</li>
+<li>[問題 #4349] https://github.com/apache/rocketmq/pull/4447 の @Wushiyii によりインデックスが Integer.MAX_VALUE に達した場合の負のインデックスを修正</li>
+<li>[問題 #4455] https://github.com/apache/rocketmq/pull/4456 の @cserwen によって namesrv アドレスを更新するスケジュール タスクを追加</li>
+<li>[問題 #4426] https://github.com/apache/rocketmq/pull/4457 で @caigy によってメッセージを送り返すときの ACL の問題を修正</li>
+<li>[問題 #4037] https://github.com/apache/rocketmq/pull/4038 に @HScarb による DeleteExpiredCommitLogSubCommand を追加</li>
+<li>[問題 #4058] DLedgerCommitLog が LMQ をサポート (https://github.com/apache/rocketmq/pull/4059 の @chaiyx による)</li>
+<li>https://github.com/apache/rocketmq/pull/4473 の @lizhanhui によって条件付きで正当な JSON 応答を生成します</li>
+<li>[問題 #3906] https://github.com/apache/rocketmq/pull/4430 の @drpmma による RequestType によるストリーム関連リクエストのマーク付け</li>
+</ul>
+<h2>新しい貢献者</h2>
+<ul>
+<li>@Hen1ng が https://github.com/apache/rocketmq/pull/3926 で最初の投稿を行いました</li>
+<li>@caigy が https://github.com/apache/rocketmq/pull/3927 で最初の投稿を行いました</li>
+<li>@ymingxu が https://github.com/apache/rocketmq/pull/3936 で最初の投稿を行いました</li>
+<li>@HMYDK は https://github.com/apache/rocketmq/pull/3939 で最初の投稿を行いました</li>
+<li>@MundaneImmortal が https://github.com/apache/rocketmq/pull/3959 で最初の投稿を行いました</li>
+<li>@hjl11 が https://github.com/apache/rocketmq/pull/4041 に初めて投稿しました</li>
+<li>@dugenkui03 が https://github.com/apache/rocketmq/pull/4085 に初めて投稿しました</li>
+<li>@zfs9521 が https://github.com/apache/rocketmq/pull/4012 に初めて投稿しました</li>
+<li>@dependabot が https://github.com/apache/rocketmq/pull/4119 で最初の投稿を行いました</li>
+<li>@luky116 が https://github.com/apache/rocketmq/pull/4010 に初めて投稿しました</li>
+<li>@gogodjzhu が https://github.com/apache/rocketmq/pull/4141 で最初の投稿を行いました</li>
+<li>@6U-U9 が https://github.com/apache/rocketmq/pull/4024 に初めて投稿しました</li>
+<li>@xyjForCoding が https://github.com/apache/rocketmq/pull/4163 で最初の貢献を行いました</li>
+<li>@samz406 が https://github.com/apache/rocketmq/pull/4205 に初めて投稿しました</li>
+<li>@Oliverwqcwrw が https://github.com/apache/rocketmq/pull/4208 で最初の投稿を行いました</li>
+<li>@123monkey が https://github.com/apache/rocketmq/pull/4222 に初めて投稿しました</li>
+<li>@iamqq23ue が https://github.com/apache/rocketmq/pull/4219 で最初の投稿を行いました</li>
+<li>@yuancheng314 が https://github.com/apache/rocketmq/pull/4238 に初めて投稿しました</li>
+<li>@MinXie1209 が https://github.com/apache/rocketmq/pull/4231 で最初の投稿を行いました</li>
+<li>@francisoliverlee が https://github.com/apache/rocketmq/pull/4217 に初めて投稿しました</li>
+<li>@xichaodong が https://github.com/apache/rocketmq/pull/3879 に初めて投稿しました</li>
+<li>@123liuziming が https://github.com/apache/rocketmq/pull/4285 に初めて投稿しました</li>
+<li>@logicalee が https://github.com/apache/rocketmq/pull/4288 で最初の投稿を行いました</li>
+<li>@hyl-xidian が https://github.com/apache/rocketmq/pull/4294 で最初の投稿を行いました</li>
+<li>@TuringLiu が https://github.com/apache/rocketmq/pull/4293 で最初の貢献をしました</li>
+<li>@Jacob-Mr-Yang が https://github.com/apache/rocketmq/pull/4298 で最初の貢献をしました</li>
+<li>@gobbq が https://github.com/apache/rocketmq/pull/4307 で最初の投稿を行いました</li>
+<li>@coderbruis が https://github.com/apache/rocketmq/pull/4331 で最初の寄稿を行いました</li>
+<li>@terrance-swn が https://github.com/apache/rocketmq/pull/4296 に初めて投稿しました</li>
+<li>@wzgliang が https://github.com/apache/rocketmq/pull/4303 に初めて投稿しました</li>
+<li>@GLBB は https://github.com/apache/rocketmq/pull/4363 で最初の投稿を行いました</li>
+<li>@chris-joys が https://github.com/apache/rocketmq/pull/4387 に初めて投稿しました</li>
+<li>@Dios314 が https://github.com/apache/rocketmq/pull/4403 に初めて貢献しました</li>
+<li>@TianMing2018 が https://github.com/apache/rocketmq/pull/3869 に初めて投稿しました</li>
+<li>@fulln が https://github.com/apache/rocketmq/pull/4366 に初めて投稿しました</li>
+<li>@Wushiyii が https://github.com/apache/rocketmq/pull/4447 で最初の投稿を行いました</li>
+<li>@chaiyx が https://github.com/apache/rocketmq/pull/4059 に初めて投稿しました
+<strong>フル Changelog</strong>: https://github.com/apache/rocketmq/compare/rocketmq-all-4.9.3...rocketmq-all-4.9.4</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>ソース</strong> <a href="https://github.com/apache/rocketmq">apache/rocketmq</a> · <code>rocketmq-all-4.9.4</code> · 2022-06-27 · <a href="https://github.com/apache/rocketmq/releases/tag/rocketmq-all-4.9.4">アップストリーム リリース</a>
+<em>インデックス作成のためにそのままミラーリングされます。すべての権利は上流プロジェクトに帰属します。</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release note は上流のプロジェクトによって公開され、インデックス作成のためにここにミラーリングされます。すべての権利はその作者に帰属します。 </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/rocketmq/rocketmq-all-5.0.0"> <span class="k">← 次へ</span> <span class="t">rocketmq-all-5.0.0</span> </a> <a href="/releases/rocketmq/rocketmq-all-4.9.3"> <span class="k">前へ →</span> <span class="t">rocketmq-all-4.9.3</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/apache/rocketmq/releases/tag/rocketmq-all-4.9.4" target="_blank" rel="noopener"> <span>GitHub で見る</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/apache/rocketmq" target="_blank" rel="noopener"> <span>apache/rocketmq</span> <span class="d">↗</span> </a> </li> </ul> </div>  <div class="rail-card"> <div class="rail-title">バージョン履歴</div> <ul class="rail-list"> <li> <a href="/releases/rocketmq/rocketmq-all-5.5.1"> <span class="v">rocketmq-all-5.5.1</span> <span class="d">26-08-20</span> </a> </li><li> <a href="/releases/rocketmq/rocketmq-all-5.5.0"> <span class="v">rocketmq-all-5.5.0</span> <span class="d">26-04-10</span> </a> </li><li> <a href="/releases/rocketmq/rocketmq-all-5.4.0"> <span class="v">rocketmq-all-5.4.0</span> <span class="d">25-12-24</span> </a> </li><li> <a href="/releases/rocketmq/rocketmq-all-5.3.4"> <span class="v">rocketmq-all-5.3.4</span> <span class="d">25-11-27</span> </a> </li><li> <a href="/releases/rocketmq/rocketmq-all-5.3.3"> <span class="v">rocketmq-all-5.3.3</span> <span class="d">25-05-07</span> </a> </li><li> <a href="/releases/rocketmq/rocketmq-all-5.3.2"> <span class="v">rocketmq-all-5.3.2</span> <span class="d">25-03-08</span> </a> </li><li> <a href="/releases/rocketmq/rocketmq-all-5.3.1"> <span class="v">rocketmq-all-5.3.1</span> <span class="d">24-09-25</span> </a> </li><li> <a href="/releases/rocketmq/rocketmq-all-5.3.0"> <span class="v">rocketmq-all-5.3.0</span> <span class="d">24-07-17</span> </a> </li> </ul> <a href="/ja/releases/rocketmq" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> すべての 23 件を見る →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/ja/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>オープンソースのリリース インテリジェンスが毎日公開されます。</p> </div> <div class="footer-col"> <h3>追跡</h3> <ul> <li><a href="/ja/releases">リリース</a></li> <li><a href="/ja/projects">プロジェクト</a></li> <li><a href="/ja/releases.xml">RSS フィード</a></li> </ul> </div> <div class="footer-col"> <h3>アーカイブ</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">中文アーカイブ</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">技術ノート</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>情報</h3> <ul> <li><a href="/ja/method">仕組み</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release note は上流プロジェクトに属します。</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="リリースを検索"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="リリース、プロジェクト、バージョンを検索…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

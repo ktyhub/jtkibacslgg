@@ -1,0 +1,461 @@
+<!DOCTYPE html><html lang="pt-BR"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>pulsar v3.3.0 — STAGS NextStack</title><meta name="description" content="PIP-315: Configurable max delay limit for delayed delivery (#21798) · PIP-321 Introduce allowed-cluster at the namespace level (#21648) · PIP-324: Alpine Docker images (#21716)"><meta name="keywords" content="release notes de código aberto, rastreador de lançamento, agregador changelog, alterações significativas, rastreador de descontinuação, lançamentos Kafka, lançamentos Spring Boot, lançamentos Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/pt/releases/pulsar/3.3.0/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/pt/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/pulsar/3.3.0/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/pulsar/3.3.0/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/pulsar/3.3.0/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="pulsar v3.3.0 — STAGS NextStack"><meta property="og:description" content="PIP-315: Configurable max delay limit for delayed delivery (#21798) · PIP-321 Introduce allowed-cluster at the namespace level (#21648) · PIP-324: Alpine Docker images (#21716)"><meta property="og:url" content="https://www.stags.cn/pt/releases/pulsar/3.3.0/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="pt_BR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"pt-BR","description":"STAGS indexa notas de versão de projetos de infraestrutura e IA – mudanças incompatíveis, descontinuações e migrações – em um feed único em inglês.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/pt/releases/pulsar/3.3.0/#article","headline":"pulsar v3.3.0 release notes","datePublished":"2024-06-05","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/apache/pulsar"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Ir para o conteúdo</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/pt/" class="brand" aria-label="STAGS NextStack — Inteligência de versões open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/pt/releases">Versões</a><a href="/pt/projects">Projetos</a><a href="/pt/method">Método</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Buscar versões"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Buscar</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Idioma"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">PT</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Idioma"> <p class="langmenu-head">Idioma</p> <a class="langmenu-item" href="/releases/pulsar/3.3.0/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/pulsar/pulsar_v3.3.0" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/pulsar/3.3.0/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/pulsar/3.3.0/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/pulsar/3.3.0/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/pulsar/3.3.0/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/pulsar/3.3.0/" hreflang="pt-BR" lang="pt-BR" aria-current="true" data-on="true"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/pt/">Início</a> <span class="sep">/</span> <a href="/pt/releases">Versões</a> <span class="sep">/</span> <a href="/pt/releases/pulsar">pulsar</a> </nav> <h1 class="detail-title"> <span class="p">pulsar</span> v3.3.0 </h1> <div class="detail-meta"> <span class="chip chip--minor">Minor</span> <span><span class="k">Publicado</span>5 de jun. de 2024</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/apache/pulsar" target="_blank" rel="noopener"> <span class="k">Fonte</span>apache/pulsar </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/pulsar/3.3.0/"> Original em inglês </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/pt/releases/pulsar/3.3.0/">Copiar link</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Esta página é traduzida automaticamente. O texto original em inglês é a referência.</p>  <div><h1>pulsar v3.3.0</h1>
+<h3>PIP</h3>
+<ul>
+<li>PIP-315: Limite máximo de atraso configurável para entrega atrasada (#21798)</li>
+<li>PIP-321 Introduzir <code>allowed-cluster</code> no nível do namespace (#21648)</li>
+<li>PIP-324: Imagens Alpinas Docker (#21716)</li>
+<li>PIP-325: Adicionar comando para abortar transação (#21731)</li>
+<li>PIP-326: Crie uma lista técnica para facilitar o gerenciamento de dependências (#21747)</li>
+<li>PIP-329: Estratégia para manter a tag mais recente nas imagens Pulsar docker (#21872)</li>
+<li>PIP-330: getMessagesById obtém todas as mensagens (#21873)</li>
+<li>PIP 342: Suporta métricas OpenTelemetry no Pulsar client (#22178)</li>
+<li>PIP-343: Use picocli em vez de jcommander (#22181)</li>
+<li>PIP-344 Corrija o comportamento do pulsar API públicoClient.getPartitionsForTopic(topicName) (#22182)</li>
+<li>PIP-335: plugin de metadados Oxia (#22009)</li>
+<li>PIP-339: Apresentando a opção --log-topic para coletores e fontes pulsares (#22071)</li>
+</ul>
+<h3>Corretor</h3>
+<ul>
+<li>[admin][broker] Correção de assinatura de exclusão forçada que não funciona (#22423)</li>
+<li>[limpeza][admin] Remova métodos não utilizados em PersistentTopicsBase (#22424)</li>
+<li>[limpeza][corretor] Remova o parâmetro NamespaceBundleFactory não utilizado ao criar OwnershipCache (#22482)</li>
+<li>[limpeza][broker]∂ documento de correção para TransactionBuffer#isTxnAborted (#21956)</li>
+<li>[cleanup][broker] corrige o valor de retorno de TransactionTimeoutTrackerImpl#addTransaction (#22020)</li>
+<li>[limpeza][broker] remove comentário de código inútil (#22459)</li>
+<li>[limpeza][meta] Remover importação com.beust.jcommander.internal (#22294)</li>
+<li>[limpeza] [ml] Limpeza do ManagedCursor. (#22246)</li>
+<li>[limpeza][teste] remove TestAuthorizationProvider2 inútil (#22595)</li>
+<li>[feat][admin] Habilitar compactação Gzip por padrão no Admin Client (#22464)</li>
+<li>[feat][admin] PIP-330: getMessagesById obtém todas as mensagens (#21918)</li>
+<li>[feat][broker] Implementação de PIP-323: Telemetria completa de cota de pendências (#21816)</li>
+<li>[feat][broker] PIP-264: Adicionar métricas de tempo de execução Java (#22616)</li>
+<li>[feat][broker] PIP-264: Adicionar métricas de mensagens de tópico (#22467)</li>
+<li>[feat][misc] Adicionar Pulsar BOM (lista de materiais) (#21871)</li>
+<li>[feat][misc] PIP-264: Implemente métricas de pesquisa de tópicos usando OpenTelemetry (#22058)</li>
+<li>[feat][misc] PIP-320: Adicionar andaime OpenTelemetry (#22010)</li>
+<li>[Correção] Fix Reader pode travar em mensagens de transação abortada. (#22610)</li>
+<li>[Correção] Corrigidas conversões implícitas de long -&gt; int (#22055)</li>
+<li>[Correção] Incluir anotações arrogantes na biblioteca client sombreada (#22570)</li>
+<li>[Correção] Método restaurado como obsoleto em AbstractMetadataStore (#21950)</li>
+<li>[Correção] O teste estava deixando a instância client como nula (#22631)</li>
+<li>[correção] [admin] Defina claramente REST API no Open API (#22783)</li>
+<li>[correção] [admin] Defina claramente REST API no Open API para Namesaces@v2 (#22775)</li>
+<li>[correção] [admin] Defina claramente REST API no Open API para tópicos (#22782)</li>
+<li>[correção][admin] A correção não permite excluir o locatário da v1 (#22550)</li>
+<li>[corrigir][admin] Corrigir verificação obsoleta (#22653)</li>
+<li>[corrigir][admin] Corrigir resposta de exceção do administrador do namespace api (#22587)</li>
+<li>[correção][admin][parte-1]Definir claramente REST API no Open API (#22774)</li>
+<li>[consertar] [broker] Adicionar a dependência de teste opentelemetry-sdk perdida aos testes de pulsar-broker-auth-sasl (#22665)</li>
+<li>[corrigir][corretor] Evite ficar preso ao fechar o corretor com gerenciador de carga extensível (#22573)</li>
+<li>[corrigir][broker] Evite que os consumidores recebam mensagens confirmadas do tópico compactado após a reconexão (#21187)</li>
+<li>[corrigir][broker] Evite executar prepareInitPoliciesCacheAsync se o namespace for excluído (#22268)</li>
+<li>[corrigir][corretor] Evite livros contábeis não fechados expirados ao verificar mensagens expiradas pelo horário de fechamento do livro razão (#22335)</li>
+<li>[consertar][broker] Verifique o estado do cursor antes de adicioná-lo ao <code>waitingCursors</code> (#22191)</li>
+<li>[correção][corretor] Verifique se o corretor está disponível para o pacote de monitor SLA quando o ExtensibleLoadManager está habilitado (#22485)</li>
+<li>[corrigir][broker] Fechar despachantes travados devido à incompatibilidade entre dispatcher.consumerList e dispatcher.consumerSet (#22270)</li>
+<li>[corrigir][corretor] Continuar fechando mesmo quando o executor for desligado (#22599)</li>
+<li>[corrigir][broker] Criar um novo livro-razão após o livro-razão atual ser fechado (#22034)</li>
+<li>[corrigir][broker] Excluir o razão compactado quando o tópico for excluído (#21745)</li>
+<li>[corrigir][corretor] Desativar desduplicação de mensagens de tópicos do sistema (#22582)</li>
+<li>[corrigir][broker] Não migrar tópicos internos durante a migração azul-verde quando ExtensibleLoadBalancer for usado (#22478)</li>
+<li>[correção] [broker] A ativação do lote causa unackedMessages negativas devido à simultaneidade de confirmação e entrega (#22090)</li>
+<li>[corrigir] [corretor] Expire mensagens de acordo com o tempo de fechamento do razão para evitar distorção do relógio client (#21940)</li>
+<li>[corrigir][broker] Corrigir bugs BufferOverflowException e EOFException na compactação gzip /metrics (#22576)</li>
+<li>[correção][broker] Correção do NPE que fazia com que o despacho parasse ao usar o modo Key_Shared e permitOutOfOrderDelivery=true (#22533)</li>
+<li>[corrigir][corretor] Corrigir problema de NPE OpReadEntry.skipCondition (#22367)</li>
+<li>[corrigir][broker] Corrigir assinatura de interface de implementação duplicada de PersistentSubscription (#22359)</li>
+<li>[corrigir][broker] Corrigir bug de descarregamento de tópico replicado quando ExtensibleLoadManager está habilitado (#22496)</li>
+<li>[corrigir][broker] Corrigir o uso local do relatório do ResourceGroup (#22340)</li>
+<li>[corrigir][corretor] Corrigir carregamento de ResourceGroups (#21781)</li>
+<li>[corrigir][broker] Corrigir formato errado de string (#21829)</li>
+<li>[corrigir][broker] Corrigir um impasse em SystemTopicBasedTopicPoliciesService durante a inicialização de NamespaceEventsSystemTopicFactory (#22528)</li>
+<li>[correção] [corretor] Correção de alteração de quebra: não foi possível assinar o tópico particionado com um regexp correspondente ao sufixo devido a um erro de PIP-145 (#21885)</li>
+<li>[corrigir][broker] Corrigir compatibilidade de implementação de política de tópico quebrada com versão antiga do pulsar (#22535)</li>
+<li>[corrigir][broker] Correção do corretor que não inicia quando ambas as transações e o Extensible Load Manager estão habilitados (#22139)</li>
+<li>[correção] [broker] Correção: não é possível assinar um tópico particionado com um regexp com correspondência de sufixo (#22025)</li>
+<li>[corrigir][broker] Corrigir perda de dados de compactação/replicação quando mensagens expirarem (#21865)</li>
+<li>[correção] [broker] Correção de configuraçãoMetadataSyncEventTopic marcado como compatível com configuração dinâmica, mas não implementado (#22684)</li>
+<li>[corrigir][broker] Corrigido que o consumidor para de receber mensagens quando há processamento de grandes pendências (#22454)</li>
+<li>[consertar] [corretor] Corrigir impasse ao pular livros contábeis não recuperáveis. (#21915)</li>
+<li>[consertar][broker] Corrigir getMessageById lança 500 (#21919)</li>
+<li>[corrigir][corretor] Correção de colisão de hash ao usar um nome de consumidor que termina com um número (#22053)</li>
+<li>[corrigir][broker] Corrigir condição inválida nas exceções de registro (#22412)</li>
+<li>[correção][corretor] Corrigido problema do campo 'tópico' não definido ao lidar com a solicitação GetSchema (#22377)</li>
+<li>[correção] [broker] Correção do problema com GetMessageIdByTimestamp não consegue encontrar o messageId correspondente do razão compactado (#21600)</li>
+<li>[correção][broker] O corretor líder da correção não pode ser determinado quando o endereço anunciado e os ouvintes anunciados estão configurados (#21894)</li>
+<li>[corrigir][broker] Corrigir registro de queda de mensagem nas estatísticas do produtor (#22458)</li>
+<li>[consertar] [broker] Corrigir métricas pulsar_topic_load_failed_count é 0 quando o carregamento do tópico não persistente falha e corrigir o teste instável testBrokerStatsTopicLoadFailed (#22580)</li>
+<li>[consertar][corretor] Corrigir nada alterado após remover configurações dinâmicas (#22673)</li>
+<li>[corrigir][broker] Corrigir NPE potencial ao desativar a verificação de atividade (#21840)</li>
+<li>[corrigir][corretor] Corrige o leitor travado ao ler um tópico compactado com o modo de leitura compacta desativado (#21969)</li>
+<li>[correção][broker] Correção retorna webServiceUrl errado quando webServicePort e webServicePortTls são definidos (#21842)</li>
+<li>[corrigir][broker] Corrigir erro de exclusão de esquema ao excluir um tópico particionado com muitas partições e esquema (#21977)</li>
+<li>[corrigir][broker] Corrigir a segurança do thread dos campos loadSheddingTask e loadResourceQuotaTask (#22660)</li>
+<li>[corrigir][corretor] Corrigir erro de digitação (#21843)</li>
+<li>[corrigir][broker] Corrigir erro de digitação em CompactedTopicImpl. (#22235)</li>
+<li>[corrigir][corretor] Corrigir erros de digitação na classe Consumidor (#22532)</li>
+<li>[corrigir][broker] Corrigir erros de digitação na classe PersistentTopic (#22364)</li>
+<li>[corrigir][broker] Corrigir erros de digitação na classe UniformLoadShedder (#21907)</li>
+<li>[consertar][broker] Corrigir a gravação de todas as entradas compactadas no tópico compactado (#21917)</li>
+<li>[corrigir][corretor] Corrigir bloqueio de verificação dupla incorreto para readOnActiveConsumerTask no despachante (#22279)</li>
+<li>[corrigir][broker] Tornar ExtensibleLoadManagerImpl.getOwnedServiceUnits assíncrono (#22727)</li>
+<li>[corrigir][broker] Um tópico pode ser fechado várias vezes simultaneamente (#17524)</li>
+<li>[corrigir][corretor] Otimizar /métricas, corrigir problema de fila de solicitação ilimitada e corrigir condições de corrida no modo métricasBufferResponse (#22494)</li>
+<li>[correção] [broker] Parte 1: o replicador não pode ser criado com sucesso devido a um replicador órfão no proprietário do tópico anterior (#21946)</li>
+<li>[correção] [corretor] Parte 2: o replicador não pode ser criado com sucesso devido a um replicador órfão no proprietário do tópico anterior (#21948)</li>
+<li>[corrigir][corretor] Evitar atrasos longos do cursor de desduplicação para que o carregamento do tópico não atinja o tempo limite (#22479)</li>
+<li>[corrigir][corretor] Leitor travado após chamada hasMessageAvailable ao ativar replicateSubscriptionState (#22572)</li>
+<li>[corrigir][broker] A replicação foi interrompida devido a uma falha no descarregamento do tópico (#21947)</li>
+<li>[corrigir][corretor] Restaure o ID do corretor para corresponder ao formato usado nas versões existentes do Pulsar (#21937)</li>
+<li>[corrigir][corretor] Retorna getOwnerAsync sem esperar pelo corretor de origem ao atribuir e liberar e lidar com a mudança de função durante a inicialização da função (#22112)</li>
+<li>[corrigir][broker] Sanitizar valores antes de fazer login no script apply-config-from-env.py (#22044)</li>
+<li>[corrigir][broker] Defina explicitamente o limite de compactação do tópico ServiceUnitStateChannel, melhore getOwnerAsync e corrija outros bugs (#22064)</li>
+<li>[corrigir][broker] Ignore topic.close durante o descarregamento se o tópico futuro falhar com a verificação de propriedade e corrija isBundleOwnedByAnyBroker para usar ns.checkOwnershipPresentAsync para ExtensibleLoadBalancer (#22379)</li>
+<li>[corrigir][corretor] Assinatura travada devido ao chamado Admin API analyzeSubscriptionBacklog (#22019)</li>
+<li>[corrigir][corretor] Suporte a provedores OIDC com JWK sem campo alg definido em chaves (#22421)</li>
+<li>[corrigir][broker] Opções de pesquisa de suporte para gerenciador de carga extensível (#22487)</li>
+<li>[correção] [broker] Suporte à execução do contêiner docker com gid! = 0 (#22081)</li>
+<li>[corrigir][broker] Unificar políticas em nível de tópico permite condições de julgamento (#19501)</li>
+<li>[corrigir] [corretor] Atualizar a verificação do corretor com carga insuficiente do TransferShedder para considerar o msgThroughputEMA do corretor com carga máxima e atualizar a verificação IsExtensibleLoadBalancerImpl (#22321)</li>
+<li>[correção] [corretor] A atualização da partição do tópico falhou quando a configuração maxNumPartitionsPerPartitionedTopic &lt;0 (#22397)</li>
+<li>[corrigir][corretor] Atualize as políticas do tópico tanto quanto possível quando algum ex for lançado (#21810)</li>
+<li>[corrigir] [corretor] adicionar tempo limite para leitura da verificação de integridade. (#21990)</li>
+<li>[consertar] [broker] evitar descarregar o tópico do sistema (#22497)</li>
+<li>[corrigir][corretor] significado correto do tempo limite da fase de compactação um (#21908)</li>
+<li>[corrigir][broker] corrigir incompatibilidade entre dispatcher.consumerList e dispatcher.consumerSet (#22283)</li>
+<li>[corrigir][corretor] corrige o valor errado de BrokerSrevice.maxUnackedMsgsPerDispatcher (#21765)</li>
+<li>[corrigir][corretor] impressão sem registro quando a exclusão do tópico particionado falhou (#22153)</li>
+<li>[corrigir][broker]Corrigir NonPersistentDispatcherMultipleConsumers ArrayIndexOutOfBoundsException (#21856)</li>
+<li>[correção] [broker] Suporte à configuração de <code>autoSkipNonRecoverableData</code> dinamicamente em expirationMon… (#21991)</li>
+<li>[correção][broker][admin] A correção não pode atualizar propriedades na assinatura NonDurable. (#22411)</li>
+<li>[corrigir][misc] Tornar o thread ConcurrentBitSet seguro (#22361)</li>
+<li>[corrigir][misc] NPE durante desligamento independente (#22636)</li>
+<li>[corrigir][misc] Renomear todas as bibliotecas nativas sombreadas do Netty (#22415)</li>
+<li>[corrigir][ml] Corrigir NPE de getValidPositionAfterSkippedEntries ao recuperar um livro-razão gerenciado encerrado (#22552)</li>
+<li>[corrigir][ml] Corrigir mecanismo de nova tentativa de exclusão de livros contábeis para invalidar (#21869)</li>
+<li>[corrigir] [ml] Marca de exclusão travada devido a falha na troca do registro do cursor (#22662)</li>
+<li>[corrigir][ml] Não há rollover de livros inativos quando o serviço de metadados é inválido (#22284)</li>
+<li>[corrigir][ml]Expor carimbo de data/hora do razão (#22338)</li>
+<li>[corrigir][offload] Quebra o loop de fillbuffer quando encontrado EOF (#22722)</li>
+<li>[corrigir][offload] Correção de OOM no armazenamento em camadas, causado por cache de compensações ilimitado (#22679)</li>
+<li>[corrigir][offload] Correção O readHandle de descarregamento não pode fechar várias vezes. (#22162)</li>
+<li>[corrigir][offload] Aumentar o limite de upload de arquivos de 2.048 MiB para 4.096 MiB para descarregamento de GCP/GCS (#22554)</li>
+<li>[corrigir][sec] Reverter &quot;[corrigir][sec] Adicionar uma verificação para o valor do tempo de entrada (apache#22023)&quot; (#22243)</li>
+<li>[corrigir][sec] Adicionar uma verificação para o valor do tempo de entrada (#22023)</li>
+<li>[corrigir][sec] Ignorar aviso sobre MD5, pois é suficiente para esses casos de uso (#22282)</li>
+<li>[corrigir] [sec] atualizações de segurança do Go Functions (#21844)</li>
+<li>[corrigir][sec] conversão de restrição implícita na atribuição composta (#22074)</li>
+<li>[corrigir][armazenamento] A inicialização do ReadonlyManagedLedger não preenche as propriedades (#22630)</li>
+<li>[corrigir][txn] Obtenha a posição anterior por razão gerenciada. (#22024)</li>
+<li>[corrigir][txn]Corrigir problema potencial de segurança de thread do TopicTransactionBuffer (#22149)</li>
+<li>[corrigir][txn]Tratar exceções na transação pendente de confirmação inicial (#21274)</li>
+<li>[corrigir][ws] Verifique a validade da configuração antes de iniciar o serviço websocket (#22231)</li>
+<li>[melhorar] Adicionado scanner estático CodeQL (#22037)</li>
+<li>[melhorar] Torne a descrição da configuração <code>metricsBufferResponse</code> mais eficaz (#22490)</li>
+<li>[melhorar] PIP-335: Pulsar com teste de integração Oxia (#22045)</li>
+<li>[melhorar] PIP-342: suporte a métricas OTel client (#22179)</li>
+<li>[melhorar] Removidas bibliotecas nativas desnecessárias das imagens Docker (#22230)</li>
+<li>[melhorar] Tente revalidar o ResourceLock com espera após erros (#22617)</li>
+<li>[melhorar] Execute o scanner de imagem Trivy com a imagem atual (#22386)</li>
+<li>[melhorar] Atualize Oxia client para 0.1.6 (#22525)</li>
+<li>[melhorar][admin] Alinhe a autenticação e verifique-a em primeiro lugar para o tópico relacionado API (#22507)</li>
+<li>[melhorar][admin] Adicionar teste de autorização para esquema e alinhar autenticação para transação (#22399)</li>
+<li>[melhorar][admin] Alinhe a autenticação e verifique-a em primeiro lugar para o tópico relacionado API (#22342)</li>
+<li>[melhorar][admin] Verifique se o tópico existia antes das operações de permissão (#22547)</li>
+<li>[melhorar][admin] Exponha o limite de descarregamento em segundos para o amdin (#22101)</li>
+<li>[melhorar][admin] Corrija o <code>createMissingPartitions</code> que não responde corretamente (#22311)</li>
+<li>[melhorar][corretor] Adicione um log de erros para solucionar a falha ao iniciar o registro do corretor. (#22065)</li>
+<li>[melhorar][corretor] Adicionar opção createTopicIfDoesNotExist ao construtor RawReader (#22264)</li>
+<li>[melhorar][broker] Adicionar autorização detalhada aos endpoints de gerenciamento de ns/tópicos (#22305)</li>
+<li>[melhorar][corretor] Adicionar autorização detalhada ao administrador de retenção API (#22163)</li>
+<li>[melhorar][corretor] Adicionar registro à eleição do líder (#22645)</li>
+<li>[melhorar][broker] Adicionar logs ao <code>getInternalStats</code> para localizar rapidamente o problema quando o razão do esquema for perdido (#22233)</li>
+<li>[melhorar][broker] Adicionar chaves de configuração ausentes para armazenar leituras de atualização em cache (#22295)</li>
+<li>[melhorar][corretor] Adicione o nome do tópico às mensagens de erro emitidas. (#22506)</li>
+<li>[melhorar][broker] Aplicar loadBalancerDebugModeEnabled em LeastResourceUsageWithWeight (#22549)</li>
+<li>[melhorar][corretor] Evite leituras e descartes repetidos ao usar o modo Key_Shared (#22245)</li>
+<li>[melhorar][broker] Armazena em cache o gravador interno quando enviado para o tópico do sistema. (#22099)</li>
+<li>[melhorar][broker] Alterar o nível de log para reduzir logs duplicados (#22147)</li>
+<li>[melhorar][broker] Feche TopicPoliciesService para permitir o desligamento normal do corretor Pulsar (#22589)</li>
+<li>[melhorar] [broker] Adicionar consistentemente autorização detalhada ao REST API (#22202)</li>
+<li>[melhorar][broker] Criar tópicos particionados automaticamente ao ativar a replicação em nível de tópico (#22537)</li>
+<li>[melhorar][broker] Descontinuar a configuração enableNamespaceIsolationUpdateOnTime não utilizada (#22449)</li>
+<li>[melhorar][broker] Desativar relatórios de métricas JFR em OpenTelemetry (#22669)</li>
+<li>[melhorar][corretor] Não feche o soquete se a pesquisa falhar devido a LockBusyException (#21993)</li>
+<li>[melhorar][broker] Não imprime log de erros ao responder a <code>HTTP-404</code> ao chamar <code>Admin API</code> e o tópico não existe. (#21995)</li>
+<li>[melhorar][broker] Não retenha os dados no tópico do sistema (#22022)</li>
+<li>[melhorar][corretor] Não tente abrir o ML quando o meta do tópico não existir e não espere criar um novo. #21995 (#22004)</li>
+<li>[melhorar][corretor] Não registre o corretorClientAuthenticationParameters e o contadorClientAuthenticationParameters por padrão (#22395)</li>
+<li>[melhorar][corretor] Não sobreponha livros contábeis vazios com base na inatividade (#21893)</li>
+<li>[melhorar][broker] Não use o pool forkjoin por padrão para excluir tópicos particionados (#22598)</li>
+<li>[melhorar][broker] Excluir produtores para replicação geográfica do campo de estatísticas do tópico dos editores (#22556)</li>
+<li>[melhorar][broker] Melhorar a compactação Gzip, permitir excluir caminhos específicos ou desativá-la (#22370)</li>
+<li>[melhorar][broker] Melhorar mensagem de erro NamespaceUnloadStrategy (#21880)</li>
+<li>[melhorar][broker] Incluir dependências de tempo de execução na distribuição do servidor (#22001)</li>
+<li>[melhorar][broker] Tornar BrokerSelectionStrategy conectável (#22553)</li>
+<li>[melhorar][corretor] Otimize a compactação gzip para endpoint /metrics compartilhando/armazenando em cache o resultado compactado (#22521)</li>
+<li>[melhorar][corretor] Mensagem de erro de retorno deleteDynamicConfiguration da interface da web otimizada (#22356)</li>
+<li>[melhorar][broker] PIP-299-part-1: Interrompe o envio de mensagens se as confirmações individuais forem perdidas no armazenamento persistente (#21423)</li>
+<li>[melhorar] [broker] PIP-299-part-2: adicionar configuração dispatcherPauseOnAckStatePersistentEnabled (#21370)</li>
+<li>[melhorar][broker] PIP-299-part-3: Adicionar suporte de configuração dinâmica: dispatcherPauseOnAckStatePersistentEnabled (#21837)</li>
+<li>[melhorar][broker] PIP-299-part-4: Adicionar política em nível de tópico: dispatcherPauseOnAckStatePersistent (#21874)</li>
+<li>[melhorar][broker] PIP-299-part-5: Adicionar política em nível de namespace: dispatcherPauseOnAckStatePersistent (#21926)</li>
+<li>[melhorar][corretor] PIP-307: Adicionar opção de configuração de sinalizador de recurso (#21866)</li>
+<li>[melhorar][corretor] PIP-307: Adicionar métricas de monitoramento para fechamento elegante de produtores/consumidores (#21854)</li>
+<li>[melhorar][broker] Propagar exceção de causa em TopicBusyException quando aplicável (#22596)</li>
+<li>[melhorar][broker] Recuperar a criação de assinatura no tópico do razão de esquema quebrado (#22469)</li>
+<li>[melhorar][broker] Reduzir o log do ResourceGroup (#21957)</li>
+<li>[melhorar][corretor] Reduza a verificação nula duplicada para LeaderElectionService (#22465)</li>
+<li>[melhorar][broker] Remover a atomicidade do consumidor ativo de um despachante (#22285)</li>
+<li>[melhorar][broker] Repita o retorno de chamada handleMetadataChanges quando configurationMetadataStore for igual a localMetadataStore (#22519)</li>
+<li>[melhorar][broker] Compressão de resposta de suporte de servlet (#21667)</li>
+<li>[melhorar][corretor] Ignorar o carregamento dos pacotes NAR se não estiver configurado (#21867)</li>
+<li>[melhorar] [broker] Suporte ao protocolo X-Forwarded-For e HA Proxy para resolver IP client original de solicitações http/https (#22524)</li>
+<li>[melhorar][broker] Suporte para criação de RawReader com base na configuração (#22280)</li>
+<li>A cota de pendências de [melhorar] o corretor excede o log de limite substituído por <code>debug</code> (#22488)</li>
+<li>[melhorar][broker] adiar as verificações de propriedade se o proprietário estiver inativo (ExtensibleLoadManager) (#21811)</li>
+<li>[melhorar] desempenho do [broker]: Reduza os cálculos stickyHash de tópicos não persistentes em assinaturas SHARED (#22536)</li>
+<li>[melhorar][doc] Melhorar documento para <code>maxTotalReceiverQueueSizeAcrossPartitions</code> e <code>receiverQueueSize</code> do ConsumerBuilder (#21841)</li>
+<li>[melhorar] [log] Imprimir endereço client da fonte quando habilitado haProxyProtocolEnabled (#22686)</li>
+<li>[melhorar][meta] Registrar um aviso quando o lote ZK falhar com perda de conexão (#22566)</li>
+<li>[melhorar][misc] Adicionar caixa de seleção obrigatória sobre política de lançamento no modelo de problema (#22267)</li>
+<li>[melhorar][misc] Inclui biblioteca epoll nativa para Netty para arm64 (#22319)</li>
+<li>[melhorar][misc] Remova a chamada para sun InetAddressCachePolicy (#22329)</li>
+<li>[melhorar][misc] Especifique /pulsar/data como o diretório inicial do usuário na imagem baseada em Alpine (#22447)</li>
+<li>[melhorar] [ml] Filtre as entradas excluídas antes de ler as entradas do razão. (#21739)</li>
+<li>[melhorar][offload] Aplicar configuração autoSkipNonRecoverableData ao armazenamento em camadas (#22531)</li>
+<li>[melhorar][offload] Substitua o uso da classe sombreada em OffsetsCache (#22683)</li>
+<li>[melhorar][proxy] Adicione uma verificação para brokerServiceURL que ainda não suporta multi uri (#21972)</li>
+<li>[melhorar][armazenamento] Rolar periodicamente os livros do Cursor (#22622)</li>
+<li>[melhorar][pip] PIP-339: Apresentando a opção --log-topic para coletores e fontes pulsares (#22071)</li>
+<li>[melhorar][txn] Adicionar comando para abortar transação (#21630)</li>
+<li>[melhorar][ws] Adicionar configuração de limite de memória para Pulsar client usado no proxy Websocket (#22666)</li>
+<li>[melhorar][pip] PIP-324: imagem alpina (#22054)</li>
+</ul>
+<h3>Pulsar IO e Funções Pulsar</h3>
+<ul>
+<li>[bug][fn] Impedir que <code>putstate</code> use valores vazios (#22127)</li>
+<li>[corrigir] [fn] Adicionar campo <code>version</code> ausente de volta a <code>querystate</code> API (#21966)</li>
+<li>[correção] [fn] Impedir a criação de tabela de estado a partir de chamadas API para instâncias inexistentes (#22107)</li>
+<li>[correção] [fn] Lança 404 RestException quando a chave de estado não é encontrada (#21921)</li>
+<li>[correção] [fn] Use o serviço PackageManagement unificado para baixar pacotes (#21955)</li>
+<li>[consertar] [fn] corrigir teste de função quebrada (#22260)</li>
+<li>[corrigir][fn]certifique-se de que o carregador de classe para ContextImpl seja <code>functionClassLoader</code> em diferentes tempos de execução (#22501)</li>
+<li>[melhorar][fn] Adicionar configuração para fontes de URL do pacote de conectores e funções (#22184)</li>
+<li>[melhorar] [fn] Adicionar argumento de &quot;exceção&quot; ausente a alguns <code>log.error</code> (#22140)</li>
+<li>[melhorar] [fn] Expor <code>RuntimeFlags</code> como opção CLI para funções e conectores de pulsar (#22514)</li>
+<li>[melhorar][fn] Otimize a inicialização do Function Worker por meio de carregamento lento e acesso direto a zip/bytecode (#22122)</li>
+<li>[melhorar][fn] Passe FunctionDetails para a instância Go (#22350)</li>
+<li>[melhorar][fn] Mostrar o nome da classe de exceções para funções pulsar (#21833)</li>
+<li>[feat][io] AzureDataExplorer/Kusto Sink para Pulsar (#22006)</li>
+<li>[corrigir][io] CompressionEnabled não funcionou no coletor elasticsearch (#22565)</li>
+<li>[corrigir][io] Corrigir a criação do índice (#22654)</li>
+<li>[corrigir][io] Conector de fonte Kafka talvez preso (#22511)</li>
+<li>[melhorar][io]: Adicionar validação para coletor JDBC que não suporta esquema primitivo (#22376)
+###CLI</li>
+<li>[limpeza][cli] Limpeza jcommander (#22337)</li>
+<li>[melhorar] [cli] CmdConsume imprime informações de subscribeTime e eventTime. (#22308)</li>
+<li>[melhorar][cli] PIP-343: Refatorar pulsar-perf para subcomando (#22388)</li>
+<li>[melhorar][cli] PIP-343: Use picocli em vez de jcommander em bin/pulsar (#22288)</li>
+<li>[melhorar][cli] PIP-343: Use picocli em vez de jcommander em pulsar-client-tools (#22209)</li>
+<li>[melhorar][cli] PIP-343: Use picocli em vez de jcommander na função pulsar (#22331)</li>
+<li>[melhorar][cli] PIP-343: Use picocli em vez de jcommander no pulsar-perf (#22303)</li>
+<li>[melhorar][cli] Remova o código desnecessário do cli (#22161)</li>
+<li>[melhorar][cli] erro quando --destinationBroker é definido quando --bundle está vazio (#21879)</li>
+<li>[corrigir][cli] Opção de ajuda para correção (#22408)</li>
+<li>[correção][cli] Corrigido o bug quando o tamanho especificado de retenção de conjunto com -T (#22150)</li>
+<li>[corrigir][cli] Corrigir erros de digitação na classe CmdSinks (#22358)</li>
+<li>[corrigir][cli] Remover defaultValue do locatário/namespace para CmdFunctions (#22764)</li>
+</ul>
+<h3>Client</h3>
+<ul>
+<li>[feat][client] Introduzir atualização API no TableView (#21417)</li>
+<li>[Correção][client] Confirmação de mensagem perdida do consumidor devido à condição de corrida na confirmação com mensagem em lote (#22353)</li>
+<li>[correção] [client] Não tente novamente devido ao erro de assinatura não encontrada quando o AllowAutoSubscriptionCreation está desabilitado (#22164)</li>
+<li>[corrigir][client] Consertar o consumidor deve retornar o máximo de mensagens de recebimento em lote configurado (#22619)</li>
+<li>[corrigir][client] Corrigir ConsumerBuilderImpl#subscribe silencioso travado ao usar pulsar-client:3.0.x com anotações jackson anteriores a 2.12.0 (#21985)</li>
+<li>[Correção][client] Corrigido conflitos de nomes de produtores de DLQ quando vários consumidores enviam mensagens para DLQ (#21890)</li>
+<li>[Correção][client] Corrige vazamento de memória do lado client ao chamar MessageImpl.create e corrige métricas imprecisas do lado client: pendenteMessagesUpDownCounter, pendenteBytesUpDownCounter, latencyHistogram (#22393)</li>
+<li>[correção][client] Correção de mensagens no contêiner de lote que expiraram inesperadamente (#21889)</li>
+<li>[Correção][client] Corrigido que o consumidor de vários tópicos poderia receber mensagens antigas após a busca (#21945)</li>
+<li>[corrigir][client] Corrigir resultados errados de hasMessageAvailable e readNext após buscar por carimbo de data/hora (#22363)</li>
+<li>[Correção][client] GenericProtobufNativeSchema não implementa o método getNativeSchema. (#22204)</li>
+<li>[Correção][client] Mensagens perdidas devido à reconexão do TopicListWatcher (#21853)</li>
+<li>[Correção][client] Mensagem de erro pouco clara ao criar um consumidor com dois mesmos tópicos (#22255)</li>
+<li>[correção][client] correção Reader.hasMessageAvailable pode retornar verdadeiro após buscar o mais recente (#22201)</li>
+<li>[corrigir][client] corrigir permissões enormes se receber uma mensagem meio lote (#22091)</li>
+<li>[Correção][client]Corrigido o recebimento de um valor <code>maxMessageSize</code> incorreto ao acessar vários clusters no mesmo processo (#22306)</li>
+<li>[melhorar][client] Mencione o particionamento no failover prioridadeLevel javaDoc (#21980)</li>
+<li>[melhorar][client] adicionar endereço físico como parte da chave do pool de conexões (#22196)
+Atualizações da biblioteca</li>
+<li>[Correção] Aumente google.golang.org/protobuf de 1.32.0 para 1.33.0 em /pulsar-function-go/examples (#22262)</li>
+<li>[Correção] Aumente golang.org/x/net de 0.17.0 para 0.23.0 em /pulsar-function-go (#22540)</li>
+<li>[Correção] Bump org.apache.solr:solr-core de 8.11.1 para 8.11.3 em /pulsar-io/solr (#22047)</li>
+<li>[Correção] Atualize os pacotes Alpine em tempo de compilação para corrigir CVE-2023-4236 (#22763)</li>
+<li>[Correção] Atualize jose4j para 0.9.4 (#22273)</li>
+<li>[consertar] [broker] atualizar jclouds 2.5.0 -&gt; 2.6.0 (#22220)</li>
+<li>[correção] [sec] Atualização do Bouncycastle para 1.78 (#22509)</li>
+<li>[corrigir] [sec] Atualize a versão do conector oracle Debezium para evitar CVE-2023-4586 (#22641)</li>
+<li>[correção] [sec] Atualização do Jetty para 9.4.54.v20240208 para endereçar CVE-2024-22201 (#22144)</li>
+<li>[corrigir] [sec] Atualize Zookeeper para 3.9.2 para endereçar CVE-2024-23944 (#22275)</li>
+<li>[correção] [sec] Atualize aws-sdk.version para evitar CVE-2024-21634 (#22633)</li>
+<li>[correção] [sec] Atualização do commons-compress para 1.26.0 (#22086)</li>
+<li>[correção] [sec] Atualização da versão elasticsearch-java para evitar CVE-2023-4043 (#22640)</li>
+<li>[melhorar] Atualização para Oxia client 0.2.0 (#22663)</li>
+<li>[melhorar][misc] Atualização para contador 4.17.0 (#22551)</li>
+<li>[melhorar][misc] Atualização para contador 4.16.5 (#22484)</li>
+<li>[melhorar][bk] Atualizar a dependência do BookKeeper para 4.16.4 (#21983)</li>
+<li>[melhorar][construir] Atualize Lombok para 1.18.32 para suporte Java 22 (#22425)</li>
+<li>[melhorar][construir] Atualizar versões da biblioteca OTel (#22649)</li>
+<li>[melhorar][construir] Atualizar a versão de verificação de dependência do OWASP para 9.1.0 (#22530)</li>
+<li>[melhorar][ci] Atualize as versões do GitHub Actions para corrigir o aviso de descontinuação (#21978)</li>
+<li>[melhorar][ci] Atualizar a versão da extensão maven do Gradle Enterprise (#22096)</li>
+<li>[melhorar][ci] Atualizar versão codecov-action (#22123)</li>
+<li>[melhorar][ci] Atualizar ações GitHub obsoletas para versões suportadas (#22620)</li>
+<li>[melhorar] [ci] Atualize o pulsar-client-python para 3.4.0 para evitar CVE-2023-1428 (#21899)</li>
+<li>[melhorar][ci] Atualizar para ações/upload-artifact@v4 (#21836)</li>
+<li>[melhorar][misc] Atualize a versão Netty para 4.1.105.Final (#21923)</li>
+<li>[melhorar][misc] Atualizar checkstyle para 10.14.2 (#22291)</li>
+<li>[melhorar][misc] Atualize a camisa para 2.41 (#22290)</li>
+<li>[melhorar][misc] Atualizar log4j2 para 2.23.1 (#22327)</li>
+<li>[melhorar][misc] Atualize slf4j para 2.0.13 (#22391)</li>
+<li>[melhorar] [misc] Atualização para Netty 4.1.108 e tcnative 2.0.65 (#22369)</li>
+<li>[melhorar][construir] Use slf4j-bom para alinhar versões slf4j (#22646)</li>
+</ul>
+<h3>Testes e CI</h3>
+<ul>
+<li>[feat][ci] Adicionar fluxo de trabalho Github de verificação de contêiner Trivy (#22063)</li>
+<li>[corrigir][ci] Não permitir a fusão de PR sem resultado bem-sucedido (#22563)</li>
+<li>[corrigir] [ci] Corrigir fluxo de trabalho de ações de verificação de dependência do OWASP GH (#21831)</li>
+<li>[corrigir] [ci] Corrigir fluxo de trabalho de ações do rotulador GitHub, adaptar ao formato de configuração v5 (#22628)</li>
+<li>[corrigir] [ci] Corrigir rótulos para modelo de problema de teste instável GitHub (#22434)</li>
+<li>[consertar] [ci] Corrigir falha na lib nativa snappy-java ao carregar em x86 alpine (#22804)</li>
+<li>[corrigir][ci] Falha na alteração da opção de montagem de tolerância no CI (#22241)</li>
+<li>[melhorar][ci] Desativar teste que causa OOME até que o problema seja resolvido (#22586)</li>
+<li>[melhorar][ci] Melhorar as verificações de dependência do OWASP (#21817)</li>
+<li>[melhorar][ci] Execute CodeQL somente quando o PR contiver alterações no código Java que não é de teste (#22146)</li>
+<li>[melhorar][ci] Exigir que todas as conversas sobre código sejam resolvidas antes de mesclar PRs (#21832)</li>
+<li>[melhorar][ci] Execute CodeQL no fluxo de trabalho Pulsar CI como verificação obrigatória (#22132)</li>
+<li>[melhorar][ci] Execute a verificação de dependência do OWASP para offloaders e pulsar-io mesmo quando a verificação principal falhar (#21826)</li>
+<li>[melhorar][ci] Mudar a distribuição JDK de temurin para corretto (#22238)</li>
+<li>[melhorar] [ci] revisitar a ação tune-runner-vm, descartar o ajuste para docker (#22448)</li>
+<li>[corrigir][teste] Limpe os campos MockedPulsarServiceBaseTest para evitar vazamento de memória do tempo de execução do teste (#22659)</li>
+<li>[corrigir][teste] Limpar campos na limpeza de teste para reduzir o consumo de memória (#22583)</li>
+<li>[corrigir][teste] Corrigir NPE no BookKeeperClusterTestCase tearDown (#22493)</li>
+<li>[corrigir][teste] Corrigir Thread.getThreadGroup().getName() NPE (#22070)</li>
+<li>[corrigir][teste] Corrigir ManagedLedgerErrorsTest.recoverAfterZnodeVersionError instável (#22368)</li>
+<li>[corrigir][teste] Corrigir RGUsageMTAggrWaitForAllMsgsTest instável (#22252)</li>
+<li>[corrigir][teste] Corrigir teste instável BrokerServiceAutoSubscriptionCreationTest (#22190)</li>
+<li>[corrigir][teste] Corrigir teste instável ManagedLedgerTest.testGetNumberOfEntriesInStorage (#22344)</li>
+<li>[corrigir][teste] Corrigir teste instável ReplicatorTest (#22594)</li>
+<li>[corrigir][teste] Corrigir teste instável testPerTopicExpiredStat (#22018)</li>
+<li>[corrigir][teste] Corrigir código de teste criando conflito de namespace (#21941)</li>
+<li>[corrigir][teste] Corrigir teste testAsyncFunctionMaxPending (#22121)</li>
+<li>[corrigir][teste] Corrigir teste testTransactionBufferMetrics (#22117)</li>
+<li>[corrigir][teste] Corrigir os testes instáveis de ManagedLedgerImplUtilsTest (#22611)</li>
+<li>[corrigir][teste] Corrigir os testes com o mesmo nome de namespace (#22240)</li>
+<li>[corrigir][teste] Corrigir vazamento de thread em InjectedClientCnxClientBuilder e EnableProxyProtocolTest (#21878)</li>
+<li>[corrigir][teste] Corrigir vazamento de thread em TopicPoliciesAuthZTest (#22257)</li>
+<li>[corrigir][teste] Teste instável: ManagedLedgerTest.testTimestampOnWorkingLedger (#22600)</li>
+<li>[corrigir] [teste] Teste instável: testMessageExpiryWithTimestampNonRecoverableException e testIncorrectClientClock (#22489)</li>
+<li>[corrigir][teste] Tornar o método da classe de teste base protegido para que ele passe na validação ReportUnannotatedMethods (#21976)</li>
+<li>[corrigir][teste] Mover ExtensibleLoadManagerImplTest para testes instáveis (#22495)</li>
+<li>[corrigir][teste] SchemaMap em AutoConsumeSchema foi reutilizado (#22500)</li>
+<li>[corrigir][teste] corrigir teste instável deveriaProvideConsistentAnswerToTopicLookupsUsingAdminApi (#22249)</li>
+<li>[corrigir][teste] corrigir teste testSyncNormalPositionWhenTBRecover (#22120)</li>
+<li>[melhorar][teste] Adicionar teste de autenticação de operação para namespace API (#22398)</li>
+<li>[melhorar][teste] Adicionar teste de autenticação de política para namespace API (#22593)</li>
+<li>[melhorar][teste] Adicionar verificador de operação de tópico para o tópico API (#22468)</li>
+<li>[melhorar][teste] Adicionar teste de política de tópico para o tópico API (#22546)</li>
+<li>[melhorar][teste] Limpar campos nas classes AuthZTest na limpeza (#22661)</li>
+<li>[melhorar][teste] Não configure a espionagem Mockito para MultiBrokerTestZKBaseTest (#22250)</li>
+<li>[melhorar][teste] Mover ShadowManagedLedgerImplTest para testes instáveis (#22526)</li>
+<li>[melhorar][teste] Mova a maioria dos testes esquisitos para o grupo esquisito (#22433)</li>
+<li>[melhorar] [teste] Reduzir a instabilidade do AdvertisedListenersMultiBrokerLeaderElectionTest (#22258)</li>
+<li>[melhorar][teste] Reduza a sobrecarga de registro em testes (#22251)</li>
+<li>[melhorar][teste] Remover código de teste redundante (#21999)</li>
+<li>[melhorar][teste] Substitua o uso de curl no teste Java e corrija vazamentos de fluxo (#22463)- [corrigir][teste] Limpe os campos MockedPulsarServiceBaseTest para evitar vazamento de memória do tempo de execução do teste (#22659)</li>
+<li>[corrigir][teste] Limpar campos na limpeza de teste para reduzir o consumo de memória (#22583)</li>
+<li>[corrigir][teste] Corrigir NPE no BookKeeperClusterTestCase tearDown (#22493)</li>
+<li>[corrigir][teste] Corrigir Thread.getThreadGroup().getName() NPE (#22070)</li>
+<li>[corrigir][teste] Corrigir ManagedLedgerErrorsTest.recoverAfterZnodeVersionError instável (#22368)</li>
+<li>[corrigir][teste] Corrigir RGUsageMTAggrWaitForAllMsgsTest instável (#22252)</li>
+<li>[corrigir][teste] Corrigir teste instável BrokerServiceAutoSubscriptionCreationTest (#22190)</li>
+<li>[corrigir][teste] Corrigir teste instável ManagedLedgerTest.testGetNumberOfEntriesInStorage (#22344)</li>
+<li>[corrigir][teste] Corrigir teste instável ReplicatorTest (#22594)</li>
+<li>[corrigir][teste] Corrigir teste instável testPerTopicExpiredStat (#22018)</li>
+<li>[corrigir][teste] Corrigir código de teste criando conflito de namespace (#21941)</li>
+<li>[corrigir][teste] Corrigir teste testAsyncFunctionMaxPending (#22121)</li>
+<li>[corrigir][teste] Corrigir teste testTransactionBufferMetrics (#22117)</li>
+<li>[corrigir][teste] Corrigir os testes instáveis de ManagedLedgerImplUtilsTest (#22611)</li>
+<li>[corrigir][teste] Corrigir os testes com o mesmo nome de namespace (#22240)</li>
+<li>[corrigir][teste] Corrigir vazamento de thread em InjectedClientCnxClientBuilder e EnableProxyProtocolTest (#21878)</li>
+<li>[corrigir][teste] Corrigir vazamento de thread em TopicPoliciesAuthZTest (#22257)</li>
+<li>[corrigir][teste] Teste instável: ManagedLedgerTest.testTimestampOnWorkingLedger (#22600)</li>
+<li>[corrigir] [teste] Teste instável: testMessageExpiryWithTimestampNonRecoverableException e testIncorrectClientClock (#22489)</li>
+<li>[corrigir][teste] Tornar o método da classe de teste base protegido para que ele passe na validação ReportUnannotatedMethods (#21976)</li>
+<li>[corrigir][teste] Mover ExtensibleLoadManagerImplTest para testes instáveis (#22495)</li>
+<li>[corrigir][teste] SchemaMap em AutoConsumeSchema foi reutilizado (#22500)</li>
+<li>[corrigir][teste] corrigir teste instável deveriaProvideConsistentAnswerToTopicLookupsUsingAdminApi (#22249)</li>
+<li>[corrigir][teste] corrigir teste testSyncNormalPositionWhenTBRecover (#22120)</li>
+<li>[melhorar][teste] Adicionar teste de autenticação de operação para namespace API (#22398)</li>
+<li>[melhorar][teste] Adicionar teste de autenticação de política para namespace API (#22593)</li>
+<li>[melhorar][teste] Adicionar verificador de operação de tópico para o tópico API (#22468)</li>
+<li>[melhorar][teste] Adicionar teste de política de tópico para o tópico API (#22546)</li>
+<li>[melhorar][teste] Limpar campos nas classes AuthZTest na limpeza (#22661)</li>
+<li>[melhorar][teste] Não configure a espionagem Mockito para MultiBrokerTestZKBaseTest (#22250)</li>
+<li>[melhorar][teste] Mover ShadowManagedLedgerImplTest para testes instáveis (#22526)</li>
+<li>[melhorar][teste] Mova a maioria dos testes esquisitos para o grupo esquisito (#22433)</li>
+<li>[melhorar] [teste] Reduzir a instabilidade do AdvertisedListenersMultiBrokerLeaderElectionTest (#22258)</li>
+<li>[melhorar][teste] Reduza a sobrecarga de registro em testes (#22251)</li>
+<li>[melhorar][teste] Remover código de teste redundante (#21999)</li>
+<li>[melhorar][teste] Substitua o uso de curl no teste Java e corrija vazamentos de fluxo (#22463)</li>
+</ul>
+<h3>Outros</h3>
+<ul>
+<li>[corrigir][construir] Adicionar comando curl para imagem pulsar (#22732)</li>
+<li>[corrigir][build] Adicionado tratamento especial para pulsar-bom em set-project-version.sh (#22272)</li>
+<li>[corrigir][construir] Corrigir CVE-2024-2511 atualizando para OpenSSL na imagem docker (#22731)</li>
+<li>[corrigir][construir] Corrigir a construção de imagem de teste java sem definir IMAGE_JDK_MAJOR_VERSION (#22095)</li>
+<li>[corrigir][construir] Corrigir possíveis configurações insuficientes relacionadas ao protostuff (#21629)</li>
+<li>[consertar][construir] Corrigir comando ps (#22451)</li>
+<li>[consertar] [construir] Corrigir a instalação do pulsar-client-python no arco ARM (#22733)</li>
+<li>[corrigir][construir] Corrigir o perfil maven propenso a erros (#21834)</li>
+<li>[corrigir][construir] Corrigir erro de digitação no script de renomeação para Windows cmd (#22426)</li>
+<li>[corrigir][construir] Corrigida a criação do diretório <code>packages-storage</code> na imagem docker (#22730)</li>
+<li>[corrigir] [construir] Remover chave de mapeamento duplicada no arquivo yaml composto por docker (#21979)</li>
+<li>[melhorar][construir] Versão de atualização para 3.3.0-SNAPSHOT (#21818)</li>
+<li>[melhorar][construir] Atualizar data de direitos autorais (#21830)</li>
+</ul>
+<blockquote>
+<p>Um agradecimento especial aos seguintes colaboradores que contribuíram para o Pulsar 3.3.0:
+@freeznet, @dragosvictor, @poorbarcode, @merlimat, @jiangpengcheng, @heesung-sn, @crossoverJie, @mattisonchao, @hanmz, @nikhilerigila09, @izumo27, @pgier, @sherlock-lin, @yaalsn, @thetumbled, @chenhongSZ, @mukesh154, @hangc0276, @gvanyao, @nodece, @Denovo1998, @coderzc, @zhangqian321, @eolivelli, @rdhabalia, @lhotari, @Shawyeok, @BewareMyPower, @dao-jun, @massakam, @teet-vaher-sympower, @Demogorgon314, @Technoboy-, @AnonHxy, @codelipenghui, @liangyepianzhou, @zymap, @jianyun8023, @shibd, @dlg99, @onobc, @nicoloboschi</p>
+</blockquote>
+<hr />
+<blockquote>
+<p><strong>Fonte</strong> <a href="https://github.com/apache/pulsar">apache/pulsar</a> · <code>v3.3.0</code> · 2024-06-05 · <a href="https://github.com/apache/pulsar/releases/tag/v3.3.0">versão upstream</a>
+<em>Espelhado literalmente para indexação. Todos os direitos pertencem ao projeto upstream.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release notes são publicados pelo projeto upstream e espelhados aqui para indexação. Todos os direitos pertencem aos seus autores. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/pulsar/3.0.6"> <span class="k">← Próximo</span> <span class="t">v3.0.6</span> </a> <a href="/releases/pulsar/3.2.3"> <span class="k">Anterior →</span> <span class="t">v3.2.3</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/apache/pulsar/releases/tag/v3.3.0" target="_blank" rel="noopener"> <span>Original no GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/apache/pulsar" target="_blank" rel="noopener"> <span>apache/pulsar</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">Nesta página</div> <nav> <a href="#" class="lv3">PIP</a><a href="#" class="lv3">Corretor</a><a href="#" class="lv3">Pulsar IO e Funções Pulsar</a><a href="#" class="lv3">Client</a><a href="#" class="lv3">Testes e CI</a><a href="#" class="lv3">Outros</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Histórico de versões</div> <ul class="rail-list"> <li> <a href="/releases/pulsar/5.0.1"> <span class="v">v5.0.1</span> <span class="d">26-10-26</span> </a> </li><li> <a href="/releases/pulsar/5.0.0"> <span class="v">v5.0.0</span> <span class="d">26-10-05</span> </a> </li><li> <a href="/releases/pulsar/4.2.5"> <span class="v">v4.2.5</span> <span class="d">26-10-05</span> </a> </li><li> <a href="/releases/pulsar/4.0.14"> <span class="v">v4.0.14</span> <span class="d">26-10-05</span> </a> </li><li> <a href="/releases/pulsar/5.0.0-m2"> <span class="v">v5.0.0-M2</span> <span class="d">26-09-16</span> </a> </li><li> <a href="/releases/pulsar/4.2.4"> <span class="v">v4.2.4</span> <span class="d">26-08-03</span> </a> </li><li> <a href="/releases/pulsar/4.0.13"> <span class="v">v4.0.13</span> <span class="d">26-08-03</span> </a> </li><li> <a href="/releases/pulsar/4.2.3"> <span class="v">v4.2.3</span> <span class="d">26-07-06</span> </a> </li> </ul> <a href="/pt/releases/pulsar" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Ver tudo 61 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/pt/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Inteligência de lançamento de código aberto, publicada diariamente.</p> </div> <div class="footer-col"> <h3>Acompanhar</h3> <ul> <li><a href="/pt/releases">Versões</a></li> <li><a href="/pt/projects">Projetos</a></li> <li><a href="/pt/releases.xml">Feed RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Arquivo</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Arquivo chinês</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notas técnicas</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Sobre</h3> <ul> <li><a href="/pt/method">Método</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release notes pertencem aos seus projetos upstream.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Buscar versões"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="lançamentos, projetos, versões…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

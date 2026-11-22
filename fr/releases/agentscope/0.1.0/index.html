@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="fr"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>agentscope v0.1.0 — STAGS NextStack</title><meta name="description" content="Support ZhipuAI API ( · Support Yi API ( · Support streaming mode in AgentScope ( · Support LiteLLM ("><meta name="keywords" content="release note open source, suivi des versions, agrégateur changelog, dernières modifications, suivi des dépréciations, versions Kafka, versions Spring Boot, versions Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/fr/releases/agentscope/0.1.0/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/fr/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/agentscope/0.1.0/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/agentscope/0.1.0/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/agentscope/0.1.0/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="agentscope v0.1.0 — STAGS NextStack"><meta property="og:description" content="Support ZhipuAI API ( · Support Yi API ( · Support streaming mode in AgentScope ( · Support LiteLLM ("><meta property="og:url" content="https://www.stags.cn/fr/releases/agentscope/0.1.0/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="fr_FR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"fr","description":"STAGS indexe les notes de version des projets d'infrastructure et d'IA – changements incompatibles, dépréciations et migrations – dans un flux unique en anglais.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/fr/releases/agentscope/0.1.0/#article","headline":"agentscope v0.1.0 release notes","datePublished":"2024-09-09","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/agentscope-ai/agentscope"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Aller au contenu</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/fr/" class="brand" aria-label="STAGS NextStack — Veille des versions open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/fr/releases">Versions</a><a href="/fr/projects">Projets</a><a href="/fr/method">Méthode</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Rechercher des versions"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Recherche</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Langue"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">FR</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Langue"> <p class="langmenu-head">Langue</p> <a class="langmenu-item" href="/releases/agentscope/0.1.0/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/agentscope/agentscope_v0.1.0" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/agentscope/0.1.0/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/agentscope/0.1.0/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/agentscope/0.1.0/" hreflang="fr" lang="fr" aria-current="true" data-on="true"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/agentscope/0.1.0/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/agentscope/0.1.0/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/fr/">Accueil</a> <span class="sep">/</span> <a href="/fr/releases">Versions</a> <span class="sep">/</span> <a href="/fr/releases/agentscope">agentscope</a> </nav> <h1 class="detail-title"> <span class="p">agentscope</span> v0.1.0 </h1> <div class="detail-meta"> <span class="chip chip--minor">Mineure</span> <span><span class="k">Publié</span>9 sept. 2024</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/agentscope-ai/agentscope" target="_blank" rel="noopener"> <span class="k">Source</span>agentscope-ai/agentscope </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/agentscope/0.1.0/"> Anglais original </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/fr/releases/agentscope/0.1.0/">Copier le lien</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Cette page est traduite automatiquement. Le texte anglais original fait foi.</p>  <div><h1>champ d'application de l'agent v0.1.0</h1>
+<h2>Ce qui a changé</h2>
+<h3>Modèle API</h3>
+<ol>
+<li>Prise en charge de ZhipuAI API (https://github.com/modelscope/agentscope/pull/181)</li>
+<li>Supporte Yi API (https://github.com/modelscope/agentscope/pull/343)</li>
+<li>Prise en charge du mode streaming dans AgentScope (https://github.com/modelscope/agentscope/pull/347)</li>
+<li>Prise en charge de LiteLLM (https://github.com/modelscope/agentscope/pull/204)</li>
+<li>Formatez les messages d'entrée en fonction du nom du modèle (https://github.com/modelscope/agentscope/pull/381)
+### Services
+Ajoutez les nouvelles fonctions de service suivantes</li>
+<li>Recherche TripAdvisor</li>
+<li>Recherche Dblp</li>
+<li>recherche Wikipédia</li>
+<li>Contrôle du navigateur Web</li>
+<li>Fonctions de service multimodal OpenAI et DashScope</li>
+</ol>
+<h3>Autres</h3>
+<ol>
+<li>Implémenter la méthode MoA dans AgentScope (https://github.com/modelscope/agentscope/pull/327)</li>
+<li>Un nouveau module d'ingénierie rapide (https://github.com/modelscope/agentscope/pull/242)</li>
+<li>Améliorer le module RAG (https://github.com/modelscope/agentscope/pull/184)</li>
+</ol>
+<h3>Détails</h3>
+<ul>
+<li>Ajoutez les wrappers de modèle ZhipuAI par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/181</li>
+<li>【HOTFIX】 Correction d'une erreur dans l'exemple de gomoku par @DavdGao dans https://github.com/modelscope/agentscope/pull/195</li>
+<li>[HOTFIX] Correction d'une faute de frappe dans 0.0.4 README_ZH par @pan-x-c dans https://github.com/modelscope/agentscope/pull/199</li>
+<li>Implémenter la fonctionnalité de recherche DBLP par @PengHongyiNTU dans https://github.com/modelscope/agentscope/pull/177</li>
+<li>Ajouter une bannière par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/201</li>
+<li>[DOC] Mise à jour distribué_basic/README.md par @eltociear dans https://github.com/modelscope/agentscope/pull/207</li>
+<li>[HOTFIX] Correction d'un bug dans l'agent du forum par @DavdGao dans https://github.com/modelscope/agentscope/pull/212</li>
+<li>[Hotfix] Correction d'une erreur de chargement de la mémoire par @ZiTao-Li dans https://github.com/modelscope/agentscope/pull/197</li>
+<li>[HOTFIX] Mettre à jour la stratégie d'invite dans le chat Ollama API. par @DavdGao dans https://github.com/modelscope/agentscope/pull/206</li>
+<li>Ajoutez le wrapper litellm par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/204</li>
+<li>Ajout du fichier README pour <code>conversation_self_organizing</code> par @zyzhang1130 dans https://github.com/modelscope/agentscope/pull/210</li>
+<li>Mise à jour des problèmes temporaires par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/216</li>
+<li>Ajoutez la prise en charge des modèles de vision dans OpenAI Chat API, par ex. gpt-4o, gpt-4-turbo, etc. par @DavdGao dans https://github.com/modelscope/agentscope/pull/221</li>
+<li>[Hot Fix] Ajoutez ImportErrorReporter pour optimiser le message d'erreur lorsque des packages sont manquants par @pan-x-c dans https://github.com/modelscope/agentscope/pull/224</li>
+<li>Ajouter une enquête de @rayrayraykk dans https://github.com/modelscope/agentscope/pull/223</li>
+<li>Exemple pour l'agent SWE par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/173</li>
+<li>support dalle sur poste de travail par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/225</li>
+<li>Rendre l'analyseur de dictionnaire beaucoup plus flexible et dissocier les informations spécifiques aux tâches de DictDialogAgent par @DavdGao dans https://github.com/modelscope/agentscope/pull/203</li>
+<li>[HOTFIX] Correction d'une erreur de format dans le tutoriel de @DavdGao dans https://github.com/modelscope/agentscope/pull/226</li>
+<li>Ajoutez un exemple sur la façon d'encapsuler les outils langchain, les appels dashscope api aux outils accessibles dans la boîte à outils. par @PengHongyiNTU dans https://github.com/modelscope/agentscope/pull/219</li>
+<li>[HOTFIX] Correction d'un bug dans la méthode de formatage d'ollama et litellm par @DavdGao dans https://github.com/modelscope/agentscope/pull/230</li>
+<li>Doc/litellm doc par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/232</li>
+<li>Ajoutez la commande <code>as_server</code> et ajoutez <code>server_id</code> par @pan-x-c dans https://github.com/modelscope/agentscope/pull/211</li>
+<li>删除markdown « - ».md par @ZhuangXialie dans https://github.com/modelscope/agentscope/pull/236</li>
+<li>Correction du conflit Precommit flake8/black par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/241</li>
+<li>Ajoutez le post API pour l'intégration du modèle et corrigez les wrappers du modèle d'intégration par @ZiTao-Li dans https://github.com/modelscope/agentscope/pull/186</li>
+<li>ajouter des nouvelles pour la maintenance du site Web par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/250</li>
+<li>[Hotfix] ajoute une spécification de version pour l'exemple RAG par @ZiTao-Li dans https://github.com/modelscope/agentscope/pull/248</li>
+<li>Correction d'une faute de frappe et d'une invite pour game_werewolf par @qbc2016 dans https://github.com/modelscope/agentscope/pull/251</li>
+<li>Correction du wrapper de chat Gemini par @zyzhang1130 dans https://github.com/modelscope/agentscope/pull/233</li>
+<li>[Hot Fix] Correction d'une erreur d'importation lors de l'importation de agentscope par @pan-x-c dans https://github.com/modelscope/agentscope/pull/253</li>
+<li>Mise à jour du modèle testé par Gomoku par @zyzhang1130 dans https://github.com/modelscope/agentscope/pull/247</li>
+<li>la version nettoyée de la branche game_werewolf_README par @zyzhang1130 dans https://github.com/modelscope/agentscope/pull/246</li>
+<li>Ajoutez une vidéo de démonstration dans README.md du repo et du jeu de loup-garou par @DavdGao dans https://github.com/modelscope/agentscope/pull/257</li>
+<li>[Hot Fix] Correction du bug selon lequel save_dir n'est pas efficace par @pan-x-c dans https://github.com/modelscope/agentscope/pull/263</li>
+<li>[HOTFIX] Correction du bug dans loguru qui ne peut pas afficher les balises spéciales par @DavdGao dans https://github.com/modelscope/agentscope/pull/266</li>
+<li>Affiner l'invite pour les jeux de loups-garous par @qbc2016 dans https://github.com/modelscope/agentscope/pull/267</li>
+<li>Mise à jour de la liste des modèles testés dans l'exemple d'agent SWE par @zyzhang1130 dans https://github.com/modelscope/agentscope/pull/271</li>
+<li>Assurez-vous que le jeu se déroule sans problème lorsque certains joueurs déclarent leur abstention… par @AskyJx dans https://github.com/modelscope/agentscope/pull/272</li>
+<li>Correction du lien vers le fichier README par @KPCOFGS dans https://github.com/modelscope/agentscope/pull/217</li>
+<li>Ajoutez des fonctions de service multimodal basées sur DashScope API dans la bibliothèque AgentScope par @PengHongyiNTU dans https://github.com/modelscope/agentscope/pull/255</li>
+<li>[Hotfix] Ajoutez bs4 dans setup.py pour digérer les pages Web recherchées par @qbc2016 dans https://github.com/modelscope/agentscope/pull/274</li>
+<li>[Hotfix] Corrige l'erreur dans unittest. par @DavdGao dans https://github.com/modelscope/agentscope/pull/275</li>
+<li>Prise en charge de la validation basée sur Pydantic dans le MarkdownJsonDictParser par @DavdGao dans https://github.com/modelscope/agentscope/pull/261</li>
+<li>Reformatage du fichier README de l'exemple <code>distributed_basic</code> par @zyzhang1130 en https://github.com/modelscope/agentscope/pull/277</li>
+<li>Reconstruire AgentScope Studio par @pan-x-c dans https://github.com/modelscope/agentscope/pull/238</li>
+<li>Tutoriel de mise à jour pour la nouvelle version par @DavdGao dans https://github.com/modelscope/agentscope/pull/278</li>
+<li>Sortie v0.0.5 par @pan-x-c dans https://github.com/modelscope/agentscope/pull/279</li>
+<li>[HOTFIX] Correction de l'erreur d'importation dans PyPI par @DavdGao dans https://github.com/modelscope/agentscope/pull/280</li>
+<li>[HOTFIX] Correction d'une erreur dans setup.py et mise à jour du document par @DavdGao dans https://github.com/modelscope/agentscope/pull/283</li>
+<li>Reformater et améliorer le module et les agents RAG par @ZiTao-Li dans https://github.com/modelscope/agentscope/pull/184</li>
+<li>Pré-version de 0.0.6a2 par @pan-x-c dans https://github.com/modelscope/agentscope/pull/290</li>
+<li>[Hotfix] Ajout d'un test unitaire et correction d'une erreur d'importation de LlamaIndexKnowledge par @ZiTao-Li dans https://github.com/modelscope/agentscope/pull/289</li>
+<li>UT prend en charge plus de py ver par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/291</li>
+<li>correctif (faute de frappe) : mise à jour 208-distribute.md par @jianzs dans https://github.com/modelscope/agentscope/pull/293</li>
+<li>Mise à jour des fichiers liés au jeu loup-garou par @qbc2016 dans https://github.com/modelscope/agentscope/pull/285</li>
+<li>[Hotfix] Correction d'un problème de lien dans le didacticiel de @qbc2016 dans https://github.com/modelscope/agentscope/pull/294</li>
+<li>Ajoutez des modules de réglage rapide par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/242</li>
+<li>[HOTFIX] Correction d'une erreur dans le didacticiel lié à l'optimisation des invites système par @DavdGao dans https://github.com/modelscope/agentscope/pull/298</li>
+<li>[HOTFIX] Correction de l'erreur qui ne trouve pas de chiffon dans le didacticiel de @DavdGao dans https://github.com/modelscope/agentscope/pull/299</li>
+<li>pré-version 0.0.6a3 par @pan-x-c dans https://github.com/modelscope/agentscope/pull/300</li>
+<li>Changer de studio en gradio par @qbc2016 dans https://github.com/modelscope/agentscope/pull/295</li>
+<li>Actualisation de la mise à jour : Workstation de nouveau en ligne par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/305</li>
+<li>Ajout du mode pas à pas pour chaque exemple du poste de travail par @qbc2016 dans https://github.com/modelscope/agentscope/pull/284</li>
+<li>Mettez à jour README.md pour <code>distributed_debate</code> par @zyzhang1130 dans https://github.com/modelscope/agentscope/pull/306</li>
+<li>Changer de domaine pour le poste de travail par @qbc2016 dans https://github.com/modelscope/agentscope/pull/316</li>
+<li>[Hotfix] Correction de gradio affichant deux fois le message utilisateur par @ZiTao-Li dans https://github.com/modelscope/agentscope/pull/317</li>
+<li>Unifier la saisie de la fonction de réponse des agents et mettre à jour leurs docstrings. par @DavdGao dans https://github.com/modelscope/agentscope/pull/314</li>
+<li>Ajout d'un exemple de configuration d'un modèle d'intégration local par @ZiTao-Li dans https://github.com/modelscope/agentscope/pull/322</li>
+<li>Correction des noms de références papier par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/323</li>
+<li>Supprimez la classe <code>Tht</code> d'AgentScope et la saisie unifiée dans Msg plutôt que MessageBase par @DavdGao dans https://github.com/modelscope/agentscope/pull/313</li>
+<li>Ajoutez OpenAI en tant que services par @PengHongyiNTU dans https://github.com/modelscope/agentscope/pull/304</li>
+<li>Correction d'un bug d'affichage dans le poste de travail pour les nœuds de groupe par @PatrickG1014 dans https://github.com/modelscope/agentscope/pull/325</li>
+<li>Correction d'une faute de frappe env par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/329</li>
+<li>[HOTFIX] Supprimez le répertoire du bloc-notes et corrigez les fautes de frappe. par @DavdGao dans https://github.com/modelscope/agentscope/pull/330</li>
+<li>correctif : modifiez DashScopeWrapperBase pour attribuer une clé api_key vide à dashscope.api_key lors de l'initialisation de la configuration du modèle par @xuanmiss dans https://github.com/modelscope/agentscope/pull/335</li>
+<li>Engagement initial pour la recherche sur les algorithmes basés sur LLM par @yanxi-chen dans https://github.com/modelscope/agentscope/pull/331</li>
+<li>[HOTFIX] Correction d'un bug dans DictDialogAgent par @DavdGao dans https://github.com/modelscope/agentscope/pull/342</li>
+<li>Téléchargez le code pour le projet de recherche sur les algorithmes basés sur LLM par @yanxi-chen dans https://github.com/modelscope/agentscope/pull/336</li>
+<li>S'il s'agit de json(str), convertissez-le en json(dict) par @samchaolau dans https://github.com/modelscope/agentscope/pull/334</li>
+<li>Ajout du module MoA dans AgentScope par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/327</li>
+<li>Ajouter un module de test pour MoA par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/346</li>
+<li>Ajout de fonctions de gestion de serveur d'agent par @pan-x-c dans https://github.com/modelscope/agentscope/pull/239</li>
+<li>Mettez en surbrillance le poste de travail de @rayrayraykk dans https://github.com/modelscope/agentscope/pull/348</li>
+<li>[HOT FIX] Correction de bugs potentiels dans la fonction de résumé par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/350</li>
+<li>Prise en charge du mode streaming dans AgentScope par @DavdGao dans https://github.com/modelscope/agentscope/pull/347</li>
+<li>Mise à jour de 101-agentscope.md par @yizhangliu dans https://github.com/modelscope/agentscope/pull/354</li>
+<li>Correction du nom coloré du message et agrandissement de l'image de démonstration du mode streaming par @zhijianma dans https://github.com/modelscope/agentscope/pull/357</li>
+<li>Améliorer l'efficacité de l'initialisation d'AgentScope par @DavdGao dans https://github.com/modelscope/agentscope/pull/353</li>
+<li>Ajoutez de nouveaux analyseurs pour les noms de balises et les quantités incertaines par @DavdGao dans https://github.com/modelscope/agentscope/pull/341</li>
+<li>Ajouter l'option d'URL d'hôte dans les wrappers de modèle Ollama par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/365</li>
+<li>[HOTFIX] Correction de l'impression en double dans l'agent de réaction. par @DavdGao dans https://github.com/modelscope/agentscope/pull/367</li>
+<li>Ajoutez cname et mettez à jour la version setuptools par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/369</li>
+<li>[Hot Fix] Correction de la fonction de vérification du script chargé dans Studio par @pan-x-c dans https://github.com/modelscope/agentscope/pull/371</li>
+<li>Ajoutez un exécuteur de notebook en tant que fonction de service et ajoutez un agent codeact. par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/231</li>
+<li>Unifiez le modèle, le studio, le fichier et le moniteur dans un seul gestionnaire. par @DavdGao dans https://github.com/modelscope/agentscope/pull/364</li>
+<li>Implémenter la fonction de format orienté modèle dans OpenAI et le wrapper de discussion Post API par @DavdGao dans https://github.com/modelscope/agentscope/pull/381</li>
+<li>Studio prend en charge l'allocation du serveur d'agent par @pan-x-c dans https://github.com/modelscope/agentscope/pull/351</li>
+<li>Correction du bug de l'agent de réaction du poste de travail par @qbc2016 dans https://github.com/modelscope/agentscope/pull/379</li>
+<li>Unifiez la saisie liée aux messages dans AgentScope dans Msg plutôt que de dicter par @DavdGao dans https://github.com/modelscope/agentscope/pull/386</li>
+<li>Correction de bugs pour flask par @qbc2016 dans https://github.com/modelscope/agentscope/pull/391</li>
+<li>[Hot Fix] Correction de bugs pour check_port par @TangJiakai dans https://github.com/modelscope/agentscope/pull/392</li>
+<li>Mettre à jour le nom dans README.md par @zyzhang1130 dans https://github.com/modelscope/agentscope/pull/394</li>
+<li>[Hot Fix] Correction de l'état de <code>_ModelConfig</code> obtenu et défini par @pan-x-c dans https://github.com/modelscope/agentscope/pull/397</li>
+<li>Poste de travail en ligne par @rayrayraykk dans https://github.com/modelscope/agentscope/pull/345</li>
+<li>Autoriser l'utilisateur à initialiser l'agent sans appeler agentscope.init par @DavdGao dans https://github.com/modelscope/agentscope/pull/404</li>
+<li>Ajouter un service de récupération Wiki par @PengfeiHePower dans https://github.com/modelscope/agentscope/pull/324</li>
+<li>[Hotfix] Correction du bug save_image pour generate_image_from_name dans web/gradio/utils.py par @qbc2016 dans https://github.com/modelscope/agentscope/pull/410</li>
+<li>Prise en charge de l'exécution de as_gradio pour les configurations HTML par @qbc2016 dans https://github.com/modelscope/agentscope/pull/414</li>
+<li>Ajouter un exemple pour l'agent de routeur par @DavdGao dans https://github.com/modelscope/agentscope/pull/416</li>
+<li>Correction du Load_model_by_config_name obsolète dans l'exemple nl2sql de @garyzhang99 dans https://github.com/modelscope/agentscope/pull/415</li>
+<li>Ajout d'un contrôle de sécurité pour la fonction de service execute_shell_command par @DavdGao dans https://github.com/modelscope/agentscope/pull/420</li>
+<li>Prise en charge de la sérialisation des objets de message dans AgentScope et de la suppression des arguments inutilisés. par @DavdGao dans https://github.com/modelscope/agentscope/pull/388</li>
+<li>Nettoyez le dépôt en supprimant les modules obsolètes et en fusionnant les fichiers avec les mêmes fonctionnalités. par @DavdGao dans https://github.com/modelscope/agentscope/pull/422</li>
+<li>集成Yi模型 par @Haijian06 dans https://github.com/modelscope/agentscope/pull/343</li>
+<li>Fonctions de l'outil Tripadvisor par @zyzhang1130 dans https://github.com/modelscope/agentscope/pull/332</li>
+<li>[Hotfix] Correction des hyperliens pour le poste de travail en ligne dans le fichier Lisez-moi par @qbc2016 dans https://github.com/modelscope/agentscope/pull/426</li>
+<li>[Hot Fix] Correction de <code>ModelManager</code> non initialisé en mode distribué par @pan-x-c dans https://github.com/modelscope/agentscope/pull/428</li>
+<li>[HotFix] chargement paresseux de lama-index-knownledge par @pan-x-c dans https://github.com/modelscope/agentscope/pull/429</li>
+<li>[Hot Fix] Correction du champ de texte de ModelResponse lors de l'utilisation du mode flux par @pan-x-c dans https://github.com/modelscope/agentscope/pull/431</li>
+<li>Activer la capacité de navigation Web dans agentscope par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/296</li>
+<li>Correction de fautes de frappe par @garyzhang99 dans https://github.com/modelscope/agentscope/pull/434</li>
+<li>Préparation de la version v0.1.0 par @DavdGao dans https://github.com/modelscope/agentscope/pull/433</li>
+<li>Mettez à jour setup.py pour faciliter l'installation d'agentscope par @DavdGao dans https://github.com/modelscope/agentscope/pull/435</li>
+</ul>
+<h2>Nouveaux contributeurs</h2>
+<ul>
+<li>@PengHongyiNTU a apporté sa première contribution dans https://github.com/modelscope/agentscope/pull/177</li>
+<li>@zyzhang1130 a fait sa première contribution dans https://github.com/modelscope/agentscope/pull/210</li>
+<li>@ZhuangXialie a apporté sa première contribution dans https://github.com/modelscope/agentscope/pull/236</li>
+<li>@AskyJx a apporté sa première contribution dans https://github.com/modelscope/agentscope/pull/272</li>
+<li>@KPCOFGS a apporté sa première contribution dans https://github.com/modelscope/agentscope/pull/217</li>
+<li>@jianzs a apporté sa première contribution dans https://github.com/modelscope/agentscope/pull/293</li>
+<li>@PatrickG1014 a fait sa première contribution dans https://github.com/modelscope/agentscope/pull/325</li>
+<li>@xuanmiss a fait sa première contribution dans https://github.com/modelscope/agentscope/pull/335</li>
+<li>@yanxi-chen a fait sa première contribution dans https://github.com/modelscope/agentscope/pull/331</li>
+<li>@samchaolau a fait sa première contribution dans https://github.com/modelscope/agentscope/pull/334</li>
+<li>@yizhangliu a fait sa première contribution dans https://github.com/modelscope/agentscope/pull/354</li>
+<li>@TangJiakai a apporté sa première contribution dans https://github.com/modelscope/agentscope/pull/392</li>
+<li>@PengfeiHePower a apporté sa première contribution dans https://github.com/modelscope/agentscope/pull/324</li>
+<li>@Haijian06 a apporté sa première contribution dans https://github.com/modelscope/agentscope/pull/343
+<strong>Changelog complet</strong> : https://github.com/modelscope/agentscope/compare/v0.0.4...v0.1.0</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Source</strong> <a href="https://github.com/agentscope-ai/agentscope">agentscope-ai/agentscope</a> · <code>v0.1.0</code> · 2024-09-09 · <a href="https://github.com/agentscope-ai/agentscope/releases/tag/v0.1.0">version amont</a>
+<em>Verbatim reflété pour l'indexation. Tous les droits appartiennent au projet en amont.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Les Release note sont publiés par le projet en amont et mis en miroir ici pour l&#39;indexation. Tous les droits appartiennent à leurs auteurs. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/agentscope/0.1.1"> <span class="k">← Suivant</span> <span class="t">v0.1.1</span> </a> <a href="/releases/agentscope/0.0.4"> <span class="k">Précédent →</span> <span class="t">v0.0.4</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/agentscope-ai/agentscope/releases/tag/v0.1.0" target="_blank" rel="noopener"> <span>Original sur GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/agentscope-ai/agentscope" target="_blank" rel="noopener"> <span>agentscope-ai/agentscope</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">Sur cette page</div> <nav> <a href="#" class>Ce qui a changé</a><a href="#" class="lv3">Modèle API</a><a href="#" class="lv3">Services</a><a href="#" class="lv3">Autres</a><a href="#" class="lv3">Détails</a><a href="#" class>Nouveaux contributeurs</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Historique des versions</div> <ul class="rail-list"> <li> <a href="/releases/agentscope/2.0.12"> <span class="v">v2.0.12</span> <span class="d">26-11-16</span> </a> </li><li> <a href="/releases/agentscope/2.0.11"> <span class="v">v2.0.11</span> <span class="d">26-10-27</span> </a> </li><li> <a href="/releases/agentscope/2.0.10"> <span class="v">v2.0.10</span> <span class="d">26-10-12</span> </a> </li><li> <a href="/releases/agentscope/2.0.9"> <span class="v">v2.0.9</span> <span class="d">26-09-28</span> </a> </li><li> <a href="/releases/agentscope/2.0.8"> <span class="v">v2.0.8</span> <span class="d">26-09-08</span> </a> </li><li> <a href="/releases/agentscope/2.0.7.post1"> <span class="v">v2.0.7.post1</span> <span class="d">26-08-28</span> </a> </li><li> <a href="/releases/agentscope/2.0.7"> <span class="v">v2.0.7</span> <span class="d">26-08-24</span> </a> </li><li> <a href="/releases/agentscope/2.0.6"> <span class="v">v2.0.6</span> <span class="d">26-08-07</span> </a> </li> </ul> <a href="/fr/releases/agentscope" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Tout afficher 51 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/fr/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Informations sur les versions open source, publiées quotidiennement.</p> </div> <div class="footer-col"> <h3>Suivre</h3> <ul> <li><a href="/fr/releases">Versions</a></li> <li><a href="/fr/projects">Projets</a></li> <li><a href="/fr/releases.xml">Flux RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Archives</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Archives chinoises</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notes techniques</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>À propos</h3> <ul> <li><a href="/fr/method">Méthode</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Les Release note appartiennent à leurs projets en amont.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Rechercher des versions"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="Rechercher des versions, projets, numéros…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

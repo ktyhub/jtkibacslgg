@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="ja"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>claude-code v2.1.280 — STAGS NextStack</title><meta name="description" content="Added Claude Opus 5.5 (claude-opus-5-5), now the default Opus model — 1M context, $4/$20 per Mtok with $0.20/Mtok cache reads"><meta name="keywords" content="オープンソース release note、リリース トラッカー、changelog アグリゲーター、重大な変更、非推奨トラッカー、Kafka リリース、Spring Boot リリース、Kubernetes リリース"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/ja/releases/claude-code/2.1.280/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/ja/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/claude-code/2.1.280/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/claude-code/2.1.280/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/claude-code/2.1.280/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="claude-code v2.1.280 — STAGS NextStack"><meta property="og:description" content="Added Claude Opus 5.5 (claude-opus-5-5), now the default Opus model — 1M context, $4/$20 per Mtok with $0.20/Mtok cache reads"><meta property="og:url" content="https://www.stags.cn/ja/releases/claude-code/2.1.280/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="ja_JP"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"ja","description":"STAGS はインフラストラクチャおよび AI プロジェクトのリリースノートを索引化し、破壊的変更・非推奨・移行情報を英語優先の単一フィードで提供します。","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/ja/releases/claude-code/2.1.280/#article","headline":"claude-code v2.1.280 release notes","datePublished":"2026-09-22","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/anthropics/claude-code"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">本文へスキップ</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/ja/" class="brand" aria-label="STAGS NextStack — オープンソースのリリース情報"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/ja/releases">リリース</a><a href="/ja/projects">プロジェクト</a><a href="/ja/method">仕組み</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="リリースを検索"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">検索</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="言語"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">日</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="言語"> <p class="langmenu-head">言語</p> <a class="langmenu-item" href="/releases/claude-code/2.1.280/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/claude-code/claude-code_v2.1.280" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/claude-code/2.1.280/" hreflang="ja" lang="ja" aria-current="true" data-on="true"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/claude-code/2.1.280/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/claude-code/2.1.280/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/claude-code/2.1.280/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/claude-code/2.1.280/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/ja/">ホーム</a> <span class="sep">/</span> <a href="/ja/releases">リリース</a> <span class="sep">/</span> <a href="/ja/releases/claude-code">claude-code</a> </nav> <h1 class="detail-title"> <span class="p">claude-code</span> v2.1.280 </h1> <div class="detail-meta"> <span class="chip chip--patch">パッチ</span> <span><span class="k">公開日</span>2026年9月22日</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener"> <span class="k">出典</span>anthropics/claude-code </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/claude-code/2.1.280/"> 英語原文 </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/ja/releases/claude-code/2.1.280/">リンクをコピー</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">このページは機械翻訳です。内容は必ず英文原文をご確認ください。</p>  <div><h1>クロードコード v2.1.280</h1>
+<h2>何が変わったのか</h2>
+<ul>
+<li>Claude Opus 5.5 (<code>claude-opus-5-5</code>) を追加しました。デフォルトの Opus モデルになりました - 1M コンテキスト、$0.20/Mtok キャッシュ読み取りで Mtok あたり $4/$20</li>
+<li>全画面モードのより多くのリストにマウスのサポートを追加しました。ホイールは <code>/skills</code> リストをスクロールし、<code>/plugin</code> のスキルの状態オプションは cli 確認できます。</li>
+<li>セッション内のすべての MCP サーバーの MCP ツール説明とサーバー命令の 2,048 文字の上限を変更する <code>CLAUDE_CODE_MAX_MCP_DESCRIPTION_LENGTH</code> を追加しました。</li>
+<li>フック出力サイズとファイルに保存されるオーバーサイズ出力の数を <code>hook_execution_complete</code> OpenTelemetry イベントに追加しました。</li>
+<li>ツリー内のスペルによって判断されるシンボリックリンクされたパスを介した書き込みを修正しました: 書き込みが到着するプロンプト名、および <code>acceptEdits</code>、許可ルールと自動モードは、外部への 1 つの到着を承認しなくなりました</li>
+<li>安全性チェック decli がレビューする際に自動モードでアクションを何度も再試行する問題を修正しました。アクションは一度拒否され、再試行しても役に立たないことがわかります</li>
+<li>安全性チェックで応答がなかった場合に、自動モードで一時停止せずにアクションが何度も拒否される問題を修正しました。再試行は後退し、10 回連続でメッセージが表示されてターンが停止します。</li>
+<li>モデルが <code>file_path</code> および <code>content</code> の代わりに <code>path</code>、<code>file_text</code>、<code>file_content</code>、または野良 <code>description</code> を送信すると、書き込み呼び出しが検証に失敗する問題を修正しました。</li>
+<li>ほとんどのダイアログ (<code>/model</code>、<code>/effort</code>、<code>/config</code>、<code>/status</code>、<code>/usage</code>、<code>/plugin</code>、<code>/sandbox</code>、<code>/permissions</code>、<code>/artifacts</code>、<code>/mobile</code>、<code>/login</code>、<code>/upgrade</code>、<code>/usage-credits</code>、 <code>/install-github-app</code>、<code>/setup-bedrock</code>、<code>/setup-vertex</code>) ダイアログを閉じる代わりにクロード コードを終了します。</li>
+<li>ターミナル ウィンドウを前面に表示するだけで、検索ピッカー、タブ バー、エージェント/ワークフロー行、スラッシュ コマンド リンク、提案ドロップダウンなどのポインターの下の項目もトリガーする click を修正しました。</li>
+<li>ダイアログを閉じる野良 <code>n</code> とダイアログを確認する野良 <code>y</code> を修正しました。 Enter キーと Esc キーを押して受け入れてキャンセルします (<code>y</code>/<code>n</code> を <code>keybindings.json</code> の <code>confirm:yes</code>/<code>confirm:no</code> にバインドして復元します)</li>
+<li>ダイアログ内のテキストフィールドで、そのキーのキーバインドに入力した文字、数字、またはスペースが失われる問題を修正しました。</li>
+<li>Enter キーで非表示の文字が削除された後、Windows 端末でプロンプト ラインがスクランブルされたままになる問題を修正しました。画面が再描画されるので、送信される正確なテキストを確認できます。</li>
+<li>ペルシャ語とアラビア語のテキストがラテン語の単語や数字に接尾辞を付けるために使用するゼロ幅の非結合子を削除する非表示文字のクリーンアップを修正しました (「PDF」の複数形など)</li>
+<li>Ctrl+C で音声ディクテーションが停止しない問題を修正しました (プロンプトはクリアされましたが、マイクは録音を続けました)、トランスクリプトの処理中に Esc キーがキャンセルされず、トランスクリプト ビューおよび vim NORMAL モードからスペースを押したままディクテーションが開始される問題を修正しました</li>
+<li>クロードの動作中にホスト アプリ (クロード デスクトップ、VS コード、SDK) から行われたモデルの切り替えにより、次のプロンプトでプロンプト キャッシュ ミスが発生する問題を修正しました。</li>
+<li>再開されたフォーク サブエージェントが、最初に使用したツール リストを再送信するのではなく、ツール リストを再構築することで、そのエージェントのプロンプト キャッシュが壊れる問題を修正しました。</li>
+<li>詳細モード外で展開された場合に内部来歴プリアンブルを示すサブエージェント ハンドバック メッセージを修正しました</li>
+<li>ブランチまたはタグを追跡する GitHub リポジトリまたは git URL からプラグインを更新した後、インストール時のコミットを維持する <code>installed_plugins.json</code> を修正しました</li>
+<li>フォルダー内の <code>manifest.json</code> に名前がリストされている場合、<code>~/.claude/skills/</code> のスキルが <code>~/.claude/skills/.trash/</code> に移動される問題を修正</li>
+<li>ライトおよび ANSI テーマでホバー ハイライトが表示されないセッション フィードバック アンケートを修正しました</li>
+<li>唯一の実行を開く前に 1 行のリストを一時的に表示する <code>/workflows</code> を修正しました</li>
+<li>フルスクリーン モードで、マウス ホイールが非表示のオプション (<code>/model</code> や <code>/permissions</code> など) を含む選択リストをスクロールしない問題を修正しました。</li>
+<li><code>/plugin</code> および <code>/skills</code> でロードに失敗したプラグインと同じ赤色の ✘ を表示するオフに切り替えたスキルを修正しました。オフでは薄暗い◯が表示されるようになりました</li>
+<li>複数選択オプションの説明がラベルの下ではなくオプション番号の下にインデントされる問題を修正</li>
+<li>全画面モードで <code>/plugin</code>、<code>/skills</code>、<code>/mcp</code> の検索ボックスの右枠が失われる問題を修正</li>
+<li><code>/mcp</code> がサーバー リストでは △ と表示されるが、同じサーバーの詳細ビューでは ⚠ が表示される問題を修正しました。リスト、詳細ビュー、<code>/plugin</code> がすべて表示されるようになりました ⚠</li>
+<li><code>/config</code> 設定リスト、<code>/model</code>、<code>/memory</code>、許可プロンプトなどの選択リストで Home と End が何もしない問題を修正</li>
+<li><code>/skills</code> メニューの PgUp/PgDn が最初または最後のスキルで停止せずに折り返される問題を修正しました</li>
+<li><code>/config</code> リストで選択された設定の値をタブがサイレントに変更する問題を修正しました。今はそこでは何もしません</li>
+<li>「ロール 'システム' は 'アシスタント' メッセージの前に置く必要があります」API エラーにより毎ターン失敗する会話を修正</li>
+<li>サポートしていないプロキシまたはゲートウェイの背後で API エラー 400「入力タグ 'advisor_20260301'」が発生して毎ターン失敗するアドバイザーとの会話を修正しました。リクエストはそれなしで再試行されます</li>
+<li>セッションが毎ターン失敗し、保存された履歴にロードできない MCP ツールに関する不正な通知が含まれていた場合の <code>/compact</code> を修正しました。</li>
+<li>保存されたトランスクリプトに不正な形式のシステム メッセージまたはファイル リストのないメモリ保存通知が保持されているセッションを再開するときのクラッシュを修正しました</li>
+<li>長時間実行されているフルスクリーン セッションが「回復不能なインターフェイス エラーの後にクロード コードが終了しました」で終了する原因の 1 つを修正しました。破損したキャッシュされたメッセージ リストが再構築されるようになりました。</li>
+<li>設定ファイル、または編集後に再読み込みするファイルが読み込み中に名前付きパイプに置き換えられると、クロード コードがハングする問題を修正しました。</li>
+<li><code>settings.json</code> に移動した設定が <code>~/.claude.json</code> の <code>null</code> または <code>&quot;false&quot;</code> のような値を保持している場合に、<code>/config</code> がクラッシュし、一部のオン/オフ設定が誤って読み取られる問題を修正しました。</li>
+<li>未完了のバックグラウンド エージェント、シェル、またはワークフローを使用してセッションを再開すると、何かを入力する前にモデル ターンが自動的に開始される問題を修正しました。</li>
+<li>バックグラウンド サブエージェントに送信されたメッセージが、サブエージェントがターンを終了したときに、ヘッドレス セッションおよび SDK セッションでサイレントに失われる問題を修正しました。</li>
+<li>完了したサブエージェントのレポートを開始した会話がレポートが読み取られる前に圧縮された場合に失われる問題を修正しました</li>
+<li>LSP プラグインがアクティブな場合、バックグラウンド サブエージェントが LSP ツールを使用できない問題を修正</li>
+<li>ゼロ以外の良性の終了 (一致しない grep など) を失敗として報告するバックグラウンド シェル タスクを修正しました</li>
+<li>セッションに渡された環境変数に NUL 文字が含まれている場合、バックグラウンド セッション (<code>claude --bg</code>) で git、フック、プラグイン、その他のヘルパー プログラムを実行できない問題を修正しました。</li>
+<li>バックグラウンド サブエージェントの実行中に終了するには Ctrl+C を 3 回または 4 回押す必要がある問題を修正しました。 2 回押すと終了します</li>
+<li>Esc キーを押してプロンプトを編集したり、プロンプトに巻き戻したり、起動フックの実行中に Esc キーを押したりするなど、送信されたプロンプトが入力に戻ったときにドロップされる IDE の選択を修正しました。</li>
+<li>Ctrl+S で隠した <code>!</code> シェルモード プロンプトが復元されると普通のプロンプトとして戻ってくる問題と、隠した直後の <code>/</code> がファイル パスをリストする問題を修正しました。</li>
+<li>一時ディレクトリがいっぱいで、書き込み可能でない、または別のユーザーが所有している場合に、エラーの代わりに空白の応答しない画面が表示される <code>claude agents</code> を修正しました。</li>
+<li><code>claude mcp remove</code> 後に同じ名前で再度追加された MCP サーバーが再接続せずに認証が必要と表示される問題を修正</li>
+<li>git 認証情報ヘルパーを無視するバックグラウンド プラグイン マーケットプレイスの自動更新を修正したため、プライベート リポジトリ マーケットプレイスは実行のたびに再クローンされるか、まったく更新されませんでした。</li>
+<li>公式マーケットプレイスのスナップショット ファイルがリンクであるか大きすぎる場合に、プラグインの記録されたコミットをクリアし、バージョン「不明」に移動する <code>claude plugin update</code> を修正しました</li>
+<li>組織のポリシーを読み込めない場合 (Web プロキシの背後など)、アーティファクト ツールが静かに消える問題を修正しました。クロードは今、何がそれを妨げているのかを語ります</li>
+<li>保存されたデータベースのアクセス ルールがサイレントにリセットされるか、ビューア プロファイル スコープが削除される機能が指定されていない状態で再送信された場合に、アーティファクトがサイレントに再公開される問題を修正しました。彼らは今拒否されています</li>
+<li>停止したクラウド レビューを完了または再試行エラーとして報告し、セッションが削除されるかサインイン アカウントが変更されると完全なタイムアウトになるまで待機する <code>/ultrareview</code> を修正しました。</li>
+<li>クロード アプリで、/compact または /clear の直後にリモート コントロールおよびクラウド セッションのコンテキスト使用状況の数値が欠落している、または古いことが表示される問題を修正しました。</li>
+<li>コミットされていない変更があるたびにブランチのコミットされたファイルを削除するリモート コントロールとクラウド セッションのクロード アプリの差分ビューを修正しました</li>
+<li>セッションのアクセス トークンがローテーションされる間に長時間のオーバーロードを待機した後、クラウドおよびセルフホストのランナー セッションが「認証に失敗しました」というメッセージで失敗する問題を修正しました。</li>
+<li>約 10,800 文字にわたるメモリ ファイルの先頭と末尾のみをクロードに表示する Cowork セッションでのメモリ書き込み競合を修正しました。そのため、書き込みを再試行すると途中の文字が削除されました。</li>
+<li>セルフホスト ランナー: <code>--configure-git</code> で署名に失敗するライフサイクル フック コミットを修正しました。</li>
+<li>Windows: <code>~/.claude/session-env</code>、<code>image-cache</code>、または別のクリーンアップされたフォルダーの再配置に使用されるディレクトリのシンボリックリンクまたはジャンクションを削除するバックグラウンド クリーンアップを修正しました。</li>
+<li>自己ホスト型ランナー: <code>--retire-at</code> リリース時に終了したターンが終了信号を失っていた問題を修正しました。ランナーはセッションを停止する前にターンが報告されるのを少し待ちます。</li>
+<li>全画面モードで <code>ctrl+l</code> / <code>cmd+k</code> を元に戻し、トランスクリプト ビューをクリアしました (2.1.260 で追加)。彼らは再び画面を再描画します</li>
+<li><code>/permissions</code> の改善: ルールの表示、追加、削除後にフォーカスがルール リストに戻り、ルールの削除とディレクトリの削除の確認がデフォルトで「いいえ」に設定されるようになりました。</li>
+<li><code>/permissions</code> タブ ナビゲーションの改善: ルール リストで ←/→ と Tab を押すと、タブ バーにフォーカスを移動せずにタブが切り替わるようになりました。</li>
+<li><code>/cost</code> キャッシュミスの原因となる思考モードと思考表示の変更を改善しました</li>
+<li>アーティファクト ツールを改善し、クロードが与えられたアーティファクト リンクを読み取れない場合、続行する前にユーザーに通知するようにしました。</li>
+<li><code>/install-github-app</code> の改善: GitHub CLI チェックとリポジトリ選択の手順で、「Esc でキャンセル」が表示されるようになりました。</li>
+<li><code>/artifacts</code> および <code>/workflows</code> リストを改善しました。右端のスクロールバーに、長いリストのどの部分が隠されているか、およびその中のどこにいるかが表示されます。</li>
+<li>ワークフローの進行状況ツリーを改善しました。実行中のエージェントとフェーズには、⟳ の代わりに薄暗いドットが表示されるようになりました。</li>
+<li>フルスクリーンでの <code>/plugin</code> の [マーケットプレイスの追加] フォームが改善されました。ペイン内にボックスが描画されなくなり、そのテキストとキーのヒントが <code>/plugin</code> の残りの部分と並びます。</li>
+<li>フルスクリーンでの <code>/workflows</code> 詳細ビューを改善しました。ペインの分割線の下に 2 番目の水平罫線が描画されなくなりました。</li>
+<li>言語に名前を付けないコード ブロックが改善されました。コード ブロックはインライン コードと同じように色付けされるため、コマンドが周囲のテキストから目立ちます。</li>
+<li>ツールの実行中に質問される <code>/btw</code> の改善: サイド質問は、呼び出しが失敗したものとして読み取られるのではなく、進行中であることを認識するようになりました。</li>
+<li>UserPromptSubmit フックのタイムアウト通知と、どのフック コマンドがタイムアウトしたかを示すデバッグ ログを改善しました</li>
+<li><code>@</code> ファイルの候補の改善: 名前にクエリが含まれるファイルが、フォルダー名間でのみ一致するファイルよりも上位にランクされるようになりました。</li>
+<li>アーティファクト ページの改善: 印刷ボタン、確認ダイアログやデバイス機能のビューア ブロック、電子メールと電話の詳細がテキストとして表示され、フォーム コントロールとスクロールバーに到達するダーク モードはありません。</li>
+<li><code>/ultrareview</code> アップロードの改善: <code>id_rsa copy</code> や <code>kubeconfig (1).yaml</code> などのキー ファイルの名前を変更したコピーもマシン上に残るようになりました。</li>
+<li><code>--debug-file</code> が選択したパスにデバッグ ログを書き込むことを説明するクロスセッション メッセージングの起動警告を改善しました。</li>
+<li>Pro および Team Standard プランのデフォルト モデルを Sonnet から Opus に変更し、Max、Team Premium、Enterprise に合わせました</li>
+<li><code>/effort</code> がモデルごとになる前に保存されていた作業レベルを変更し、Opus 5.5 などの新しくリリースされたモデルには適用されなくなりました。レベルを選択するまではデフォルトから始まります</li>
+<li>Opus 4.7、Opus 4.8、および Fable 5 を変更して、<code>-p</code> またはエージェント SDK、プロジェクト、マネージドまたは <code>--settings</code> <code>effortLevel</code>、またはモデルごとのレベルで <code>/effort</code> を超えて起動時のデフォルトの作業を保持するのを停止しました。</li>
+<li><code>/autocompact</code> のフッターヒントを、他の順序の値を調整するキーである ←/→ の名前に変更しました。</li>
+<li><code>/fast</code> のフッターをトグル キーとして Space という名前に変更しました</li>
+<li>自己ホスト型ランナー: ライフサイクル フックの git を変更し、ランナーの共有 git ファイルで指定されたフック フォルダーとプログラムを無視するようにしました。ローカルパスと <code>git://</code> リモートには <code>GIT_ALLOW_PROTOCOL</code> が必要になります</li>
+<li>予約されたマーケットプレイス名を模倣した名前を持つプラグイン マーケットプレイスは、追加時に拒否され、既に追加されている場合は読み込みを停止するように変更されました。</li>
+<li><code>PermissionRequest</code> フックの変更: エージェント タイプのフックは、その応答でリクエストを許可または拒否できないため、そこでは実行されなくなりました。コマンドまたは http フックを指すエラーが表示されるようになりました</li>
+<li>[VSCode] セッションのバージョン、アカウント、モデル、サーバーの詳細を表示する、<code>/status</code> と入力されたステータス ダイアログを追加しました。</li>
+<li>[VSCode] パネル メニューから開くか、<code>/sandbox</code> と入力して開く、サンドボックス モード、サンドボックス化されていないフォールバックおよび除外されたコマンド用のサンドボックス ダイアログを追加しました。</li>
+<li>[VSCode] パネル メニューから開くか、「<code>/chrome</code>」と入力して開く、Chrome ダイアログにクロードを追加しました (拡張機能ステータス、インストール、再接続、権限ページ、デフォルトで有効な設定)。</li>
+<li>[VSCode] 会話をプレーンテキストとしてコピーまたは保存するために、入力された <code>/export</code> を使用した会話のエクスポートを追加しました</li>
+<li>[VSCode] 各スキルのソース、トークン推定値、オン/オフ状態をスラッシュ コマンド ダイアログに追加しました。状態を変更するための click と、それを開くための入力された <code>/skills</code> を使用しました。</li>
+<li>[VSCode] 計画モードに切り替え、最初の計画プロンプトを送信するか、セッションの計画を表示する、入力された <code>/plan</code> を追加しました。</li>
+<li>[VSCode] チャット ボックスでの貼り付けテキストの処理が改善されました。800 文字を超える貼り付けまたは 2 改行を超える貼り付けにはマークが付けられるようになり、クロードが入力した内容から判断できるようになりました。</li>
+<li>[VSCode] チャット ボックスでのプロンプト処理の改善: 目に見えない Unicode 書式設定とタグ文字は、通知付きで貼り付けられたテキストと、送信される前に他のテキストから削除されます。</li>
+<li>[VSCode] 「新しいタブで開く」を変更して、最後のグループの後ではなく、作業しているエディター グループの横にクロードを開くようにしました。</li>
+<li>[VSCode] セッションの実行レベルではなく、保存された古い努力レベルを表示する努力チップを修正しました。</li>
+<li>[VSCode] Python 拡張機能がアクティブ化中にハングするとクロード コードが起動しない問題を修正しました。 Python 環境なしでは 60 秒後に開始されるようになりました。</li>
+<li>[VSCode] 計画承認カードが自動モードを提供しない問題を修正しました。自動モードが利用可能な場合、その最初のオプションはターミナルと同様に「はい、自動モードを使用します」になります。</li>
+<li>[VSCode] キーボードからセッションをアーカイブまたはアーカイブ解除した後にセッション リスト内の矢印キー ナビゲーションが停止する問題を修正しました。</li>
+<li>[VSCode] セッションを再度開いた後に自分のメッセージに表示される貼り付けマーカー行を修正しました</li>
+<li>[Claude Code on the web] 管理ルーチンのオン/オフ設定を、[管理設定] → [機能] → [リモート セッション] に変更しました。 Claude Code 管理ページへのリンクが追加されました</li>
+<li>[Claude Code on the web] GitHub Enterprise Server リポジトリ上のクラウド セッション内での <code>gh</code> および GitHub API 呼び出しが約 8 時間後に失敗する問題を修正しました。トークンは自動的に更新されるようになりました</li>
+<li>[Claude Code on the web] スケジュールされた実行が開始される直前に編集されたときに、古いプロンプトと名前で実行中の既存のセッションを再開するルーチンを修正しました。</li>
+<li>[Claude Code on the web] ロードされないファイル カードを開いてセッションの作業ディレクトリの外側を指すクラウド セッション トランスクリプト内のファイル リンクを修正しました。彼らは今障害者であり、その理由を言う</li>
+<li>[Claude Code on the web] 応答せずに期限切れになった承認プロンプト、または新しいメッセージに置き換えられた承認プロンプトが拒否として記録されていたため、ツール呼び出しの再試行を拒否する自動モードを修正しました。</li>
+<li>[ウェブ上のクロード コード] クロード アプリで表示されるクラウド セッションの改善: クロードは、アプリで開くことができる場所にファイルを保存するようになりました。</li>
+<li>[Claude Code on the web] 管理者が GitHub をオフにしている組織のセルフホスト環境でセッションを開始するときに表示される空のリポジトリ ピッカーを削除しました</li>
+<li>[Claude Tag] Slack のネイティブの作業インジケーター、停止ボタン、およびスレッド タイトルをチャンネル内のクロードのスレッドに追加しました。インジケーターはクロードが終了するまで点灯したままになり、Stop でタスクが中断されます。</li>
+<li>[Claude Tag] ゲストが参加するとき、または最後のゲストが退席するときに、制限またはチャンネルのみのゲスト設定でクロードの応答方法が変わるときに、Slack チャンネルに短い通知を追加しました。</li>
+<li>[Claude Tag] ワークスペースがエンタープライズ グリッドに参加する前にクロードに接続されていた Slack ワークスペースで、スケジュールされたルーチンがサイレントに実行に失敗する問題を修正しました。</li>
+<li>[Claude Tag] ファイルではなくファイルスキャンの短時間の停止が問題だった場合に、Slack ファイルを再アップロードするようにクロードが要求する問題を修正しました。スキャンを再試行し、スキャナがダウンしたときに通知されるようになりました。</li>
+<li>[Claude Tag] テキストが +、-、または * で始まるクロードの Slack 返信の箇条書きが、ネストされた項目を含む空の箇条書きとしてレンダリングされる問題を修正しました。文字が保持されたままの 1 つの黒丸として表示されるようになりました</li>
+<li>[Claude Tag] 失敗したクラウド環境セットアップ スクリプトの Slack 通知が、一般的な「再試行するようメンションしてください」になる場合がある問題を修正しました。セットアップ スクリプトに名前を付けて、最初にそれを修正するように指示します。</li>
+<li>[Claude Tag] Claude Tag 管理設定の GitHub バナーを改善し、GitHub が接続されていない理由 (サインインしていない、アプリがリンクされていない、またはインストールされていない、サインインの有効期限が切れている、または SSO が承認されていない) を表示しました。</li>
+<li>[コード レビュー] コード レビュー チェックの実行を改善し、REVIEW.md 命令がサイズ制限を超えたためレビューから削除または除外されたとき、ファイル名と制限を通知するようにしました。</li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>ソース</strong> <a href="https://github.com/anthropics/claude-code">人文学/クロード コード</a> · <code>v2.1.280</code> · 2026-09-22 · <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.280">アップストリーム リリース</a>
+<em>インデックス作成のためにそのままミラーリングされます。すべての権利は上流プロジェクトに帰属します。</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release note は上流のプロジェクトによって公開され、インデックス作成のためにここにミラーリングされます。すべての権利はその作者に帰属します。 </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/claude-code/2.1.281"> <span class="k">← 次へ</span> <span class="t">v2.1.281</span> </a> <a href="/releases/claude-code/2.1.278"> <span class="k">前へ →</span> <span class="t">v2.1.278</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.280" target="_blank" rel="noopener"> <span>GitHub で見る</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/anthropics/claude-code" target="_blank" rel="noopener"> <span>anthropics/claude-code</span> <span class="d">↗</span> </a> </li> </ul> </div>  <div class="rail-card"> <div class="rail-title">バージョン履歴</div> <ul class="rail-list"> <li> <a href="/releases/claude-code/2.1.330"> <span class="v">v2.1.330</span> <span class="d">26-11-20</span> </a> </li><li> <a href="/releases/claude-code/2.1.329"> <span class="v">v2.1.329</span> <span class="d">26-11-19</span> </a> </li><li> <a href="/releases/claude-code/2.1.328"> <span class="v">v2.1.328</span> <span class="d">26-11-19</span> </a> </li><li> <a href="/releases/claude-code/2.1.327"> <span class="v">v2.1.327</span> <span class="d">26-11-17</span> </a> </li><li> <a href="/releases/claude-code/2.1.326"> <span class="v">v2.1.326</span> <span class="d">26-11-16</span> </a> </li><li> <a href="/releases/claude-code/2.1.325"> <span class="v">v2.1.325</span> <span class="d">26-11-13</span> </a> </li><li> <a href="/releases/claude-code/2.1.323"> <span class="v">v2.1.323</span> <span class="d">26-11-12</span> </a> </li><li> <a href="/releases/claude-code/2.1.322"> <span class="v">v2.1.322</span> <span class="d">26-11-10</span> </a> </li> </ul> <a href="/ja/releases/claude-code" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> すべての 91 件を見る →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/ja/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>オープンソースのリリース インテリジェンスが毎日公開されます。</p> </div> <div class="footer-col"> <h3>追跡</h3> <ul> <li><a href="/ja/releases">リリース</a></li> <li><a href="/ja/projects">プロジェクト</a></li> <li><a href="/ja/releases.xml">RSS フィード</a></li> </ul> </div> <div class="footer-col"> <h3>アーカイブ</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">中文アーカイブ</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">技術ノート</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>情報</h3> <ul> <li><a href="/ja/method">仕組み</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release note は上流プロジェクトに属します。</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="リリースを検索"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="リリース、プロジェクト、バージョンを検索…" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

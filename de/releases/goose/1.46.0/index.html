@@ -1,0 +1,451 @@
+<!DOCTYPE html><html lang="de"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>goose v1.46.0 — STAGS NextStack</title><meta name="description" content="Unrolled agent loop #9574 · Cache-safe request assembly with append-only turn context and declared cache semantics #11022 · Streaming shell output while commands run #10808"><meta name="keywords" content="Open-Source-release notes, Release-Tracker, changelog-Aggregator, Breaking Changes, Deprecation-Tracker, Kafka-Releases, Spring Boot-Releases, Kubernetes-Releases"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/de/releases/goose/1.46.0/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/de/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/goose/1.46.0/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/goose/1.46.0/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/goose/1.46.0/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="goose v1.46.0 — STAGS NextStack"><meta property="og:description" content="Unrolled agent loop #9574 · Cache-safe request assembly with append-only turn context and declared cache semantics #11022 · Streaming shell output while commands run #10808"><meta property="og:url" content="https://www.stags.cn/de/releases/goose/1.46.0/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="de_DE"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"de","description":"STAGS indexiert Release Notes aus Infrastruktur- und KI-Projekten – Breaking Changes, Deprecations und Migrationen – in einem englischsprachigen Feed.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/de/releases/goose/1.46.0/#article","headline":"goose v1.46.0 release notes","datePublished":"2026-08-12","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/aaif-goose/goose"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Zum Inhalt springen</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/de/" class="brand" aria-label="STAGS NextStack — Release-Informationen für Open Source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/de/releases">Releases</a><a href="/de/projects">Projekte</a><a href="/de/method">Methode</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Releases durchsuchen"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Suche</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Sprache"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">DE</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Sprache"> <p class="langmenu-head">Sprache</p> <a class="langmenu-item" href="/releases/goose/1.46.0/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/goose/goose_v1.46.0" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/goose/1.46.0/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/goose/1.46.0/" hreflang="de" lang="de" aria-current="true" data-on="true"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/goose/1.46.0/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/goose/1.46.0/" hreflang="es" lang="es" data-on="false"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/goose/1.46.0/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/de/">Startseite</a> <span class="sep">/</span> <a href="/de/releases">Releases</a> <span class="sep">/</span> <a href="/de/releases/goose">goose</a> </nav> <h1 class="detail-title"> <span class="p">goose</span> v1.46.0 </h1> <div class="detail-meta"> <span class="chip chip--minor">Minor</span> <span><span class="k">Veröffentlicht</span>12. Aug. 2026</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/aaif-goose/goose" target="_blank" rel="noopener"> <span class="k">Quelle</span>aaif-goose/goose </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/goose/1.46.0/"> Englisches Original </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/de/releases/goose/1.46.0/">Link kopieren</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Diese Seite ist maschinell übersetzt. Maßgeblich ist der englische Originaltext.</p>  <div><h1>Gans v1.46.0</h1>
+<h2>✨ Funktionen</h2>
+<p>– Agentenschleife abgewickelt <a href="https://github.com/aaif-goose/goose/pull/9574">#9574</a>
+– Cache-sichere Anforderungsassembly mit reinem Append-Turn-Kontext und deklarierter Cache-Semantik <a href="https://github.com/aaif-goose/goose/pull/11022">#11022</a>
+– Streamen der Shell-Ausgabe, während Befehle ausgeführt werden <a href="https://github.com/aaif-goose/goose/pull/10808">#10808</a>
+– Benutzeroberfläche für Nutzungsstatistiken pro Nachricht (Tokens, Kosten, TTFT, Token/s) <a href="https://github.com/aaif-goose/goose/pull/10210">#10210</a></p>
+<ul>
+<li>Nachverfolgung der Nutzung/Kosten pro Nachricht mit abgeleiteten Sitzungssummen <a href="https://github.com/aaif-goose/goose/pull/10172">#10172</a>
+– Verfolgen Sie Cache-Tokens für eine genaue Kostenberichterstattung <a href="https://github.com/aaif-goose/goose/pull/9752">#9752</a>
+– Markdown-Formatoption für den Sitzungsexport <a href="https://github.com/aaif-goose/goose/pull/10703">#10703</a>
+– Größenveränderbare Seitenleiste mit Ziehgriff und beibehaltener Breite <a href="https://github.com/aaif-goose/goose/pull/10795">#10795</a></li>
+<li>Interaktives Menü für Single-Select-Erhebungen <a href="https://github.com/aaif-goose/goose/pull/10327">#10327</a>
+– Sitzungsmetadaten im Chat-Hover in der Seitenleiste <a href="https://github.com/aaif-goose/goose/pull/10663">#10663</a>
+– Konfigurierbare LOCAL_WHISPER_LANGUAGE für mehrsprachige lokale Transkription <a href="https://github.com/aaif-goose/goose/pull/10634">#10634</a>
+– Deaktivierung integrierter Fähigkeiten zulassen <a href="https://github.com/aaif-goose/goose/pull/10600">#10600</a>
+– Strukturierte Zusammenfassungsausgabe mit Vorlagenrendering für die Komprimierung <a href="https://github.com/aaif-goose/goose/pull/10471">#10471</a>
+– Übergeben Sie „working_dir“ an den Stop-Hook-Kontext <a href="https://github.com/aaif-goose/goose/pull/10296">#10296</a>
+– Informationen zum Oberflächen-Ausgabetoken-Limit <a href="https://github.com/aaif-goose/goose/pull/10831">#10831</a>
+– Tab-Vervollständigung und Anbieterwechsel für den Befehl <code>model</code> <a href="https://github.com/aaif-goose/goose/pull/10585">#10585</a>
+– Const-Union-Enumerationen in Tool-Schemata reduzieren <a href="https://github.com/aaif-goose/goose/pull/10577">#10577</a></li>
+<li>Semantische Konventionsattribute von GenAI für OTEL <a href="https://github.com/aaif-goose/goose/pull/10700">#10700</a>
+– Bereichern Sie den Root-Span mit gen_ai-Attributen und verbessern Sie das OTEL-Ausgabeformat <a href="https://github.com/aaif-goose/goose/pull/10816">#10816</a>
+– Leiten Sie Bilder und eingebettete MCP-Ressourcen-Blobs in den Formaten Anthropic und Google weiter <a href="https://github.com/aaif-goose/goose/pull/10340">#10340</a>
+– ACP-Sitzung/neu unterstützt versteckte Sitzung über _meta.hidden <a href="https://github.com/aaif-goose/goose/pull/10811">#10811</a>
+– Stabile Identität der Agent-Ereignisnachricht <a href="https://github.com/aaif-goose/goose/pull/10716">#10716</a>
+– OAuth logo_uri in client-ID-Metadatendokumenten <a href="https://github.com/aaif-goose/goose/pull/10727">#10727</a>
+– Termux-Erkennung im Installationsprogramm zur Auswahl eines tragbaren Musl-Builds <a href="https://github.com/aaif-goose/goose/pull/10568">#10568</a>
+– Hooks-Funktion mit PreToolUse-Ablehnung <a href="https://github.com/aaif-goose/goose/pull/9093">#9093</a>, <a href="https://github.com/aaif-goose/goose/pull/9304">#9304</a>
+– <code>/goal</code>-Befehl zur Selbstbewertung des Agenten vor Abschluss <a href="https://github.com/aaif-goose/goose/pull/9069">#9069</a></li>
+<li><code>/status</code>-Slash-Befehl <a href="https://github.com/aaif-goose/goose/pull/9845">#9845</a>
+– <code>/model</code>-Slash-Befehl zum Wechseln des Sitzungsmodells <a href="https://github.com/aaif-goose/goose/pull/8747">#8747</a>
+– <code>--edit</code>-Sitzungsflag zum Bearbeiten der Konversation vor der Verzweigung <a href="https://github.com/aaif-goose/goose/pull/9799">#9799</a>
+– <code>goose review</code>-Befehl zur Überprüfung des lokalen Codes <a href="https://github.com/aaif-goose/goose/pull/9114">#9114</a>
+– Offene Plugins-Generalisierung mit Skills-Unterstützung <a href="https://github.com/aaif-goose/goose/pull/9112">#9112</a>
+– Summon-Erweiterung: Peek-Modus für asynchrone Hintergrundaufgaben <a href="https://github.com/aaif-goose/goose/pull/9519">#9519</a>
+– Summon-Erweiterung: Kontext- und Arbeitsverzeichnisparameter für Delegate-Aufgaben <a href="https://github.com/aaif-goose/goose/pull/9518">#9518</a>, <a href="https://github.com/aaif-goose/goose/pull/9520">#9520</a>
+– Globale Hinweise von ~/.agents/AGENTS.md laden <a href="https://github.com/aaif-goose/goose/pull/9736">#9736</a>
+– Proaktive OAuth-Token-Aktualisierung, um eine erneute Authentifizierung bei jeder Sitzung zu vermeiden <a href="https://github.com/aaif-goose/goose/pull/8386">#8386</a>
+– GOOSE_OAUTH_CALLBACK_PORT für stabile OAuth-Redirect_uri <a href="https://github.com/aaif-goose/goose/pull/9209">#9209</a></li>
+<li>Einheitliche Steuerung des Denkaufwands über alle Anbieter hinweg <a href="https://github.com/aaif-goose/goose/pull/9242">#9242</a>
+– Projekte als Backend-Quellen mit System-Prompt-Injection <a href="https://github.com/aaif-goose/goose/pull/8739">#8739</a>
+– Gruppieren Sie Chat-Sitzungen nach Projekt im Navigationsbereich <a href="https://github.com/aaif-goose/goose/pull/10212">#10212</a>
+– Reduzierbare Projektgruppen-Header im Navigationsbereich <a href="https://github.com/aaif-goose/goose/pull/10278">#10278</a></li>
+<li>Worktree-fähiger Verzeichnisumschalter <a href="https://github.com/aaif-goose/goose/pull/8450">#8450</a>
+– Suchfunktion für den Chatverlauf im Navigationsbereich <a href="https://github.com/aaif-goose/goose/pull/8448">#8448</a></li>
+<li>Suchfilter zum Anbieterraster <a href="https://github.com/aaif-goose/goose/pull/10437">#10437</a>
+– Option zum Deaktivieren automatischer Update-Downloads <a href="https://github.com/aaif-goose/goose/pull/9872">#9872</a></li>
+<li>TUI-Diff-Viewer <a href="https://github.com/aaif-goose/goose/pull/9260">#9260</a>
+– MAX_CODE_BLOCK_LINES konfigurierbar über Umgebungsvariablen <a href="https://github.com/aaif-goose/goose/pull/9301">#9301</a></li>
+<li>GOOSE_MAX_TOOL_RESPONSE_SIZE zum Konfigurieren der Größenbeschränkung für die Werkzeugausgabe <a href="https://github.com/aaif-goose/goose/pull/9256">#9256</a></li>
+<li>GOOSE_FAST_MODEL Umgebungsvariable in ModelConfig::with_fast <a href="https://github.com/aaif-goose/goose/pull/9296">#9296</a>
+– GOOSE_DOCS_ROOT für Air-Gap-Dokumentenzugriff <a href="https://github.com/aaif-goose/goose/pull/10294">#10294</a></li>
+<li>Vierteljährliche Option für den Planer <a href="https://github.com/aaif-goose/goose/pull/9076">#9076</a></li>
+<li>Harbor-Evaluierungsläufer <a href="https://github.com/aaif-goose/goose/pull/9138">#9138</a></li>
+<li>goose://new-session und goose://resume Deep Links <a href="https://github.com/aaif-goose/goose/pull/9196">#9196</a>, <a href="https://github.com/aaif-goose/goose/pull/9343">#9343</a>
+– Erste Eingabeaufforderung mit goose://new-session <a href="https://github.com/aaif-goose/goose/pull/9427">#9427</a>
+– Verschlüsselte Nostr-Sitzungsfreigabe <a href="https://github.com/aaif-goose/goose/pull/8922">#8922</a></li>
+<li>Sitzungen importieren <a href="https://github.com/aaif-goose/goose/pull/9474">#9474</a>
+– Hugging Face OAuth-Unterstützung mit Authentifizierungsregisterkarte in den Einstellungen <a href="https://github.com/aaif-goose/goose/pull/9552">#9552</a>
+– Unterstützung für MLX-Modelle im lokalen Inferenzanbieter <a href="https://github.com/aaif-goose/goose/pull/9154">#9154</a>
+– Linux Vulkan-Unterstützung für lokale Inferenz <a href="https://github.com/aaif-goose/goose/pull/9038">#9038</a>
+– Desktop-ACP-Sitzungen nach Ruhezustand und Verbindungsverlust wieder verbinden <a href="https://github.com/aaif-goose/goose/pull/10411">#10411</a>
+– TLS-Unterstützung für ACP-Server <a href="https://github.com/aaif-goose/goose/pull/10088">#10088</a>
+– Gruppieren Sie aufeinanderfolgende Werkzeugaufrufe in einer zusammengefassten Kettenkarte <a href="https://github.com/aaif-goose/goose/pull/8995">#8995</a>
+– MCP-Apps an trusted-Besitzmetadaten binden <a href="https://github.com/aaif-goose/goose/pull/10747">#10747</a>
+– MCP-Erweiterungen in offenen Plugins <a href="https://github.com/aaif-goose/goose/pull/9471">#9471</a></li>
+<li>Fähigkeiten zum Chat-Composer <a href="https://github.com/aaif-goose/goose/pull/8881">#8881</a></li>
+<li>Fertigkeitsanweisungen in jeder Runde dynamisch aktualisieren <a href="https://github.com/aaif-goose/goose/pull/9217">#9217</a>
+– CLI zum Auflisten von Fähigkeiten mit Token-Anzahl <a href="https://github.com/aaif-goose/goose/pull/9326">#9326</a></li>
+<li>Bildlesetool <a href="https://github.com/aaif-goose/goose/pull/9607">#9607</a>
+– Modellinteraktionen anzeigen <a href="https://github.com/aaif-goose/goose/pull/9806">#9806</a></li>
+<li>UniFFI SDK für sprachübergreifende Bindungen <a href="https://github.com/aaif-goose/goose/pull/9593">#9593</a>
+– Anbieter bindet MVP an goose-sdk mit Python Wheel Publishing <a href="https://github.com/aaif-goose/goose/pull/10208">#10208</a>
+– Kotlin FFI mit Build und Maven veröffentlichen <a href="https://github.com/aaif-goose/goose/pull/10375">#10375</a>
+– Quellarchiv als Release-Artefakt erstellen <a href="https://github.com/aaif-goose/goose/pull/10786">#10786</a></li>
+</ul>
+<h3>Neue Anbieter</h3>
+<ul>
+<li>Celeris-Anbieter <a href="https://github.com/aaif-goose/goose/pull/10714">#10714</a></li>
+<li>Freundlicher deklarativer Anbieter <a href="https://github.com/aaif-goose/goose/pull/10762">#10762</a>
+– Azure AI Foundry Multi-LLM-Anbieter <a href="https://github.com/aaif-goose/goose/pull/10622">#10622</a>
+– OllamaCloud-Anbieter mit dynamischer Modellerkennung <a href="https://github.com/aaif-goose/goose/pull/10264">#10264</a>
+– Sakana AI-Anbieter für OpenAI-kompatibles Fugu API <a href="https://github.com/aaif-goose/goose/pull/10357">#10357</a>
+– iFlytek Spark- und Astron-MaaS-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9837">#9837</a>
+– Fireworks AI deklarativer Anbieter <a href="https://github.com/aaif-goose/goose/pull/9990">#9990</a>
+– Unterstützung für OpenRouter-Anforderungsparameter <a href="https://github.com/aaif-goose/goose/pull/9276">#9276</a>
+– Together AI deklarativer Anbieter <a href="https://github.com/aaif-goose/goose/pull/9545">#9545</a>
+– Deklarativer OrcaRouter-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9515">#9515</a>
+– Ratlosigkeit beim deklarativen Anbieter <a href="https://github.com/aaif-goose/goose/pull/9324">#9324</a></li>
+<li>Deklarativer Anbieter Alibaba (Qwen über DashScope) <a href="https://github.com/aaif-goose/goose/pull/9443">#9443</a>
+– Databricks AI Gateway-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9274">#9274</a>
+– Scaleway-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9254">#9254</a></li>
+<li>NEAR AI Cloud-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9352">#9352</a>
+– Deklarativer Anbieter von EmpirioLabs <a href="https://github.com/aaif-goose/goose/pull/9771">#9771</a>
+– xAI SuperGrok OAuth-Abonnementanbieter <a href="https://github.com/aaif-goose/goose/pull/9420">#9420</a></li>
+<li>Vercel AI Gateway <a href="https://github.com/aaif-goose/goose/pull/9144">#9144</a>
+– Deklarativer Routstr-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9175">#9175</a></li>
+<li>FuturMix-Anbieter <a href="https://github.com/aaif-goose/goose/pull/8840">#8840</a>
+– deklarativer oMLX-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9177">#9177</a>
+– Deklarativer Atomic Chat-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9210">#9210</a></li>
+<li>Muse Spark 1.1 über Meta Models API <a href="https://github.com/aaif-goose/goose/pull/10432">#10432</a>
+– AWS Bedrock-Unterstützung für OpenAI GPT-Modelle über Mantle-Endpunkt <a href="https://github.com/aaif-goose/goose/pull/9707">#9707</a>
+– Azure AD (Entra ID) Bearer-Token-Authentifizierung über AZURE_OPENAI_AD_TOKEN <a href="https://github.com/aaif-goose/goose/pull/9716">#9716</a></li>
+</ul>
+<h3>Neue Modelle</h3>
+<p>– GPT-5.6-Unterstützung <a href="https://github.com/aaif-goose/goose/pull/10384">#10384</a>, <a href="https://github.com/aaif-goose/goose/pull/10349">#10349</a></p>
+<ul>
+<li>GPT-5.5 zum ChatGPT Codex bekannte Modelle <a href="https://github.com/aaif-goose/goose/pull/9292">#9292</a></li>
+<li>GLM-5.2-Unterstützung <a href="https://github.com/aaif-goose/goose/pull/9967">#9967</a></li>
+<li>Opus5-Unterstützung mit adaptivem Denken <a href="https://github.com/aaif-goose/goose/pull/10686">#10686</a></li>
+<li>Claude-sonnet-5 und claude-fable-5 zu bekannten Modellen <a href="https://github.com/aaif-goose/goose/pull/10865">#10865</a>, <a href="https://github.com/aaif-goose/goose/pull/10183">#10183</a></li>
+<li>Cursor Composer-2.5-Modelle <a href="https://github.com/aaif-goose/goose/pull/10618">#10618</a>
+– Cursor-Agent-Modelle von CLI <a href="https://github.com/aaif-goose/goose/pull/10367">#10367</a></li>
+<li>Neueste Gemini-Modelle <a href="https://github.com/aaif-goose/goose/pull/10630">#10630</a>
+– Gemini 3.x bekannte Standorte und KNOWN_MODELS-Einträge <a href="https://github.com/aaif-goose/goose/pull/9142">#9142</a></li>
+<li>MiniMax-M3- und M2.7-Varianten <a href="https://github.com/aaif-goose/goose/pull/10431">#10431</a></li>
+<li>OVHcloud Qwen3.6-27B Modell <a href="https://github.com/aaif-goose/goose/pull/10339">#10339</a></li>
+</ul>
+<h3>Internationalisierung</h3>
+<p>– Französisch, Deutsch, Italienisch, Portugiesisch, Indonesisch, Malaiisch, Vietnamesisch, zh-TW-Desktop-Gebietsschemata <a href="https://github.com/aaif-goose/goose/pull/10072">#10072</a></p>
+<ul>
+<li>Koreanische Lokalisierung <a href="https://github.com/aaif-goose/goose/pull/9856">#9856</a>, <a href="https://github.com/aaif-goose/goose/pull/10667">#10667</a></li>
+<li>Spanisches (es) Gebietsschema <a href="https://github.com/aaif-goose/goose/pull/9833">#9833</a>
+– Japanisches Gebietsschema <a href="https://github.com/aaif-goose/goose/pull/9768">#9768</a>
+– Hindi-Desktop-Gebietsschema <a href="https://github.com/aaif-goose/goose/pull/9733">#9733</a></li>
+<li>Unterstützung der russischen Sprache <a href="https://github.com/aaif-goose/goose/pull/9406">#9406</a>
+– Türkisches Desktop-Gebietsschema <a href="https://github.com/aaif-goose/goose/pull/9392">#9392</a></li>
+<li>Vereinfachte Chinesisch-Übersetzung (zh-CN) <a href="https://github.com/aaif-goose/goose/pull/8765">#8765</a></li>
+<li>Sprachauswahlfunktion <a href="https://github.com/aaif-goose/goose/pull/9405">#9405</a></li>
+</ul>
+<h2>🐛 Fehlerbehebungen</h2>
+<p>– Ungültigen Unterrezeptinhalt ablehnen <a href="https://github.com/aaif-goose/goose/pull/10994">#10994</a>
+– Behalten Sie den Turn-Kontext für OpenAI Responses-Stack-Modelle für das Prompt-Caching bei <a href="https://github.com/aaif-goose/goose/pull/10993">#10993</a>
+– Bytegebundene Shell-Kürzungsvorschau <a href="https://github.com/aaif-goose/goose/pull/10992">#10992</a>
+– Hören Sie auf, den Denkanstoß für OpenRouter stillschweigend zu ignorieren <a href="https://github.com/aaif-goose/goose/pull/10991">#10991</a>
+– Bearbeitete Nachrichten in der Warteschlange versenden <a href="https://github.com/aaif-goose/goose/pull/10933">#10933</a>
+– Rezeptvorlagenpfade enthalten <a href="https://github.com/aaif-goose/goose/pull/10930">#10930</a></p>
+<ul>
+<li>Shell-Genehmigungstitel originalgetreu machen <a href="https://github.com/aaif-goose/goose/pull/10986">#10986</a>
+– Blockieren von MCP-App-Formularübermittlungen <a href="https://github.com/aaif-goose/goose/pull/10985">#10985</a></li>
+<li>Fehler beim Bereinigen von Bedrock-Werkzeugen <a href="https://github.com/aaif-goose/goose/pull/10934">#10934</a>
+– Implizites OAuth während der Modellerkennung <a href="https://github.com/aaif-goose/goose/pull/10929">#10929</a>
+– Benennung von ACP-Sitzungen aus Live-Konversationen heraushalten <a href="https://github.com/aaif-goose/goose/pull/10963">#10963</a>
+– Bereinigen Sie Unicode-Tags in MCP-Ressourcen <a href="https://github.com/aaif-goose/goose/pull/10746">#10746</a>
+– RFC 9207 iss vom MCP OAuth-Callback beibehalten <a href="https://github.com/aaif-goose/goose/pull/10678">#10678</a>
+– Shell-ACP-Anbieter auf dem Desktop <a href="https://github.com/aaif-goose/goose/pull/10907">#10907</a>
+– Stoppen Sie das Beenden von Streaming-Antworten bei Ablauf des gesamten Anfrage-Timeouts <a href="https://github.com/aaif-goose/goose/pull/10620">#10620</a>
+– Stellen Sie final_output_tool wieder her, wenn der Agent nach der LRU-Räumung neu erstellt wird <a href="https://github.com/aaif-goose/goose/pull/10793">#10793</a>
+– Vermeiden Sie das Klonen von O(n²) während der Sitzungslast <a href="https://github.com/aaif-goose/goose/pull/10665">#10665</a>
+– Untergeordnetes stderr-Protokollziel voranstellen, damit es den standardmäßigen goose=info-Filter übergibt <a href="https://github.com/aaif-goose/goose/pull/10901">#10901</a>
+– Nur für Nutzlasten, die keine Modelle sind, auf die statische Modellliste zurückgreifen <a href="https://github.com/aaif-goose/goose/pull/10189">#10189</a>
+– Stdio-Erweiterungen werden stillschweigend übersprungen, wenn der Name fehlt oder env: in der Konfiguration verwendet wird <a href="https://github.com/aaif-goose/goose/pull/10773">#10773</a></li>
+<li>Planer beim Start starten statt bei der ersten ACP-Verbindung <a href="https://github.com/aaif-goose/goose/pull/10766">#10766</a>
+– Deaktivierte integrierte Erweiterungen (Entwickler) beim Sitzungsstart berücksichtigen <a href="https://github.com/aaif-goose/goose/pull/10223">#10223</a>
+– PyPI-Anforderungen für OSV-Prüfungen analysieren <a href="https://github.com/aaif-goose/goose/pull/10510">#10510</a>
+– Sprachdateierweiterungen im Telegramm enthalten <a href="https://github.com/aaif-goose/goose/pull/10456">#10456</a>
+– Priorität der verweigerten Werkzeuganforderung beibehalten <a href="https://github.com/aaif-goose/goose/pull/10612">#10612</a>
+– Unterverzeichnis-Hinweiserkennung enthalten <a href="https://github.com/aaif-goose/goose/pull/10545">#10545</a>
+– Veralteter Validierungsfehler beim erneuten Öffnen des Zeitplan-Modals beheben <a href="https://github.com/aaif-goose/goose/pull/10627">#10627</a>
+– Shell-/Subprozessaufruf in linux.rs bereinigen <a href="https://github.com/aaif-goose/goose/pull/10748">#10748</a></li>
+<li>Verknüpfung des Ziels vor dem Kopieren von Binärdateien aufheben <a href="https://github.com/aaif-goose/goose/pull/10705">#10705</a>
+– Berücksichtigen Sie timeout_seconds beim deklarativen Anbieter Anthropic <a href="https://github.com/aaif-goose/goose/pull/10440">#10440</a>
+– Entfernen von Bildern beim Bearbeiten von Benutzernachrichten zulassen <a href="https://github.com/aaif-goose/goose/pull/9979">#9979</a>
+– Inline-Denken für Cerebras-Modelle beibehalten, die reasoning_content ablehnen <a href="https://github.com/aaif-goose/goose/pull/10774">#10774</a>
+– CLI-Streaming inkrementell statt O(n^2) rendern lassen <a href="https://github.com/aaif-goose/goose/pull/10487">#10487</a>
+– Together-Anbieter: Modelllistenantwort analysieren <a href="https://github.com/aaif-goose/goose/pull/10576">#10576</a>
+– DeepSeek-Modellnamen zu v4 API <a href="https://github.com/aaif-goose/goose/pull/10729">#10729</a>
+– Leiten Sie die Auswahl der Claude-Code- und Pi-Modellauswahl an den Adapter weiter <a href="https://github.com/aaif-goose/goose/pull/10675">#10675</a>, <a href="https://github.com/aaif-goose/goose/pull/10707">#10707</a>
+– Aktiviert-Flag beim Migrieren von Plattformerweiterungen beibehalten <a href="https://github.com/aaif-goose/goose/pull/10690">#10690</a>
+– Sitzungs-Arbeitsverzeichnis an on_call_tool übergeben <a href="https://github.com/aaif-goose/goose/pull/10689">#10689</a>
+– Argumente des Gegner-Tools beibehalten <a href="https://github.com/aaif-goose/goose/pull/10529">#10529</a>
+– Behalten Sie XML-Snippets in JSON als Daten für lokale Inferenz bei <a href="https://github.com/aaif-goose/goose/pull/10606">#10606</a></li>
+<li>Generierten Chattitel im Header synchronisieren <a href="https://github.com/aaif-goose/goose/pull/10578">#10578</a>
+– Aufforderung zur Tool-Genehmigung in Telegram-Gateway-Sitzungen <a href="https://github.com/aaif-goose/goose/pull/10613">#10613</a>
+– CLI-Anbieteraufforderungen aus Prozessargumenten heraushalten <a href="https://github.com/aaif-goose/goose/pull/10547">#10547</a>
+– Veraltetes Inventar für statische Modelllisten ignorieren <a href="https://github.com/aaif-goose/goose/pull/10591">#10591</a>
+– Behalten Sie die Größe des vorgestellten Modells beim Löschen bei und ergänzen Sie fehlende Größen <a href="https://github.com/aaif-goose/goose/pull/10422">#10422</a>
+– Erstellen Sie Inventartabellen atomar mit der Schemaversion <a href="https://github.com/aaif-goose/goose/pull/10586">#10586</a>
+– Schreiben Sie oneOf in anyOf in Tool-Schemata für OpenAI-kompatible Backends um <a href="https://github.com/aaif-goose/goose/pull/10571">#10571</a>
+– Benutzerdefiniertes Modell als Standard für nicht-lokale Anbieter zulassen <a href="https://github.com/aaif-goose/goose/pull/10438">#10438</a>
+– Erfordert absolute Gänsepfadwurzeln <a href="https://github.com/aaif-goose/goose/pull/10454">#10454</a></li>
+<li>Umfangreiche Smart-Genehmigung auf Anfrage <a href="https://github.com/aaif-goose/goose/pull/10457">#10457</a></li>
+<li>Feste Unterrezeptwerte beibehalten <a href="https://github.com/aaif-goose/goose/pull/10452">#10452</a>
+– Git bündeln, damit Hermit seine Paketregistrierung in Flatpak klonen kann <a href="https://github.com/aaif-goose/goose/pull/10511">#10511</a>
+– Bildinhaltsblöcke während der Live-ACP-Sitzung an client weiterleiten <a href="https://github.com/aaif-goose/goose/pull/10485">#10485</a>
+– Code-Modus-Rückrufe zur Hauptlaufzeit weiterleiten, um Hänger zu verhindern <a href="https://github.com/aaif-goose/goose/pull/10484">#10484</a>
+– OAuth-Token-Caches schützen <a href="https://github.com/aaif-goose/goose/pull/10516">#10516</a>
+– Zielgruppengrenzen für Inhalte beibehalten <a href="https://github.com/aaif-goose/goose/pull/10493">#10493</a></li>
+<li>Geplante Rezeptvalidierung gebunden <a href="https://github.com/aaif-goose/goose/pull/10509">#10509</a>
+– JSON-RPC-Fehler von Dispatch-Handlern zurückgeben, anstatt die Verbindung zu beenden <a href="https://github.com/aaif-goose/goose/pull/10499">#10499</a>
+– Vermeiden Sie lokale Rückschlüsse auf den Metal-Teardown-Absturz <a href="https://github.com/aaif-goose/goose/pull/10508">#10508</a>
+– Indexmap-Serde-Unterstützung für Musl-Builds aktivieren <a href="https://github.com/aaif-goose/goose/pull/10507">#10507</a>
+– Scrollen Sie im Chat zur neuesten Antwort bei Sitzungsfortsetzung <a href="https://github.com/aaif-goose/goose/pull/10501">#10501</a>
+– Sichern Sie große Antwort-Spill-Dateien <a href="https://github.com/aaif-goose/goose/pull/10482">#10482</a>
+– Registrieren Sie LiteLLM mit dem Bestand „refresh_only“, damit die Modellauswahl Modelle auflistet <a href="https://github.com/aaif-goose/goose/pull/10489">#10489</a>
+– Begrenzen Sie die Höhe des Anbieterselektors in CLI <a href="https://github.com/aaif-goose/goose/pull/10420">#10420</a></li>
+<li>Bestehende Berechtigungen für Secrets-Dateien verschärfen <a href="https://github.com/aaif-goose/goose/pull/10453">#10453</a>
+– Bildzugriffsfunktionen in der Entwicklererweiterung klassifizieren <a href="https://github.com/aaif-goose/goose/pull/10451">#10451</a>
+– Behalten Sie den einmaligen Berechtigungsbereich bei <a href="https://github.com/aaif-goose/goose/pull/10450">#10450</a>
+– Registrieren Sie den goose://-Schema-Handler im Flatpak-Desktop-Eintrag <a href="https://github.com/aaif-goose/goose/pull/10461">#10461</a></li>
+<li>Doppelte Rezeptparameterschlüssel ablehnen <a href="https://github.com/aaif-goose/goose/pull/10448">#10448</a>
+– Verwaiste Goose-Serve-Backends beim Schließen der GUI synchron töten <a href="https://github.com/aaif-goose/goose/pull/10292">#10292</a>
+– Unterbrechen Sie selbstreferenzielle $ref-Zyklen vor dem Codemodus-Schema <a href="https://github.com/aaif-goose/goose/pull/10469">#10469</a>
+– Stoppen Sie die automatische zeilenweise Übermittlung mehrzeiliger Einfügungen unter Windows <a href="https://github.com/aaif-goose/goose/pull/10326">#10326</a>
+– Verschachtelte Konfigurationswerte im Konfigurationseditor ausblenden <a href="https://github.com/aaif-goose/goose/pull/10390">#10390</a>
+– Stoppen Sie die Auflösung von TUI-Skripten von cwd <a href="https://github.com/aaif-goose/goose/pull/10449">#10449</a>
+– MCP-App-Tools von Rückrufen im Codemodus ausschließen <a href="https://github.com/aaif-goose/goose/pull/10290">#10290</a>
+– Anwenden des standardmäßigen Erweiterungszeitlimits auf Entwickler-Shell-Tool-Aufrufe <a href="https://github.com/aaif-goose/goose/pull/10348">#10348</a>
+– Reasoning_content für den DeepSeek-Denkmodus bei Multiturn-Werkzeugaufrufen beibehalten <a href="https://github.com/aaif-goose/goose/pull/10366">#10366</a>
+– Eingabeaufforderungszeitstempel Zeitzonen-explizit machen <a href="https://github.com/aaif-goose/goose/pull/10209">#10209</a>
+– Compact während der Genehmigung deaktiviert <a href="https://github.com/aaif-goose/goose/pull/10089">#10089</a>
+– Leere Zeichenfolge „finish_reason“ beim Streaming als nicht terminal behandeln <a href="https://github.com/aaif-goose/goose/pull/10258">#10258</a>
+– Gemini OAuth-Onboarding <a href="https://github.com/aaif-goose/goose/pull/10363">#10363</a>, <a href="https://github.com/aaif-goose/goose/pull/8905">#8905</a>
+– Leere Provider-Umdrehungen wiederholen, anstatt stillschweigend anzuhalten <a href="https://github.com/aaif-goose/goose/pull/10360">#10360</a>
+– Schützen Sie die Backend-Initialisierung von llama.cpp vor SIGILL auf x86_64-CPUs ohne FMA/AVX2 <a href="https://github.com/aaif-goose/goose/pull/10105">#10105</a>
+– Funktionsaufrufnamen von Antworten bereinigen <a href="https://github.com/aaif-goose/goose/pull/10344">#10344</a>
+– Wählen Sie den Sitzungsmodus anhand der IDs aus, die der Agent tatsächlich anbietet <a href="https://github.com/aaif-goose/goose/pull/10320">#10320</a>
+– Deduplizieren Sie doppelte signierte Denkblöcke, um Anthropic 400 zu beheben <a href="https://github.com/aaif-goose/goose/pull/10083">#10083</a>
+– Standardmodell des Anbieters auflösen, anstatt Sentinel „aktuell“ preiszugeben <a href="https://github.com/aaif-goose/goose/pull/10305">#10305</a>
+– Gibt das effektive Kontextlimit von /model-info zurück <a href="https://github.com/aaif-goose/goose/pull/10165">#10165</a>
+– Gate rcgen aws_lc_rs-Funktion hinter rustls-tls <a href="https://github.com/aaif-goose/goose/pull/10116">#10116</a>
+– Teilantwortausgabeelemente werden toleriert <a href="https://github.com/aaif-goose/goose/pull/10108">#10108</a>
+– Verwenden Sie immer OpenAI-kompatible „Parameter“ für Tools in Databricks <a href="https://github.com/aaif-goose/goose/pull/10101">#10101</a></li>
+<li>Mit Shell-Escapezeichen versehene Bildpfade entfernen <a href="https://github.com/aaif-goose/goose/pull/10098">#10098</a></li>
+<li>Seed-Konfiguration für die automatische Aktualisierung des Mac <a href="https://github.com/aaif-goose/goose/pull/10132">#10132</a>
+– Inferenzkonfiguration (max_tokens, Temperatur) an Bedrock Converse senden <a href="https://github.com/aaif-goose/goose/pull/9889">#9889</a>
+– Deep-Link-Importe der Nostr-Sitzung deduplizieren <a href="https://github.com/aaif-goose/goose/pull/9918">#9918</a>
+– Deterministisch-permanente 400er (Denkblock-Unveränderlichkeit) nicht erneut versuchen <a href="https://github.com/aaif-goose/goose/pull/10005">#10005</a>
+– Verwenden Sie die asynchrone Anforderung client, damit der OTLP-Export im <code>goose serve</code>-Modus funktioniert <a href="https://github.com/aaif-goose/goose/pull/10100">#10100</a>
+– Nicht-Objekt-Tool-Call-Argumente ablehnen, anstatt in Panik zu geraten <a href="https://github.com/aaif-goose/goose/pull/9832">#9832</a>
+– Eingabeaufforderungen im Verlauf speichern/bearbeiten <a href="https://github.com/aaif-goose/goose/pull/10011">#10011</a>
+– Verwenden Sie session.message_count zum Planen von Sitzungen mit der Auflistung <a href="https://github.com/aaif-goose/goose/pull/10026">#10026</a>
+– Unterstützt gestreamte Toolaufrufe ohne Indizes <a href="https://github.com/aaif-goose/goose/pull/10023">#10023</a>
+– Erweitertes Denken für schnelle Modelloperationen deaktivieren <a href="https://github.com/aaif-goose/goose/pull/9815">#9815</a>
+– Pufferung des Denkens über Stream-Chunks hinweg für DeepSeek/Kimi-Tool-Aufrufe <a href="https://github.com/aaif-goose/goose/pull/9704">#9704</a>
+– Umsetzbare Fehler werden bei abgeschnittenen Tool-Call-Argumenten angezeigt <a href="https://github.com/aaif-goose/goose/pull/9946">#9946</a>
+– Beim Deaktivieren einer Erweiterung den optimistischen Umschaltstatus anzeigen <a href="https://github.com/aaif-goose/goose/pull/9882">#9882</a>
+– Databricks_v2-Preise und Oberflächenkosten im Standardnutzungsupdate behoben <a href="https://github.com/aaif-goose/goose/pull/9925">#9925</a>
+– Mac-Updater-Metadaten veröffentlichen <a href="https://github.com/aaif-goose/goose/pull/9945">#9945</a>
+– Aktivieren Sie Hermit unter macOS, damit STDIO-Erweiterungen den Knoten auflösen <a href="https://github.com/aaif-goose/goose/pull/9482">#9482</a>
+– JSON-codierte Zeichenfolge für Autovisualiser-Datenparameter akzeptieren <a href="https://github.com/aaif-goose/goose/pull/9838">#9838</a>
+– User-Agent bei URL-Bildabrufen in „developer/read_image“ senden <a href="https://github.com/aaif-goose/goose/pull/9927">#9927</a>
+– Geben Sie die Temperatur nicht an den ChatGPT-Codex-Anbieter weiter <a href="https://github.com/aaif-goose/goose/pull/9931">#9931</a>
+– Erweiterungsumgebungszuordnungen bereinigen <a href="https://github.com/aaif-goose/goose/pull/9884">#9884</a>
+– GCP: Nach der erneuten Authentifizierung ein aktualisiertes gcloud-Token verwenden (Vertex AI auf 401/403 erneut versuchen) <a href="https://github.com/aaif-goose/goose/pull/9849">#9849</a></li>
+<li>Eine Runde starten, wenn /goal oder /grind eingestellt ist <a href="https://github.com/aaif-goose/goose/pull/9801">#9801</a>
+– Thinking-Konfiguration an Bedrock Anthropic-Modelle übergeben <a href="https://github.com/aaif-goose/goose/pull/9794">#9794</a>
+– Das Erweiterungssymbol bleibt nach dem Sitzungswechsel sichtbar <a href="https://github.com/aaif-goose/goose/pull/9787">#9787</a>
+– Nicht-Rezept-Projektkonfigurationsdateien in Summon überspringen <a href="https://github.com/aaif-goose/goose/pull/9808">#9808</a></li>
+<li>Duplizierte Werkzeugaufruf-IDs innerhalb einer Runde entfernt <a href="https://github.com/aaif-goose/goose/pull/9792">#9792</a>
+– Gebündelte Erweiterungen aus Discovery auflösen <a href="https://github.com/aaif-goose/goose/pull/9759">#9759</a>
+– Benutzerdefinierter OpenAI-Anbieter löscht den Port, wenn das URL-Schema weggelassen wird <a href="https://github.com/aaif-goose/goose/pull/9730">#9730</a>
+– Windows-Backslash-Pfade im benutzerdefinierten Erweiterungsbefehl beibehalten <a href="https://github.com/aaif-goose/goose/pull/9741">#9741</a>
+– AgentInfo in die ACP-Initialisierungsantwort einbeziehen <a href="https://github.com/aaif-goose/goose/pull/9765">#9765</a>
+– ACP-Race-Bedingung abbrechen <a href="https://github.com/aaif-goose/goose/pull/9804">#9804</a>
+– Login-Shell-PATH in erzeugten Subagenten erben <a href="https://github.com/aaif-goose/goose/pull/9737">#9737</a>
+– Akzeptieren Sie Zeichenfolgenwerte für GOOSE_CONTEXT_LIMIT <a href="https://github.com/aaif-goose/goose/pull/9738">#9738</a>
+– Zurückgewiesene OAuth-Anmeldeinformationen nach der Aktualisierung löschen <a href="https://github.com/aaif-goose/goose/pull/9694">#9694</a></li>
+<li>Erweitertes Denken innerhalb der anthropischen Output-Obergrenze beibehalten <a href="https://github.com/aaif-goose/goose/pull/9814">#9814</a>
+– RPM-Build-ID-Links deaktivieren <a href="https://github.com/aaif-goose/goose/pull/9671">#9671</a>
+– Benutzerdefinierten API-Pfad in der base_url-Ableitung für OpenAI beibehalten <a href="https://github.com/aaif-goose/goose/pull/9649">#9649</a>
+– Behandeln Sie Lebenslauf-Deep-Links <a href="https://github.com/aaif-goose/goose/pull/9298">#9298</a>
+– PATH für Plugin-Hook-Befehle reparieren <a href="https://github.com/aaif-goose/goose/pull/9615">#9615</a></li>
+<li>Wiederherstellen der neuen Chat-Verknüpfung Cmd/Strg+T <a href="https://github.com/aaif-goose/goose/pull/9614">#9614</a>
+– Lead mit Erweiterungsbeschreibung, HTTP/SSE-Transportetikett kürzen <a href="https://github.com/aaif-goose/goose/pull/9653">#9653</a>
+– Erwähnen Sie das Menüsymbol, um die Seitenleiste zu öffnen <a href="https://github.com/aaif-goose/goose/pull/9643">#9643</a>
+– Deduplizierungsreaktion, um mehrere Instanzen im Renderer zu verhindern <a href="https://github.com/aaif-goose/goose/pull/9631">#9631</a>
+– Hermit-Bereinigung zu UVX- und Jbang-Skripten hinzugefügt <a href="https://github.com/aaif-goose/goose/pull/9616">#9616</a>
+– Blockierenden OTLP-HTTP-Exporter verwenden <a href="https://github.com/aaif-goose/goose/pull/9599">#9599</a>
+– Zurückgreifen auf den Standardanbieter, wenn die Sitzung mit einem nicht verfügbaren Anbieter fortgesetzt wird <a href="https://github.com/aaif-goose/goose/pull/9547">#9547</a>
+– Tokio-Laufzeit für OTLP-HTTP-Exporter-Batch-Thread bereitstellen <a href="https://github.com/aaif-goose/goose/pull/9541">#9541</a>
+– Lesen Sie meta.n_ctx aus /v1/models, um das Kontextlimit für lokale Server zu beheben <a href="https://github.com/aaif-goose/goose/pull/9530">#9530</a>
+– Richten Sie die Bildlaufleiste des Sitzungsverlaufs am Fensterrand aus <a href="https://github.com/aaif-goose/goose/pull/9601">#9601</a>
+– Sitzungsnamen in der Seitenleiste nach dem Umbenennen aktualisieren <a href="https://github.com/aaif-goose/goose/pull/9543">#9543</a></li>
+<li>Aufgelöste Skill-unterstützende Dateipfade anzeigen <a href="https://github.com/aaif-goose/goose/pull/9584">#9584</a></li>
+<li>Implementieren Sie echtes Bedrock-Streaming über ConverseStream API <a href="https://github.com/aaif-goose/goose/pull/9579">#9579</a>
+– OpenAI-native zwischengespeicherte_Tokens in der Nutzungsmessung aufzeichnen <a href="https://github.com/aaif-goose/goose/pull/9829">#9829</a>
+– Option zum Überschreiben der API-URL für den Moonshot-Anbieter hinzugefügt <a href="https://github.com/aaif-goose/goose/pull/9819">#9819</a></li>
+<li>Bildpfade mit Leerzeichen erkennen <a href="https://github.com/aaif-goose/goose/pull/9387">#9387</a></li>
+<li>Neue Chat-Verknüpfungsnavigation wiederherstellen <a href="https://github.com/aaif-goose/goose/pull/9528">#9528</a>
+– Veraltete abgeschlossene Aufgaben entfernen, um unbegrenztes Speicherwachstum bei der Beschwörung zu verhindern <a href="https://github.com/aaif-goose/goose/pull/9514">#9514</a>
+– OAuth: Zeitüberschreitung beim Warten auf MCP-Rückrufe, anstatt in WSL hängen zu bleiben <a href="https://github.com/aaif-goose/goose/pull/9536">#9536</a>
+– Warnung vor nicht übereinstimmenden Erweiterungsnamen im Summon-Delegaten <a href="https://github.com/aaif-goose/goose/pull/9513">#9513</a>
+– Wenn Sie eine kürzlich erstellte Sitzung löschen und dann eine neue erstellen, wird der Inhalt der gelöschten Sitzung angezeigt <a href="https://github.com/aaif-goose/goose/pull/9351">#9351</a>
+– Elizitierung decline verbreiten und Aktionen durchgängig abbrechen <a href="https://github.com/aaif-goose/goose/pull/9437">#9437</a></li>
+<li>Modal schließen, wenn Rezeptparameterformular abgebrochen wird <a href="https://github.com/aaif-goose/goose/pull/9195">#9195</a>
+– Stellen Sie sicher, dass der Zeitstempel der Werkzeuganforderung vor dem Zeitstempel der Werkzeugantwort liegt <a href="https://github.com/aaif-goose/goose/pull/9462">#9462</a>
+– Ordnen Sie ollama_cloud korrekt dem kanonischen Anbieter zu <a href="https://github.com/aaif-goose/goose/pull/9639">#9639</a>
+– Falsche maximale Tokenwerte für den Groq-Anbieter <a href="https://github.com/aaif-goose/goose/pull/9790">#9790</a>
+– Stream-Dekodierungsfehler als wiederholbar markieren <a href="https://github.com/aaif-goose/goose/pull/9723">#9723</a>
+– Bedrock ValidationException als ExecutionError klassifizieren <a href="https://github.com/aaif-goose/goose/pull/9735">#9735</a>
+– Beim Auflisten von Modellen durch alle Databricks AI Gateway v2-Endpunkte blättern <a href="https://github.com/aaif-goose/goose/pull/9753">#9753</a>
+– Nicht analysierbare Erweiterungseinträge während der Konfigurationsaktualisierung beibehalten <a href="https://github.com/aaif-goose/goose/pull/9439">#9439</a>
+– Slash-Hilfe mit integrierten Funktionen in CLI synchronisieren <a href="https://github.com/aaif-goose/goose/pull/10173">#10173</a>
+– Unicode-Interpunktion als Bildpfad-Abschlusszeichen behandeln <a href="https://github.com/aaif-goose/goose/pull/10106">#10106</a>
+– Keine anbieterspezifischen request_params in delegate()-Sitzungen einfließen lassen <a href="https://github.com/aaif-goose/goose/pull/9906">#9906</a>
+– Leere Phantomsitzungen beim Start löschen <a href="https://github.com/aaif-goose/goose/pull/9651">#9651</a>
+– Strukturierten Inhalt aus MCP-Tool-Antwort einschließen <a href="https://github.com/aaif-goose/goose/pull/10128">#10128</a>
+– Agent-Bereinigungsfehler werden beim Löschen der Sitzung weitergegeben <a href="https://github.com/aaif-goose/goose/pull/10112">#10112</a>
+– Verhindert, dass der Login-Shell-PATH-Probe Goose beim Start anhält <a href="https://github.com/aaif-goose/goose/pull/8804">#8804</a>
+– Preprompt von der Sitzungstitelgenerierung ausschließen <a href="https://github.com/aaif-goose/goose/pull/8793">#8793</a></li>
+<li>Durch das Aufheben der Planung eines Rezepts sollten diese nicht gelöscht werden <a href="https://github.com/aaif-goose/goose/pull/8978">#8978</a>
+– Übergabeverlauf des Seed-Anbieters in ACP <a href="https://github.com/aaif-goose/goose/pull/8941">#8941</a></li>
+<li>Beachten Sie die Einstellungen für die Schnittstellendichte von goose2 <a href="https://github.com/aaif-goose/goose/pull/8953">#8953</a>
+– Sorgen Sie dafür, dass goose2 die Akzentfarbe berücksichtigt <a href="https://github.com/aaif-goose/goose/pull/8952">#8952</a>
+– Zeitstempel der Wiederholungsnachrichten beibehalten <a href="https://github.com/aaif-goose/goose/pull/8942">#8942</a></li>
+<li>Mindestgröße des Goose2-Fensters <a href="https://github.com/aaif-goose/goose/pull/8946">#8946</a>
+– Transformierten Dialogtext in goose2 vermeiden <a href="https://github.com/aaif-goose/goose/pull/8937">#8937</a></li>
+<li>Umbenannte Fertigkeiten in der Detailansicht geöffnet lassen <a href="https://github.com/aaif-goose/goose/pull/8935">#8935</a>
+– Modellauswahl bleibt während des Ladens des Anbieters verwendbar <a href="https://github.com/aaif-goose/goose/pull/8900">#8900</a>
+– ACP-Anfragen gleichzeitig bearbeiten <a href="https://github.com/aaif-goose/goose/pull/8781">#8781</a>
+– Wenden Sie hermit env direkt in Node-Shims an, damit eine Fish-Login-Shell den MCP-Start nicht unterbricht <a href="https://github.com/aaif-goose/goose/pull/10028">#10028</a>
+– Befehlsargumente durch Erweiterungsformulare beibehalten <a href="https://github.com/aaif-goose/goose/pull/10527">#10527</a>
+– Manuelle Genehmigung für den Codemodus erzwingen <a href="https://github.com/aaif-goose/goose/pull/10528">#10528</a>
+– App-Dateivorgänge einschränken <a href="https://github.com/aaif-goose/goose/pull/10481">#10481</a>
+– Rekursive Schematypen mit pctx 0.4.1 im Codemodus beibehalten <a href="https://github.com/aaif-goose/goose/pull/10572">#10572</a>
+– Shell-Arbeitsverzeichnis beim ersten Start verwenden <a href="https://github.com/aaif-goose/goose/pull/10655">#10655</a>
+– Bestandsaktualisierung für OpenRouter-Modellauswahl aktivieren <a href="https://github.com/aaif-goose/goose/pull/10641">#10641</a>
+– Lesezeilen beibehalten und Werkzeugausgabe in ACP neu laden <a href="https://github.com/aaif-goose/goose/pull/10662">#10662</a></li>
+<li>Ausgabe des Oberflächenwerkzeugaufrufs in CLI und Desktop <a href="https://github.com/aaif-goose/goose/pull/10654">#10654</a>
+– Überlange Funktionsnamen in Anbieteranfragen <a href="https://github.com/aaif-goose/goose/pull/10659">#10659</a>
+– Aktualisierungsfelder für ACP-Tool-Aufrufe beibehalten <a href="https://github.com/aaif-goose/goose/pull/10653">#10653</a>
+– Deaktivierte OpenRouter-Begründung weglassen <a href="https://github.com/aaif-goose/goose/pull/10517">#10517</a>
+– Veraltete ausstehende ACP-Verbindung nach Fehler bei der Terminalwiederherstellung löschen <a href="https://github.com/aaif-goose/goose/pull/10552">#10552</a>
+– Bestätigen Sie die ausstehende Lenkmeldung in der queuedSteer-Benachrichtigung <a href="https://github.com/aaif-goose/goose/pull/10532">#10532</a>
+– Wiederherstellung der dynamischen Modellerkennung und der aktuellen Grok-Unterstützung <a href="https://github.com/aaif-goose/goose/pull/10756">#10756</a>
+– Übergeordneten Anbieter für Vorladungsdelegierte wiederverwenden <a href="https://github.com/aaif-goose/goose/pull/10754">#10754</a>
+– Berechtigungsmodus-Aushandlung für Pi überspringen <a href="https://github.com/aaif-goose/goose/pull/10701">#10701</a>
+– Zeitstempel des Turn-Kontexts beim Start des Turns einfrieren, um den Präfix-Cache beizubehalten <a href="https://github.com/aaif-goose/goose/pull/10734">#10734</a></li>
+<li>Aktualisieren Sie die Moonshot-Modellliste mit der aktuellen Kimi-Reihe <a href="https://github.com/aaif-goose/goose/pull/10696">#10696</a>
+– Aktualisieren Sie die Metadaten bekannter Kimi-Code-Modelle mit der aktuellen Plattformpalette <a href="https://github.com/aaif-goose/goose/pull/10713">#10713</a>
+– Vermeiden Sie das doppelte Laden einer vollständigen Konversation bei geöffneter Sitzung <a href="https://github.com/aaif-goose/goose/pull/10794">#10794</a>
+– Stellen Sie fehlerhafte Toolaufrufe von GLM/Minimax-Modellen wieder her, anstatt sie abzulehnen <a href="https://github.com/aaif-goose/goose/pull/10230">#10230</a>
+– Cursor wiederherstellen, wenn die Konfiguration beendet wird <a href="https://github.com/aaif-goose/goose/pull/4889">#4889</a></li>
+</ul>
+<h2>🔧 Verbesserungen</h2>
+<p>– Turn-Kontext aus dem OpenAI-kompatiblen Präfix-Cache fernhalten <a href="https://github.com/aaif-goose/goose/pull/10937">#10937</a>
+– Turn-Kontext aus dem Anthropic-Präfix-Cache fernhalten <a href="https://github.com/aaif-goose/goose/pull/10030">#10030</a>
+– Anbieterauflösung parallelisieren und SQLite-Pool eifrig initiieren <a href="https://github.com/aaif-goose/goose/pull/8899">#8899</a>
+– RPC-Aufruf _goose/providers/list beim Start deduplizieren <a href="https://github.com/aaif-goose/goose/pull/8873">#8873</a></p>
+<ul>
+<li>Kompaktes Werkzeugschema JSON <a href="https://github.com/aaif-goose/goose/pull/10409">#10409</a>
+– Debug-Informationen für Abhängigkeiten im Entwicklungsprofil löschen <a href="https://github.com/aaif-goose/goose/pull/9843">#9843</a>
+– Verwenden Sie den LRU-Cache für die Token-Zählung <a href="https://github.com/aaif-goose/goose/pull/9586">#9586</a>
+– Zusammenführbare Konfigurationen mit Bereinigung <a href="https://github.com/aaif-goose/goose/pull/8378">#8378</a>
+– Strukturierter Konfigurationsblock pro Anbieter mit zerstörungsfreiem Anbieterwechsel <a href="https://github.com/aaif-goose/goose/pull/8977">#8977</a></li>
+<li>Linux musl CLI baut <a href="https://github.com/aaif-goose/goose/pull/9240">#9240</a>
+– Windows CUDA-Release-Artefakte <a href="https://github.com/aaif-goose/goose/pull/8750">#8750</a>
+– Linux-Desktop-Vulkan-Pakete <a href="https://github.com/aaif-goose/goose/pull/9323">#9323</a>
+– Desktop-Routing auf React Router 8.3.0 migrieren <a href="https://github.com/aaif-goose/goose/pull/10971">#10971</a></li>
+<li>Upgrade auf rmcp 3.0 <a href="https://github.com/aaif-goose/goose/pull/10789">#10789</a>
+– Verarbeiten von MCP-Werkzeuglisten-Änderungsbenachrichtigungen <a href="https://github.com/aaif-goose/goose/commit/e7088ee">#e7088ee</a></li>
+<li>Seite „Erweiterungen“ neu gestalten <a href="https://github.com/aaif-goose/goose/pull/8940">#8940</a></li>
+<li>Kompetenzbibliothek neu gestalten <a href="https://github.com/aaif-goose/goose/pull/8868">#8868</a>
+– Inline-Code-Styling im dunklen Modus für Nachrichtenblasen <a href="https://github.com/aaif-goose/goose/pull/10861">#10861</a></li>
+<li>Verfeinerung der Nachrichtenoberflächen im dunklen Design <a href="https://github.com/aaif-goose/goose/pull/10693">#10693</a>
+– Verbesserung des Inline-Code-Kontrasts im Light-Design <a href="https://github.com/aaif-goose/goose/pull/9058">#9058</a></li>
+<li>Polnische Seitenleistennavigation und Projektsymbole <a href="https://github.com/aaif-goose/goose/pull/8896">#8896</a>
+– Vereinfachen Sie die UI-Anpassung <a href="https://github.com/aaif-goose/goose/pull/9353">#9353</a>
+– Bessere Analyse von eingefügtem HTML als Markdown, damit Agenten verstehen <a href="https://github.com/aaif-goose/goose/pull/9190">#9190</a>
+– CLI-Projektunterstützung entfernen <a href="https://github.com/aaif-goose/goose/pull/10838">#10838</a>
+– ui/text TUI verwerfen und entfernen <a href="https://github.com/aaif-goose/goose/pull/10799">#10799</a>
+– MCP-Sampling-Unterstützung entfernen <a href="https://github.com/aaif-goose/goose/pull/10087">#10087</a></li>
+<li>Kontextüberschreitungsprüfung präziser gestalten <a href="https://github.com/aaif-goose/goose/pull/9831">#9831</a>
+– Kanonisches Modellinventar aktualisieren <a href="https://github.com/aaif-goose/goose/pull/10352">#10352</a>, <a href="https://github.com/aaif-goose/goose/pull/9709">#9709</a>, <a href="https://github.com/aaif-goose/goose/pull/9551">#9551</a>, <a href="https://github.com/aaif-goose/goose/pull/9331">#9331</a></li>
+<li>Kanonische Denkmodi hinzufügen <a href="https://github.com/aaif-goose/goose/pull/9743">#9743</a>
+– Nushell-Terminal- und Vervollständigungsunterstützung <a href="https://github.com/aaif-goose/goose/pull/8628">#8628</a>
+– Diagnose zum JSON-Bericht migrieren <a href="https://github.com/aaif-goose/goose/pull/9964">#9964</a>
+– Leiten Sie MCP-Erhebungen durch Tool-Streams <a href="https://github.com/aaif-goose/goose/pull/9943">#9943</a></li>
+<li>Nicht gelistete Modelle in der Suche zulassen <a href="https://github.com/aaif-goose/goose/pull/9933">#9933</a>
+– ACP-Paginierungssitzungsliste <a href="https://github.com/aaif-goose/goose/pull/9199">#9199</a>
+– OTLP-Traces beim Beenden mit konfigurierbarem Timeout zuverlässig leeren <a href="https://github.com/aaif-goose/goose/pull/9228">#9228</a>
+– Erhöhen Sie das /mcp-app-guest-Body-Limit für größere Einzeldatei-MCP-Apps <a href="https://github.com/aaif-goose/goose/pull/10324">#10324</a>
+– Verwenden Sie current_exe() anstelle der PATH-Suche, wenn Goose erzeugt wird <a href="https://github.com/aaif-goose/goose/pull/9236">#9236</a>
+– Setzen Sie TCP_USER_TIMEOUT auf streambare HTTP-clients im extension_manager <a href="https://github.com/aaif-goose/goose/pull/9207">#9207</a>
+– Fehler aufgrund nicht überprüfbarer Update-Herkunft behoben <a href="https://github.com/aaif-goose/goose/pull/10168">#10168</a>
+– Berechtigungen für den macOS-Desktop kürzen <a href="https://github.com/aaif-goose/goose/pull/10490">#10490</a></li>
+<li>Release-Workflows konsolidieren und härten <a href="https://github.com/aaif-goose/goose/pull/10447">#10447</a>
+– Rust-Toolchain aktualisieren und Rekursionslimit erhöhen <a href="https://github.com/aaif-goose/goose/pull/10303">#10303</a></li>
+<li>Verbessern Sie die einheitliche API-Ebene <a href="https://github.com/aaif-goose/goose/pull/10427">#10427</a>
+– Ausführung im gebundenen Codemodus mit Zeitüberschreitung und Abbruch <a href="https://github.com/aaif-goose/goose/pull/10214">#10214</a>
+– Lokales Inferenz-MLX-Backend auf die Verwendung von Safemlx Crate umstellen <a href="https://github.com/aaif-goose/goose/pull/10304">#10304</a></li>
+<li>Bewahren Sie Denkinhalte für Anbieter auf, die sie benötigen <a href="https://github.com/aaif-goose/goose/pull/8857">#8857</a>, <a href="https://github.com/aaif-goose/goose/pull/9314">#9314</a></li>
+<li>Beschwörungsanweisungen pro Spielzug erstellen <a href="https://github.com/aaif-goose/goose/pull/9329">#9329</a>
+– Lokale Inferenz rund um Backends umgestalten <a href="https://github.com/aaif-goose/goose/pull/9137">#9137</a>
+– Strengere GGUF-Anforderungen mit automatischer Erkennung der Tool-Aufrufunterstützung und fester Denkausgabeanalyse <a href="https://github.com/aaif-goose/goose/pull/9442">#9442</a>
+– Goose-Aliase für Databricks v2-Inventar bevorzugen <a href="https://github.com/aaif-goose/goose/pull/9430">#9430</a>
+– ACP-Migration: UI stellt direkt eine Verbindung zu ACP her, anstatt zu goosen <a href="https://github.com/aaif-goose/goose/pull/10081">#10081</a>
+– Einheitliches OTLP-Protokollierungsschema für die werkzeugübergreifende Erkennung <a href="https://github.com/aaif-goose/goose/pull/9713">#9713</a>
+– Musterbasierte Erkennungsaktualisierungen für die sofortige Injektion <a href="https://github.com/aaif-goose/goose/pull/9350">#9350</a>, <a href="https://github.com/aaif-goose/goose/pull/9198">#9198</a>, <a href="https://github.com/aaif-goose/goose/pull/9690">#9690</a>, <a href="https://github.com/aaif-goose/goose/pull/8546">#8546</a>
+– Aktivieren Sie die sofortige Einschleusungsminderung standardmäßig für interne Benutzer <a href="https://github.com/aaif-goose/goose/pull/9612">#9612</a>
+– OpenAI Responses API Speicherparameter konfigurierbar <a href="https://github.com/aaif-goose/goose/pull/10040">#10040</a></li>
+<li>GitHub Copilot /Antworten API <a href="https://github.com/aaif-goose/goose/pull/9043">#9043</a>
+– Suchen Sie nach Antworten zur API-Unterstützung in Databricks <a href="https://github.com/aaif-goose/goose/pull/9347">#9347</a></li>
+<li>Honor Retry-After bei 429 Antworten <a href="https://github.com/aaif-goose/goose/pull/9161">#9161</a></li>
+<li>Streaming Thinking Deltas zusammenführen und verfügbare Tools auf nicht gefundenen <a href="https://github.com/aaif-goose/goose/pull/9162">#9162</a> auflisten
+– Gedankenkettenmarkierungen aus der Ausgabe des benutzerdefinierten Anbieters entfernen <a href="https://github.com/aaif-goose/goose/pull/8635">#8635</a>
+– Streaming-Blöcke unter einer Nachrichten-ID in ACP zusammenführen <a href="https://github.com/aaif-goose/goose/pull/8788">#8788</a></li>
+</ul>
+<h2>📚 Dokumentation</h2>
+<p>– Automatisch eingefügte GOOSE_SHELL-Flags dokumentieren <a href="https://github.com/aaif-goose/goose/pull/10759">#10759</a>
+– Die Klarstellung der macOS-Sandbox-Funktion wurde bei der Bereinigung nach v1.25.0 entfernt <a href="https://github.com/aaif-goose/goose/pull/10900">#10900</a></p>
+<ul>
+<li>Discord-Einladung aktualisieren <a href="https://github.com/aaif-goose/goose/pull/10863">#10863</a>
+– Umgebungs- und Konfigurationsreferenzen aktualisieren <a href="https://github.com/aaif-goose/goose/pull/10203">#10203</a>
+– Dokument-Hook-Deny-Vertrag, Matcher-Regex, Tool_Input-Schlüssel und Anbieterkonfiguration <a href="https://github.com/aaif-goose/goose/pull/10467">#10467</a></li>
+<li>Verhaltenskodex hinzufügen <a href="https://github.com/aaif-goose/goose/pull/10424">#10424</a>
+– Einführung des Issue-First-Beitragsworkflows <a href="https://github.com/aaif-goose/goose/pull/10819">#10819</a>
+– Aktualisierung der Dokumente für ACP clients <a href="https://github.com/aaif-goose/goose/pull/9772">#9772</a></li>
+<li>Hakenführung <a href="https://github.com/aaif-goose/goose/pull/9288">#9288</a>
+– Leitfaden für benutzerdefinierte Agenten <a href="https://github.com/aaif-goose/goose/pull/9293">#9293</a>
+– Anleitung zum Verbinden von goose Desktop mit einem Remote-goosed-Server <a href="https://github.com/aaif-goose/goose/pull/9275">#9275</a>
+– Anforderung zur Dokumentbeschwörungserweiterung für Delegierten- und Ladetools <a href="https://github.com/aaif-goose/goose/pull/9231">#9231</a></li>
+<li>Ophis-Erweiterungsseite aktualisieren (Werkzeugliste, Ketten, Skills-Link) <a href="https://github.com/aaif-goose/goose/pull/10681">#10681</a>
+– Bereinigen veralteter Dokumentationsprüfungsergebnisse <a href="https://github.com/aaif-goose/goose/pull/10114">#10114</a></li>
+<li>Dokumente neu organisieren <a href="https://github.com/aaif-goose/goose/pull/9310">#9310</a></li>
+<li>Blog: Gans mit Peekaboo <a href="https://github.com/aaif-goose/goose/pull/8884">#8884</a></li>
+<li>Blog: Integrierte lokale Inferenz <a href="https://github.com/aaif-goose/goose/pull/8808">#8808</a></li>
+<li>Blog: Orchestrieren mit Goose <a href="https://github.com/aaif-goose/goose/pull/9104">#9104</a></li>
+<li>Blog: Mittel zur Selbstverbesserung <a href="https://github.com/aaif-goose/goose/pull/9846">#9846</a></li>
+<li>Blog: AAIF-Migration <a href="https://github.com/aaif-goose/goose/pull/9866">#9866</a></li>
+<li>Blog: MiniMax- und Office-QA-Benchmark-Ergebnisse <a href="https://github.com/aaif-goose/goose/pull/8984">#8984</a></li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Quelle</strong> <a href="https://github.com/aaif-goose/goose">aaif-goose/goose</a> · <code>v1.46.0</code> · 2026-08-12 · <a href="https://github.com/aaif-goose/goose/releases/tag/v1.46.0">Upstream-Release</a>
+<em>Zum Indexieren wörtlich gespiegelt. Alle Rechte liegen beim Upstream-Projekt.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Release notes werden vom Upstream-Projekt veröffentlicht und hier zur Indizierung gespiegelt. Alle Rechte liegen bei ihren Autoren. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/goose/1.47.0"> <span class="k">← Weiter</span> <span class="t">v1.47.0</span> </a> <a href="/releases/goose/1.45.0"> <span class="k">Zurück →</span> <span class="t">v1.45.0</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/aaif-goose/goose/releases/tag/v1.46.0" target="_blank" rel="noopener"> <span>Original auf GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/aaif-goose/goose" target="_blank" rel="noopener"> <span>aaif-goose/goose</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">Auf dieser Seite</div> <nav> <a href="#" class>✨ Funktionen</a><a href="#" class="lv3">Neue Anbieter</a><a href="#" class="lv3">Neue Modelle</a><a href="#" class="lv3">Internationalisierung</a><a href="#" class>🐛 Fehlerbehebungen</a><a href="#" class>🔧 Verbesserungen</a><a href="#" class>📚 Dokumentation</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Versionsverlauf</div> <ul class="rail-list"> <li> <a href="/releases/goose/1.60.2"> <span class="v">v1.60.2</span> <span class="d">26-11-20</span> </a> </li><li> <a href="/releases/goose/1.60.1"> <span class="v">v1.60.1</span> <span class="d">26-11-18</span> </a> </li><li> <a href="/releases/goose/1.60.0"> <span class="v">v1.60.0</span> <span class="d">26-11-17</span> </a> </li><li> <a href="/releases/goose/1.59.2"> <span class="v">v1.59.2</span> <span class="d">26-11-16</span> </a> </li><li> <a href="/releases/goose/1.59.0"> <span class="v">v1.59.0</span> <span class="d">26-11-10</span> </a> </li><li> <a href="/releases/goose/1.58.1"> <span class="v">v1.58.1</span> <span class="d">26-11-10</span> </a> </li><li> <a href="/releases/goose/1.58.0"> <span class="v">v1.58.0</span> <span class="d">26-11-09</span> </a> </li><li> <a href="/releases/goose/1.57.0"> <span class="v">v1.57.0</span> <span class="d">26-10-28</span> </a> </li> </ul> <a href="/de/releases/goose" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Alle anzeigen 63 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/de/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Open-Source-Release-Informationen, täglich veröffentlicht.</p> </div> <div class="footer-col"> <h3>Verfolgen</h3> <ul> <li><a href="/de/releases">Releases</a></li> <li><a href="/de/projects">Projekte</a></li> <li><a href="/de/releases.xml">RSS-Feed</a></li> </ul> </div> <div class="footer-col"> <h3>Archiv</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Chinesisches Archiv</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Technische Notizen</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Info</h3> <ul> <li><a href="/de/method">Methode</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Release notes gehören zu ihren Upstream-Projekten.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Releases durchsuchen"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="Veröffentlichungen, Projekte, Versionen …" autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="es"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>goose v1.28.0 — STAGS NextStack</title><meta name="description" content="Adversarial agent for preventing leaking of info and more #7948 · Claude adaptive thinking support #7944 · New onboarding flow #7266 · Persist GooseMode per-session via session DB #7854"><meta name="keywords" content="release note de código abierto, rastreador de lanzamientos, agregador changelog, cambios importantes, rastreador de desuso, lanzamientos de Kafka, lanzamientos de Spring Boot, lanzamientos de Kubernetes"><meta name="generator" content="Astro v5.18.2"><link rel="canonical" href="https://www.stags.cn/es/releases/goose/1.28.0/"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="alternate" type="application/rss+xml" title="STAGS NextStack — releases" href="/es/releases.xml"><link rel="alternate" hreflang="en" href="https://www.stags.cn/releases/goose/1.28.0/"><link rel="alternate" hreflang="zh-Hans" href="https://www.stags.cn/releases/goose/1.28.0/"><link rel="alternate" hreflang="x-default" href="https://www.stags.cn/releases/goose/1.28.0/"><meta property="og:site_name" content="STAGS"><meta property="og:type" content="article"><meta property="og:title" content="goose v1.28.0 — STAGS NextStack"><meta property="og:description" content="Adversarial agent for preventing leaking of info and more #7948 · Claude adaptive thinking support #7944 · New onboarding flow #7266 · Persist GooseMode per-session via session DB #7854"><meta property="og:url" content="https://www.stags.cn/es/releases/goose/1.28.0/"><meta property="og:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><meta property="og:locale" content="es_ES"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="pt_BR"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://www.stags.cn/img/stags-tracker-icon.png"><script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://www.stags.cn/#website","name":"STAGS","url":"https://www.stags.cn/","inLanguage":"es","description":"STAGS indexa las notas de versión de proyectos de infraestructura e IA – cambios incompatibles, obsolescencias y migraciones – en un único feed en inglés.","publisher":{"@id":"https://www.stags.cn/#org"}},{"@type":"Organization","@id":"https://www.stags.cn/#org","name":"STAGS","alternateName":"NextStack","url":"https://www.stags.cn/"},{"@type":"TechArticle","@id":"https://www.stags.cn/es/releases/goose/1.28.0/#article","headline":"goose v1.28.0 release notes","datePublished":"2026-03-18","inLanguage":"en","isPartOf":{"@id":"https://www.stags.cn/#website"},"about":{"@type":"SoftwareSourceCode","codeRepository":"https://github.com/aaif-goose/goose"}}]}</script><!-- 第三方脚本的连接预热：这两个域名几乎每页都要连，
+         提前建连能省掉 DNS + TCP + TLS 一个往返（移动网络 100~300ms）。
+         AdSense 只在开关打开时预热——关掉广告后连这个域名都没必要。 --><link rel="preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://pagead2.googlesyndication.com"><!-- Google AdSense：站点所有权校验与广告投放共用同一段脚本，全站只加载一次。
+         未创建广告单元时页面上不渲染任何广告容器，站点保持干净。
+         fetchpriority=low：它不参与首屏渲染，不该跟正文抢带宽。 --><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4184355057086168" crossorigin="anonymous" fetchpriority="low"></script><!-- Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=G-RFRF1TVRMP" fetchpriority="low"></script><script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-RFRF1TVRMP");
+    </script><!-- 百度统计（国内流量统计）。官方标准片段，is:inline 原样输出，
+         hm.js 动态插到首个 script 前，异步不阻塞首屏渲染。 --><script>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?299e5b4e65b86ed16879bdcbe70531d6";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script><link rel="stylesheet" href="/assets/index.oyFk6CsS.css">
+<style>.ad-slot[data-astro-cid-fgwukgf6]{margin:var(--s10) 0 0;padding-top:var(--s5);border-top:1px solid var(--line)}.ad-slot-label[data-astro-cid-fgwukgf6]{margin-bottom:var(--s3);font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{display:block;min-height:100px}@media(min-width:640px){.ad-slot[data-astro-cid-fgwukgf6] ins.adsbygoogle{min-height:250px}}
+</style></head> <body> <a class="skip" href="#main">Ir al contenido</a> <header class="hdr" data-header> <div class="wrap hdr-inner"> <a href="/es/" class="brand" aria-label="STAGS NextStack — Información de versiones open source"> <span class="brand-mark" aria-hidden="true">S</span> <span class="brand-main">STAGS</span> <span class="brand-sub" aria-hidden="true">NextStack</span> </a> <nav class="nav" aria-label="Primary"> <a href="/es/releases">Versiones</a><a href="/es/projects">Proyectos</a><a href="/es/method">Método</a> </nav> <div class="hdr-tools"> <button class="searchbtn" type="button" data-search-open aria-label="Buscar versiones"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <span class="lbl">Buscar</span> <span class="kbd">⌘K</span> </button> <details class="langmenu" data-langmenu> <summary class="langmenu-btn" aria-label="Idioma"> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"> <circle cx="12" cy="12" r="9"></circle> <path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"></path> </svg> <span class="langmenu-cur">ES</span> <svg class="langmenu-chev" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m2 4 4 4 4-4"></path></svg> </summary> <div class="langmenu-panel" role="group" aria-label="Idioma"> <p class="langmenu-head">Idioma</p> <a class="langmenu-item" href="/releases/goose/1.28.0/" hreflang="en" lang="en" data-on="false"> <span class="langmenu-label">English</span> <span class="langmenu-code">EN</span> </a><a class="langmenu-item" href="/zh/release_note/goose/goose_v1.28.0" hreflang="zh-Hans" lang="zh-CN" data-on="false"> <span class="langmenu-label">中文</span> <span class="langmenu-code">中</span> </a><a class="langmenu-item" href="/ja/releases/goose/1.28.0/" hreflang="ja" lang="ja" data-on="false"> <span class="langmenu-label">日本語</span> <span class="langmenu-code">日</span> </a><a class="langmenu-item" href="/de/releases/goose/1.28.0/" hreflang="de" lang="de" data-on="false"> <span class="langmenu-label">Deutsch</span> <span class="langmenu-code">DE</span> </a><a class="langmenu-item" href="/fr/releases/goose/1.28.0/" hreflang="fr" lang="fr" data-on="false"> <span class="langmenu-label">Français</span> <span class="langmenu-code">FR</span> </a><a class="langmenu-item" href="/es/releases/goose/1.28.0/" hreflang="es" lang="es" aria-current="true" data-on="true"> <span class="langmenu-label">Español</span> <span class="langmenu-code">ES</span> </a><a class="langmenu-item" href="/pt/releases/goose/1.28.0/" hreflang="pt-BR" lang="pt-BR" data-on="false"> <span class="langmenu-label">Português</span> <span class="langmenu-code">PT</span> </a> </div> </details> <a class="iconlink" href="/releases.xml" aria-label="RSS"> <svg width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"> <path d="M2 12.5a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM2 7.5a6.5 6.5 0 0 1 6.5 6.5h-2A4.5 4.5 0 0 0 2 9.5v-2ZM2 2.5A11.5 11.5 0 0 1 13.5 14h-2A9.5 9.5 0 0 0 2 4.5v-2Z"></path> </svg> </a> </div> </div> </header> <main id="main">  <div class="wrap"> <div class="detail"> <article> <header class="detail-hd"> <nav class="crumbs" aria-label="Breadcrumb"> <a href="/es/">Inicio</a> <span class="sep">/</span> <a href="/es/releases">Versiones</a> <span class="sep">/</span> <a href="/es/releases/goose">goose</a> </nav> <h1 class="detail-title"> <span class="p">goose</span> v1.28.0 </h1> <div class="detail-meta"> <span class="chip chip--minor">Menor</span> <span><span class="k">Publicado</span>18 mar 2026</span>  <span class="sep" aria-hidden="true"></span> <a href="https://github.com/aaif-goose/goose" target="_blank" rel="noopener"> <span class="k">Fuente</span>aaif-goose/goose </a>   <span class="sep" aria-hidden="true"></span> <a href="/releases/goose/1.28.0/"> original en inglés </a>  <span class="sep" aria-hidden="true"></span> <button class="btn btn--ghost btn--sm" type="button" data-copy="https://www.stags.cn/es/releases/goose/1.28.0/">Copiar enlace</button> </div> </header> <div class="prose" style="margin-top:var(--s8)"> <p class="mt-notice" role="note">Esta página está traducida automáticamente. El texto original en inglés es la referencia.</p>  <div><h1>ganso v1.28.0</h1>
+<h2>✨ Características</h2>
+<ul>
+<li>Agente adversario para evitar la filtración de información y más <a href="https://github.com/block/goose/pull/7948">#7948</a></li>
+<li>Apoyo al pensamiento adaptativo de Claude <a href="https://github.com/block/goose/pull/7944">#7944</a></li>
+<li>Nuevo flujo de incorporación <a href="https://github.com/block/goose/pull/7266">#7266</a></li>
+<li>Persistir GooseMode por sesión a través de la base de datos de sesión <a href="https://github.com/block/goose/pull/7854">#7854</a></li>
+<li>Propagar session.id a intervalos y registros de registro OpenTelemetry <a href="https://github.com/block/goose/pull/7490">#7490</a></li>
+<li>Migrar la extensión del visualizador automático a aplicaciones MCP <a href="https://github.com/block/goose/pull/7852">#7852</a></li>
+<li>Controlador de sesión ACP/set_mode <a href="https://github.com/block/goose/pull/7801">#7801</a></li>
+<li>Soporte de MCP Roots <a href="https://github.com/block/goose/pull/7790">#7790</a></li>
+<li>Cargar sugerencias en subdirectorios anidados <a href="https://github.com/block/goose/pull/7772">#7772</a></li>
+<li>Herramienta de lectura ACP para delegar E/S del sistema de archivos a ACP clients <a href="https://github.com/block/goose/pull/7668">#7668</a></li>
+<li>Herramienta de resumen para lecturas deterministas <a href="https://github.com/block/goose/pull/7054">#7054</a></li>
+<li>Proveedores de ACP para Claude Code y Codex <a href="https://github.com/block/goose/pull/6605">#6605</a></li>
+<li>Capture resúmenes de razonamiento de las respuestas de OpenAI API <a href="https://github.com/block/goose/pull/7375">#7375</a></li>
+<li>Proveedor MiniMax con API compatible con Anthropic <a href="https://github.com/block/goose/pull/7640">#7640</a></li>
+<li>Tensorix como proveedor declarativo <a href="https://github.com/block/goose/pull/7712">#7712</a></li>
+<li>Archivos de soporte de habilidades que se pueden cargar individualmente mediante load() en invocar <a href="https://github.com/block/goose/pull/7583">#7583</a></li>
+<li>Avian como proveedor de LLM <a href="https://github.com/block/goose/pull/7561">#7561</a></li>
+<li>Combina TUI UX con configuración de publicación <a href="https://github.com/block/goose/pull/7683">#7683</a></li>
+<li>Campo de ruta base para configuración de proveedor personalizado <a href="https://github.com/block/goose/pull/7614">#7614</a></li>
+<li>Mejor detección de canales privados para el bot de Slack <a href="https://github.com/block/goose/pull/7680">#7680</a></li>
+<li>Selección de micrófono preferido <a href="https://github.com/block/goose/pull/7805">#7805</a></li>
+<li>Interpolación secreta en URL de extensión HTTP que se pueden transmitir <a href="https://github.com/block/goose/pull/7782">#7782</a></li>
+</ul>
+<h2>🐛 Corrección de errores</h2>
+<ul>
+<li>Eliminar el filtro agent_visible incorrecto en el mensaje de usuario en claude-code <a href="https://github.com/block/goose/pull/7931">#7931</a></li>
+<li>Reintentar en caso de error de autenticación con actualización de credenciales <a href="https://github.com/block/goose/pull/7812">#7812</a></li>
+<li>Cambie pctx_code_mode a 0.3.0 para corregir la verificación del tipo de iterador <a href="https://github.com/block/goose/pull/7892">#7892</a></li>
+<li>Pase session_id al cargar extensiones para que se descubran las habilidades <a href="https://github.com/block/goose/pull/7868">#7868</a></li>
+<li>Elección de herramientas y soporte de llamadas paralelas para el proveedor chatgpt_codex <a href="https://github.com/block/goose/pull/7867">#7867</a></li>
+<li>Manejo de confirmación de herramientas para múltiples solicitudes <a href="https://github.com/block/goose/pull/7856">#7856</a></li>
+<li>Resolver el bloqueo de tokio::sync::Mutex en la ruta de reintento de recetas <a href="https://github.com/block/goose/pull/7832">#7832</a></li>
+<li>Dejar de escribir sin errores al encontrar una tubería rota para la lista de sesiones de ganso <a href="https://github.com/block/goose/pull/7858">#7858</a></li>
+<li>Omitir CSP de solicitudes inseguras de actualización para backends HTTP externos <a href="https://github.com/block/goose/pull/7714">#7714</a></li>
+<li>Evitar el bloqueo cuando el comando pone en segundo plano un proceso secundario <a href="https://github.com/block/goose/pull/7689">#7689</a></li>
+<li>Salir del bucle del agente cuando la llamada a la herramienta JSON no puede analizar <a href="https://github.com/block/goose/pull/7840">#7840</a></li>
+<li>Evitar que las caídas de conexión SSE trunquen silenciosamente las respuestas <a href="https://github.com/block/goose/pull/7831">#7831</a></li>
+<li>Evite que SageMaker TGI se marque como configurado cuando solo se configuran las claves Bedrock <a href="https://github.com/block/goose/pull/7284">#7284</a></li>
+<li>Deshabilite la funcionalidad del controlador de la computadora cuando no se detecte $DISPLAY <a href="https://github.com/block/goose/pull/7824">#7824</a></li>
+<li>Registrar extensiones MCP al reanudar una sesión <a href="https://github.com/block/goose/pull/7806">#7806</a></li>
+<li>Cargue .gitignore en Prompt_manager para filtrar archivos de sugerencias <a href="https://github.com/block/goose/pull/7795">#7795</a></li>
+<li>Reasignar max_completion_tokens a max_tokens para proveedores compatibles con OpenAI <a href="https://github.com/block/goose/pull/7765">#7765</a></li>
+<li>Preservar el enlace de llamada/salida de la herramienta OpenAI Responses API <a href="https://github.com/block/goose/pull/7759">#7759</a></li>
+<li>Devuelve ContextLengthExceeded cuando el mensaje excede el tamaño de caché KV efectivo <a href="https://github.com/block/goose/pull/7815">#7815</a></li>
+<li>Utilice <code>includeThoughts/part.thought</code> para el manejo del pensamiento de Google <a href="https://github.com/block/goose/pull/7593">#7593</a></li>
+<li>Selector de modelo que muestra el modelo incorrecto en las pestañas <a href="https://github.com/block/goose/pull/7784">#7784</a></li>
+<li>Evite la división de palabras por espacio en los comandos del shell de Windows <a href="https://github.com/block/goose/pull/7810">#7810</a></li>
+<li>Unificar la resolución de ruta alrededor de GOOSE_PATH_ROOT <a href="https://github.com/block/goose/pull/7335">#7335</a></li>
+<li>Pasar alcances de OAuth a DCR y extraer los alcances otorgados de la respuesta del token <a href="https://github.com/block/goose/pull/7571">#7571</a></li>
+<li>Escribir en un archivo real si config.yaml es un enlace simbólico <a href="https://github.com/block/goose/pull/7669">#7669</a></li>
+<li>Preservar los emparejamientos al detener la puerta de enlace <a href="https://github.com/block/goose/pull/7733">#7733</a></li>
+<li>Desinfectar nombres de extensiones HTTP transmitibles derivados de URL <a href="https://github.com/block/goose/pull/7740">#7740</a></li>
+<li>Mejorar la detección de errores de disponibilidad del llavero <a href="https://github.com/block/goose/pull/7766">#7766</a></li>
+<li>Eliminar el secreto predeterminado inseguro de GOOSE_EXTERNAL_BACKEND <a href="https://github.com/block/goose/pull/7783">#7783</a></li>
+<li>Agregue #[serde(predeterminado)] al campo de descripción en las variantes de ExtensionConfig <a href="https://github.com/block/goose/pull/7708">#7708</a></li>
+<li>Restaurar el modo de aprobación inteligente <a href="https://github.com/block/goose/pull/7690">#7690</a></li>
+<li>Hacer que TLS sea configurable en el agente goosed a través de GOOSE_TLS env var <a href="https://github.com/block/goose/pull/7686">#7686</a></li>
+<li>Configuración de giros máximos <a href="https://github.com/block/goose/pull/7612">#7612</a></li>
+<li>Compare las configuraciones de extensión antes de omitir add_extension <a href="https://github.com/block/goose/pull/7650">#7650</a></li>
+<li>Agregar solo canales visibles al contexto del bot de Slack <a href="https://github.com/block/goose/pull/7678">#7678</a></li>
+<li>Asegúrese de que exista el binario de la plataforma <a href="https://github.com/block/goose/pull/7676">#7676</a></li>
+<li>Reemplazar el búfer de salida estático global con TempDir por instancia <a href="https://github.com/block/goose/pull/7632">#7632</a></li>
+<li>Resolver parámetros en el mensaje inicial con envío automático <a href="https://github.com/block/goose/pull/7659">#7659</a></li>
+<li>Agregue la extensión del analizador en la receta para mantener la compatibilidad con versiones anteriores <a href="https://github.com/block/goose/pull/7652">#7652</a></li>
+<li>Alcance la reutilización de sesiones vacías en la ventana actual para evitar que se mezclen sesiones <a href="https://github.com/block/goose/pull/7602">#7602</a></li>
+<li>Prevenir aborto en inferencia local <a href="https://github.com/block/goose/pull/7633">#7633</a></li>
+<li>Restaurar proveedor y extensiones para sesiones desalojadas por LRU <a href="https://github.com/block/goose/pull/7616">#7616</a></li>
+<li>Se eliminó el doble guión en el comando pnpm <a href="https://github.com/block/goose/pull/7951">#7951</a></li>
+</ul>
+<h2>🔧 Mejoras</h2>
+<ul>
+<li>Actualizar Electron 40.6.0 → 41.0.0 <a href="https://github.com/block/goose/pull/7851">#7851</a></li>
+<li>Solo muestra hasta 50 líneas de código fuente <a href="https://github.com/block/goose/pull/7578">#7578</a></li>
+<li>Mantener los mensajes sincronizados <a href="https://github.com/block/goose/pull/7850">#7850</a></li>
+<li>Más herramientas ACP <a href="https://github.com/block/goose/pull/7843">#7843</a></li>
+<li>Utilice pnpm para la aplicación Desktop Electron <a href="https://github.com/block/goose/pull/7679">#7679</a></li>
+<li>Usar comparación de tiempo constante para la validación del token de autenticación <a href="https://github.com/block/goose/pull/7730">#7730</a></li>
+<li>Utilice camelCase en CallToolResponse y agregue discriminadores de tipo a ContentBlock <a href="https://github.com/block/goose/pull/7487">#7487</a></li>
+<li>Convertir el proveedor Tanzu a la configuración declarativa JSON <a href="https://github.com/block/goose/pull/7124">#7124</a></li>
+<li>Simplifique la inicialización del tokenizador: elimine el contenedor de resultados innecesario <a href="https://github.com/block/goose/pull/7744">#7744</a></li>
+<li>Reducir la detalle del registro del servidor <a href="https://github.com/block/goose/pull/7729">#7729</a></li>
+<li>Derivar conversiones de cadenas GooseMode con rasgueo <a href="https://github.com/block/goose/pull/7706">#7706</a></li>
+<li>Actualización a rmcp 1.1.0 <a href="https://github.com/block/goose/pull/7619">#7619</a></li>
+<li>Fusionar plataforma/extensiones integradas <a href="https://github.com/block/goose/pull/7630">#7630</a></li>
+<li>Modelos canónicos actualizados <a href="https://github.com/block/goose/pull/7920">#7920</a></li>
+<li>Mantener el sistema abierto en la extensión fallida <a href="https://github.com/block/goose/pull/7771">#7771</a></li>
+<li>Dejar de recopilar stderr goosed después del inicio <a href="https://github.com/block/goose/pull/7814">#7814</a></li>
+<li>Eliminar la dependencia de posthog-rs <a href="https://github.com/block/goose/pull/7811">#7811</a></li>
+<li>Agregue prefer-offline a la configuración de pnpm para omitir búsquedas de registro innecesarias <a href="https://github.com/block/goose/pull/7828">#7828</a></li>
+<li>Restaurar el registro de ganso <a href="https://github.com/block/goose/pull/7622">#7622</a></li>
+<li>Registra 500 errores y muestra error para descarga directa <a href="https://github.com/block/goose/pull/7936">#7936</a></li>
+<li>Agregar <code>linux-mcp-server</code> al registro de ganso <a href="https://github.com/block/goose/pull/6979">#6979</a></li>
+<li>Eliminar el flujo de incorporación inactivo de OllamaSetup <a href="https://github.com/block/goose/pull/7861">#7861</a></li>
+<li>Eliminar telaraña de ganso <a href="https://github.com/block/goose/pull/7696">#7696</a></li>
+</ul>
+<h2>📚 Documentación</h2>
+<ul>
+<li>Sección de seguimiento del saldo crediticio <a href="https://github.com/block/goose/pull/7952">#7952</a></li>
+<li>Lista de proveedores de Cerebras a proveedores admitidos <a href="https://github.com/block/goose/pull/7953">#7953</a></li>
+<li>Documentación de TUI client en la guía ACP clients <a href="https://github.com/block/goose/pull/7950">#7950</a></li>
+<li>Documentos polacos del ACP <a href="https://github.com/block/goose/pull/7946">#7946</a></li>
+<li>Guía de proveedores de ACP para claude-acp y codex-acp <a href="https://github.com/block/goose/pull/7800">#7800</a></li>
+<li>Tutorial de la extensión MCP de pagos por lotes de Spraay <a href="https://github.com/block/goose/pull/7525">#7525</a></li>
+<li>Guía de integración de MLflow <a href="https://github.com/block/goose/pull/7563">#7563</a></li>
+<li>Disponibilidad de LM Studio <a href="https://github.com/block/goose/pull/7698">#7698</a></li>
+<li>Documentación de la variable de entorno GOOSE_INPUT_LIMIT <a href="https://github.com/block/goose/pull/7299">#7299</a></li>
+<li>Actualizar el paso de uso de recetas para reflejar el comportamiento de envío automático <a href="https://github.com/block/goose/pull/7639">#7639</a></li>
+<li>Guía para personalizar la barra lateral <a href="https://github.com/block/goose/pull/7638">#7638</a></li>
+<li>Actualizar el comportamiento de aprobación de Claude Code y la lista de modelos en la guía de proveedores cli <a href="https://github.com/block/goose/pull/7448">#7448</a></li>
+<li>Actualización de contribución.md <a href="https://github.com/block/goose/pull/7927">#7927</a></li>
+<li>Notas en la guía de contribución para pnpm <a href="https://github.com/block/goose/pull/7833">#7833</a></li>
+</ul>
+<hr />
+<blockquote>
+<p><strong>Fuente</strong> <a href="https://github.com/aaif-goose/goose">aaif-goose/goose</a> · <code>v1.28.0</code> · 2026-03-18 · <a href="https://github.com/aaif-goose/goose/releases/tag/v1.28.0">versión ascendente</a>
+<em>Reflejado textualmente para indexación. Todos los derechos pertenecen al proyecto upstream.</em></p>
+</blockquote></div>   </div> <p class="muted" style="margin-top:var(--s8);font-size:12.5px;border-top:1px solid var(--line);padding-top:var(--s4)"> Los Release note son publicados por el proyecto anterior y reflejados aquí para su indexación. Todos los derechos pertenecen a sus autores. </p> <nav class="pager" aria-label="Release navigation"> <a href="/releases/goose/1.29.0"> <span class="k">← Siguiente</span> <span class="t">v1.29.0</span> </a> <a href="/releases/goose/1.27.2"> <span class="k">Anterior →</span> <span class="t">v1.27.2</span> </a> </nav> <aside class="ad-slot" aria-label="Advertisement" data-astro-cid-fgwukgf6><div class="ad-slot-label" data-astro-cid-fgwukgf6>Advertisement</div><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4184355057086168" data-ad-slot="9133765584" data-ad-format="auto" data-full-width-responsive="true" data-astro-cid-fgwukgf6></ins><script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    </script></aside> </article> <aside class="rail"> <div class="rail-card"> <div class="rail-title">Source</div> <ul class="rail-list"> <li> <a href="https://github.com/aaif-goose/goose/releases/tag/v1.28.0" target="_blank" rel="noopener"> <span>Original en GitHub</span> <span class="d">↗</span> </a> </li> <li> <a href="https://github.com/aaif-goose/goose" target="_blank" rel="noopener"> <span>aaif-goose/goose</span> <span class="d">↗</span> </a> </li> </ul> </div> <div class="rail-card rail-toc"> <div class="rail-title">En esta página</div> <nav> <a href="#" class>✨ Características</a><a href="#" class>🐛 Corrección de errores</a><a href="#" class>🔧 Mejoras</a><a href="#" class>📚 Documentación</a> </nav> </div> <div class="rail-card"> <div class="rail-title">Historial de versiones</div> <ul class="rail-list"> <li> <a href="/releases/goose/1.60.2"> <span class="v">v1.60.2</span> <span class="d">26-11-20</span> </a> </li><li> <a href="/releases/goose/1.60.1"> <span class="v">v1.60.1</span> <span class="d">26-11-18</span> </a> </li><li> <a href="/releases/goose/1.60.0"> <span class="v">v1.60.0</span> <span class="d">26-11-17</span> </a> </li><li> <a href="/releases/goose/1.59.2"> <span class="v">v1.59.2</span> <span class="d">26-11-16</span> </a> </li><li> <a href="/releases/goose/1.59.0"> <span class="v">v1.59.0</span> <span class="d">26-11-10</span> </a> </li><li> <a href="/releases/goose/1.58.1"> <span class="v">v1.58.1</span> <span class="d">26-11-10</span> </a> </li><li> <a href="/releases/goose/1.58.0"> <span class="v">v1.58.0</span> <span class="d">26-11-09</span> </a> </li><li> <a href="/releases/goose/1.57.0"> <span class="v">v1.57.0</span> <span class="d">26-10-28</span> </a> </li> </ul> <a href="/es/releases/goose" class="mono" style="display:inline-block;margin-top:var(--s3);font-size:11.5px;color:var(--ink-3)"> Ver todo 63 →
+</a> </div> </aside> </div> </div>  </main> <footer class="site-footer"> <div class="wrap"> <div class="footer-grid"> <div class="footer-brand"> <a href="/es/" class="brand" aria-label="STAGS NextStack"><span class="brand-mark" aria-hidden="true">S</span><span class="brand-main">STAGS</span><span class="brand-sub" aria-hidden="true">NextStack</span></a> <p>Inteligencia de lanzamiento de código abierto, publicada diariamente.</p> </div> <div class="footer-col"> <h3>Seguimiento</h3> <ul> <li><a href="/es/releases">Versiones</a></li> <li><a href="/es/projects">Proyectos</a></li> <li><a href="/es/releases.xml">Feed RSS</a></li> </ul> </div> <div class="footer-col"> <h3>Archivo</h3> <ul> <li><a href="/zh/release_note" hreflang="zh-Hans">Archivo chino</a></li> <li><a href="/zh/chapters/" hreflang="zh-Hans">Notas técnicas</a></li> <li><a href="/zh/downloads/">Stags Tracker</a></li> </ul> </div> <div class="footer-col"> <h3>Información</h3> <ul> <li><a href="/es/method">Método</a></li> <li><a href="/privacy">Privacy policy</a></li> <li><a href="/releases.xml">RSS</a></li> <li><a href="/sitemap-index.xml">Sitemap</a></li> </ul> </div> </div> <div class="footer-btm"> <span>© 2026 STAGS</span> <span>Los Release note pertenecen a sus proyectos upstream.</span> </div> </div> </footer> <!-- 搜索面板 --> <div class="palette-bg" data-palette-bg data-open="false"> <div class="palette" role="dialog" aria-modal="true" aria-label="Buscar versiones"> <div class="palette-in"> <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="color:var(--ink-4);flex:none"> <circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path> </svg> <input type="search" data-palette-input placeholder="lanzamientos, proyectos, versiones..." autocomplete="off" spellcheck="false"> <span class="kbd">esc</span> </div> <ul class="palette-res" data-palette-res></ul> <div class="palette-ft"> <span>↑↓ navigate</span> <span>↵ open</span> <span style="margin-left:auto" data-palette-count></span> </div> </div> </div> <script type="module" src="/assets/Shell.astro_astro_type_script_index_0_lang.TriUs4m8.js"></script> </body> </html>
